@@ -1,0 +1,530 @@
+
+\chapter{A first mathematical model of the evolution of the Basque Country population respect to their opinion about ETA under its pressure}\label{paper1}
+
+In this chapter, our objective is to state a first type-epidemiological mathematical model. This model study the evolution over the time of populations in the Basque Country respect their opinions about the ETA's goals. This way, as we mentioned in Section \ref{reduccion}, we want to focus on the evolution of the supporters of ETA's goals to see if they decrease or not.
+
+Here, we recall that popular support is an important enabler for radical violent organizations and it may be crucial for their survival and these extremist groups have also an impact in the societies where they are inserted, especially if those groups are engaged in violent activities. 
+
+The democratic system in the Basque Country and in the rest of Spain is affected by terrorist acts of ETA (murders, kidnapping, vandalism, etc.). Thus, terrorism uses to be one of the most important topics for Spanish public opinion.
+
+In order to carry out this study, the Basque Country' population will be divided into people that:
+
+\begin{itemize}
+\item agree with ETA in the objective of independence and the use of
+violence to get it,
+\item agree with ETA only in the objective of independence, without the use
+of violence,
+\item completely disagree with ETA.
+\end{itemize}
+
+Then, from electoral manifestos and using statistical techniques, in Section \ref{1.1}, a classification of different political parties respect to the political goal "independence" is done. This allows us to divide the Basque population depending on their support to ETA's goals. In Section \ref{1.2} a type-epidemiological mathematical model where the pressure of ETA and its related groups affects the opinion of the people about the support of ETA's goals, is proposed. The model developed in Section \ref{1.2} is not appropriate for data obtained in Section \ref{1.1} (same units), hence Section \ref{1.3} is devoted to scale the model properly to be fitted with classification data obtained in Section \ref{1.4}. Simulations to predict short- and medium-term evolution of population in the Basque Country deterministically and with uncertainty are presented in Section \ref{1.5}. Finally, Section \ref{1.6} is devoted to conclusions.
+
+\section{Classification of ideological groups}\label{1.1}
+
+Let us consider as source data the results of the general elections to the Spanish
+Parliament in the Basque Country since June 15th 1977 to March 14th 2004 
+\cite{mir}. Since 1977, 85 political parties nominated candidates to,
+at least, one general election in the Basque Country electoral district.
+General elections data have been considered because, in Spain, experts
+consider that general elections give a more realistic political distribution
+than local elections \cite{elecGen}.
+
+Now, let us classify the parties with respect to their relation with the
+political objective "independence". To do this, a survey is prepared to be
+answered from the party's election manifestos. The survey consist of the following
+questions (or ideological characteristics):
+
+\begin{enumerate}
+\item Nationalist (Yes/No),
+\item Religious (Yes/No),
+\item Supports violence (Yes/No),
+\item Interventionist (Yes/No),
+\item Ecologist (Yes/No),
+\item Independence (Yes/No),
+\item Ideology (right wing or center/left wing/nationalist).
+\end{enumerate}
+
+A non-parametric bivariant analysis \cite[Chap. 9]{Groot} is carried out
+in order to determine the ideological characteristics (questions of the survey)
+related to the use of the violence to get the independence.
+These characteristics were "Independence", "Nationalism", "Ideology" and "Support violence"
+with associated $p-$values less than $0.01$. In the multiple correspondence
+analysis \cite[Chap. 10]{Hair} three different profiles can be seen (see
+Figure \ref{1cluster}), nationalist parties agreeing with the independence and
+the use of violence, right-wing and center parties against independence
+and, in the middle of these profiles, left-wing parties with a non
+homogeneous and/or ambiguous position respect to independence and the
+use of violence.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.53]{IMG/1cluster.pdf}
+\end{center}
+\caption{Correspondence analysis shows three different profiles, nationalist 
+parties, right-wing and center parties, and left-wing parties with ambiguous 
+positions respect to independence and the use of violence.}
+\label{1cluster}
+\end{figure}
+
+These three profiles (defined by the characteristics "Nationalist", "Independence" "Ideology" and "Support violence") lead us to do a non hierarchical cluster
+analysis with three groups of parties, whose definition is determined by the
+following characteristics:
+
+\begin{itemize}
+\item Group $G_{1}:$ non-nationalist parties against independence and the
+use of the violence.
+\item Group $G_{2}:$ nationalist parties agreeing with independence but
+disagreeing with the use of the violence.
+\item Group $G_{3}:$ nationalist parties agreeing with independence and the use
+of the violence.
+\end{itemize}
+
+The above division of political parties allows us to classify the population depending on the parties they vote and the position of these parties respect to ETA's goals. With this approach, the population of the Basque Country can be divided into four subpopulations
+
+\begin{itemize}
+\item $E(t)$, number of people who share the common ideological
+characteristics of parties in $G_{1}$ at time $t,$
+\item $N(t)$, number of people who share the common ideological
+characteristics of parties in $G_{2}$ at time $t,$
+\item $V(t)$, number of people who share the common ideological
+characteristics of parties in $G_{3}$ at time $t,$ and
+\item $A(t)$, the rest of the people at time $t$. It includes
+people who do not share the ideological characteristics of groups $G_{1},$ 
+$G_{2}$ and $G_{3}$ or people who abstain.
+\end{itemize}
+
+Figure \ref{1graf1} shows the percentage of votes of each subpopulation in
+each election. 
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.62]{IMG/1datos.pdf}
+\end{center}
+\caption{This figure shows the percentage of votes of each subpopulation 
+in each election. Vertical lines correspond to electoral days. Let us 
+consider in our study data between $1979$ and $1996$, where most of the  
+time the Socialist Party (PSOE) was in the government, and the same policy against terrorism can 
+be assumed.}
+\label{1graf1}
+\end{figure}
+
+Two considerations should be mentioned here to understand some trend changes in
+Figure \ref{1graf1} at the beginning and at the end. The general elections in
+1977 were the first celebrated after the dictator Franco died. Lots of
+parties presented candidates, the political situation was not clear and it
+is reflected in the data. In 2000, political parties in group $G_{3}$ asked abstention and in $2004$, the "Law of Political Parties" (LPP) forbade these parties from nominating candidates. In fact, LPP outlawed the political parties that did not condemn the violence. Notice that in $2000$ and $2004$ abstention increased, but this was because the votes for parties of group $G_{3}$ were considered void, increasing the subpopulation $A\left( t\right)$.
+
+All the above leads us to consider only election data since 1979 to 1996
+where the major part of time the Socialist Party (PSOE) governed Spain and
+the same policy against terrorism can be assumed in order to fit the
+model we will develop in Section \ref{1.2}.
+
+\begin{table}[htb]
+\label{1Table1}
+\begin{center}
+\begin{tabular}{ccccc}
+\hline
+Election date & $E(t)$ & $N(t)$ & $V(t)$ & $A(t)$ \\ \hline
+\multicolumn{1}{l}{Jun 15th, 1977} & \multicolumn{1}{l}{$0.435392$} & 
+\multicolumn{1}{l}{$0.266825$} & \multicolumn{1}{l}{$0.0316636$} & 
+\multicolumn{1}{l}{$0.26612$} \\ 
+\multicolumn{1}{l}{Mar 1st, 1979} & \multicolumn{1}{l}{$0.278466$} & 
+\multicolumn{1}{l}{$0.233303$} & \multicolumn{1}{l}{$0.0967287$} & 
+\multicolumn{1}{l}{$0.391502$} \\ 
+\multicolumn{1}{l}{Oct 28th, 1982} & \multicolumn{1}{l}{$0.347978$} & 
+\multicolumn{1}{l}{$0.306366$} & \multicolumn{1}{l}{$0.114331$} & 
+\multicolumn{1}{l}{$0.231325$} \\ 
+\multicolumn{1}{l}{Jun 22nd, 1986} & \multicolumn{1}{l}{$0.294959$} & 
+\multicolumn{1}{l}{$0.245271$} & \multicolumn{1}{l}{$0.117587$} & 
+\multicolumn{1}{l}{$0.342183$} \\ 
+\multicolumn{1}{l}{Dec 17th, 1989} & \multicolumn{1}{l}{$0.246631$} & 
+\multicolumn{1}{l}{$0.283516$} & \multicolumn{1}{l}{$0.111871$} & 
+\multicolumn{1}{l}{$0.357982$} \\ 
+\multicolumn{1}{l}{Jun 6th, 1993} & \multicolumn{1}{l}{$0.330461$} & 
+\multicolumn{1}{l}{$0.234575$} & \multicolumn{1}{l}{$0.100969$} & 
+\multicolumn{1}{l}{$0.333994$} \\ 
+\multicolumn{1}{l}{Mar 3rd, 1996} & \multicolumn{1}{l}{$0.364871$} & 
+\multicolumn{1}{l}{$0.236203$} & \multicolumn{1}{l}{$0.0872077$} & 
+\multicolumn{1}{l}{$0.311718$} \\ 
+\multicolumn{1}{l}{Mar 12th, 2000} & \multicolumn{1}{l}{$0.364974$} & 
+\multicolumn{1}{l}{$0.239676$} & \multicolumn{1}{l}{$0.$} & 
+\multicolumn{1}{l}{$0.39535$} \\ 
+\multicolumn{1}{l}{Mar 14th, 2004} & \multicolumn{1}{l}{$0.382756$} & 
+\multicolumn{1}{l}{$0.299592$} & \multicolumn{1}{l}{$0.$} & 
+\multicolumn{1}{l}{$0.317652$} \\ \hline
+\end{tabular}
+\end{center}
+\caption{Data corresponding to graphic in Figure \ref{1graf1}.}
+\end{table}
+
+Taking into account that, in Spain, only people older than $18$ can vote and
+supposing that children and teenagers have the same way of thinking as their
+parents, let us assume that data in Table \ref{1Table1} gives a general voting distribution 
+of the whole population in the Basque Country, and taking into account the classification of parties, 
+the distribution of the people depending on their support to ETA's goals.
+
+\section{Building the type-epidemiological mathematical model}\label{1.2}
+
+Let us consider the population of the Basque Country divided into four
+subpopulations determined in Section \ref{1.1}, that is, $E,$ $N,$ 
+$V$ and $A$. Also, we assume that:
+
+\begin{itemize}
+\item The number of births $\Lambda(t)$ and the number of
+deaths $\Phi(t)$ in the year $t$, are proportional to the number of individuals
+in each subpopulation.
+
+\item Terrorism does not increase substantially the number of deaths. 
+
+\item The immigration $\Gamma(t)$ and emigration $\Sigma(t)$ in Basque Country 
+are also included. It is considered that immigration and emigration only occurs 
+in subpopulations $E$ and $A$ due to the terror pressure \cite{exilio2, exilio3, exilio1} 
+in proportions $\alpha_{1}$ and $\alpha_{2}$, respectively, to be determined.
+\end{itemize}
+
+In order to determine the rest of transition terms, 
+partial correlation coefficients have been used. This coefficient studies
+the linear relation between two variables under the influence of a third
+variable \cite{Groot}. To carry out this study, let us take data of Table
+\ref{1Table1} corresponding to elections from March 1st 1979 to March 3rd
+1996.
+
+The partial correlation coefficient between subpopulations $E$ and $A$ under
+the influence of $V$ is $-0.8409$ with a $p-$value of $0.009$ ($p-value < 0.05$). It means that
+there is a linear inverse relation between $E$ and $A$ under $V,$ that is,
+under $V$ an increasing of subpopulation $E$ implies a decrease of
+subpopulation $A$ and vice versa. Moreover, the linear correlation
+coefficient between $E$ and $A$ without the presence of $V$ is not
+significant. Therefore the transition between $E$ and $A$ is not linear because it is only possible under the influence of population $V$, and it is modeled by the nonlinear term
+
+\[
+\beta_{1} E(t) \frac{V(t)}{T(t)}, 
+\]
+
+where $\beta_{1} > 0$ indicates that the transition is due to the pressure of
+violent acts and $\beta_{1} < 0$ indicates a law enforcement.
+
+Analogously, a similar situation occurs between subpopulations $A$ and $V$
+under the pressure of $V$. Then, the transition between subpopulations $A$
+and $V$ is modeled by the nonlinear term
+
+\[
+k \beta_{1} A(t) \frac{V(t)}{T(t)}, 
+\]
+
+with $k > 0$.
+
+On the other hand, the partial correlation coefficient between
+subpopulations $N$ and $A$ under the influence of $E$ is $-0.6292$ with a 
+$p- $value of $0.05$ and there is a linear inverse relation between $N$ and 
+$A $ under $E$. Also, the linear correlation coefficient between $N$ and $A$
+without the presence of $E$ is not significant. Therefore the transition
+between $N$ and $A$ is modeled by the nonlinear term
+
+\[
+\beta_{2} N(t) \frac{E(t)}{T(t)}. 
+\]
+
+Then, the system of differential equations that models the evolution over the time of populations in the Basque Country respect their opinions about the ETA's goals under the pressure of its violence is given by
+
+\begin{eqnarray}
+E'(t)	& = &	\Lambda(t) E(t) + \alpha_{2} \Gamma(t) - \beta_{1} E(t) \frac{V(t)}{T(t)} - \label{1m1} \\
+        &   &	\Phi(t) E(t) - \alpha_{1} \Sigma(t),  \nonumber \\                          
+N'(t)	& = &	\Lambda(t) N(t) - \beta_{2} N(t) \frac{E(t)}{T(t)} - \Phi(t) N(t),  \label{1m2} \\
+V'(t)	& = &	\Lambda(t) V(t) + k \beta_{1} A(t) \frac{V(t)}{T(t)} - \Phi(t) V(t),  \label{1m3} \\
+A'(t)	& = &  	\Lambda(t) A(t) + (1 - \alpha_{2}) \Gamma(t) + \beta_{1} E(t) \frac{V(t)}{T(t)} + \label{1m4} \\
+		&   &	\beta_{2}N(t) \frac{E(t)}{T(t)} - k \beta_{1} A(t) \frac{V(t)}{T(t)} - \Phi(t) A(t) - 
+		        (1 - \alpha_{1}) \Sigma(t),  \nonumber \\
+T(t)		& = &	E(t) + N(t) + V(t) + A(t).  \label{1m5}
+\end{eqnarray}
+
+The above system of differential equations can be represented by the diagram of Figure \ref{1diagrama}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.48]{IMG/1DiagramaModeloFanatismo.pdf}
+\end{center}
+\caption{Diagram corresponding to the model defined by the system of 
+differential equations $\left( \protect\ref{1m1}\right) -\left( \protect\ref{1m5}\right).$}
+\label{1diagrama}
+\end{figure}
+
+\section{Scaling the model $(\ref{1m1}) -(\ref{1m5})$}\label{1.3}
+
+Data obtained in Section \ref{1.1} is related to the percentages of
+population while model $\left( \ref{1m1}\right) -\left( \ref{1m5}\right)$
+is related to the number of individuals. It leads us to transform (by scaling) the
+model into the same units as data, because one of our objectives is to fit the
+data with the model in next section.
+
+Hence, following ideas developed in \cite{Martcheva, Mena, scaling} about how
+to scale models where the population is varying in size, adding equations 
+$\left( \ref{1m1}\right) -\left( \ref{1m4}\right)$ it is obtained
+
+\begin{equation}
+T^{\prime }\left( t\right) =\left[ \Lambda \left( t\right) -\Phi \left(
+t\right) \right] T\left( t\right) +\Gamma \left( t\right) -\Sigma \left(
+t\right).  \label{1eqT}
+\end{equation}
+
+Dividing both members of $\left( \ref{1eqT}\right) $ by $T\left( t\right) $
+we have that
+
+\begin{equation}
+\frac{T^{\prime }\left( t\right) }{T\left( t\right) }=\Lambda \left(
+t\right) -\Phi \left( t\right) +\frac{\Gamma \left( t\right) -\Sigma \left(
+t\right) }{T\left( t\right) }.  \label{1T/T}
+\end{equation}
+
+On the one hand, if we define the rates (depending on time)
+
+\begin{equation}
+e=\frac{E}{T},n=\frac{N}{T},v=\frac{V}{T},a=\frac{A}{T},\gamma =\frac{\Gamma 
+}{T},\sigma =\frac{\Sigma }{T},  \label{1ratios}
+\end{equation}
+
+equation $\left( \ref{1T/T}\right) $ can be transformed into
+
+\begin{equation}
+\frac{T^{\prime }}{T}=\Lambda -\Phi +\gamma -\sigma .  \label{1T/Tcorta}
+\end{equation}
+
+On the other hand, let us compute the derivative of $e,$ defined in 
+$\left(\ref{1ratios}\right).$ Using $\left(\ref{1T/Tcorta}\right)$ we obtain that,
+
+\begin{equation}
+e^{\prime }=\frac{E^{\prime }T-ET^{\prime }}{T^{2}}=\frac{E^{\prime }}{T}-
+\frac{E}{T}\frac{T^{\prime }}{T}=\frac{E^{\prime }}{T}-e\left[ \Lambda -\Phi
++\gamma -\sigma \right] .  \label{1chulla}
+\end{equation}
+
+In an analogous way, we also have that,
+
+\begin{eqnarray*}
+n^{\prime } &=&\frac{N^{\prime }}{T}-n\left[ \Lambda -\Phi +\gamma -\sigma 
+\right] , \\
+v^{\prime } &=&\frac{V^{\prime }}{T}-v\left[ \Lambda -\Phi +\gamma -\sigma 
+\right] , \\
+a^{\prime } &=&\frac{A^{\prime }}{T}-a\left[ \Lambda -\Phi +\gamma -\sigma 
+\right] .
+\end{eqnarray*}
+
+Now, consider equation $\left( \ref{1m1}\right) .$ If we divide it by $T,$ we
+have
+
+\[
+\frac{E^{\prime }}{T}=\Lambda \frac{E}{T}+\alpha _{2}\frac{\Gamma }{T}-\beta
+_{1}\frac{E}{T}\frac{V}{T}-\Phi \frac{E}{T}-\alpha _{1}\frac{\Sigma }{T}, 
+\]
+
+using $\left( \ref{1chulla}\right) $ and substituting by the corresponding
+rates defined in $\left( \ref{1ratios}\right) $ one gets 
+
+\[
+e^{\prime }+e\left[ \Lambda -\Phi +\gamma -\sigma \right] =\Lambda e+\alpha
+_{2}\gamma -\beta _{1}ev-\Phi e-\alpha _{1}\sigma , 
+\]
+
+obtaining the scaled equation
+
+\begin{equation}
+e^{\prime }=\left( \sigma -\gamma \right) e+\alpha _{2}\gamma -\beta
+_{1}ev-\alpha _{1}\sigma .  \label{1sm1}
+\end{equation}
+
+The remaining equations can be scaled in the same way to obtain
+
+\begin{eqnarray}
+n^{\prime } &=&\left( \sigma -\gamma \right) n-\beta _{2}ne,  \label{1sm2} \\
+v^{\prime } &=&\left( \sigma -\gamma \right) v+k\beta _{1}av,  \label{1sm3} \\
+a^{\prime } &=&\left( \sigma -\gamma \right) a+\left( 1-\alpha _{2}\right)\gamma +\beta _{1}ev+ \label{1sm4} \\
+            & &\beta _{2}ne-k\beta _{1}av-\left( 1-\alpha _{1}\right) \sigma. \nonumber 
+\end{eqnarray}
+
+Notice that the scaled system of differential equations $\left( \ref{1sm1}
+\right) -\left( \ref{1sm4}\right) $ is also a non-autonomous system because
+the immigration $\left( \gamma \right) $ and emigration $\left( \sigma
+\right) $ rates depend on time.
+
+\section{Model fitting}\label{1.4}
+
+Taking data in Table \ref{1Table1} corresponding to elections from March 1st
+1979 to March 3rd 1996, let us to fit data with the scaled model 
+$\left( \ref{1sm1}\right) -\left( \ref{1sm4}\right).$
+
+Moreover demographic data from \cite{demogPV}, in particular annual
+population, immigration and emigration data in the interval 1979 to 1996 are
+considered. Hence, in order to compute immigration and emigration rate
+functions $\gamma \left( t\right) $ and $\sigma \left( t\right),$ we divide
+each immigration and emigration datum by the corresponding population datum.
+Then, we use piecewise linear interpolation to construct both functions, $\gamma$ and 
+$\sigma $. Migration data are depicted in Figure \ref{1migra}.
+
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.8]{IMG/1migracion.pdf}
+\end{center}
+\caption{Immigration and emigration rates from 1979 until 2015. Notice that from 2005 these rates are constant, equal to the ones in 2005.}
+\label{1migra}
+\end{figure} 
+
+As initial condition of the model $\left( \ref{1sm1}\right) -\left(\ref{1sm4}\right),$ 
+it is considered
+
+\begin{equation}
+\begin{array}{cc}
+E\left( t_{0}\right) =0.278466, & N\left( t_{0}\right) =0.233303, \\ 
+V\left( t_{0}\right) =0.0967287, & A\left( t_{0}\right) =0.391502,
+\end{array}
+\label{1IC}
+\end{equation}
+
+where $t_{0}$ corresponds to March 1st 1979 (see Table \ref{1Table1}). In
+order to compute the best fitting, we carried out computations with 
+\emph{Mathematica} \cite{Wolfram} and we implemented the function
+
+\[
+\begin{array}{ccccc}
+\mathbb{F} & : & \mathbb{R}^{5} & \longrightarrow & \mathbb{R} \\ 
+&  & \left( \beta _{1},\beta _{2},k,\alpha _{1},\alpha _{2}\right) & 
+\longrightarrow & \mathbb{F}\left( \beta _{1},\beta _{2},k,\alpha
+_{1},\alpha _{2}\right)
+\end{array}
+\]
+
+which variables are $\beta _{1},$ $\beta _{2},$ $k,$ $\alpha _{1}$ and 
+$\alpha _{2}$ such that:
+
+\begin{enumerate}
+\item Solve numerically (using \textit{Mathematica} command \emph{NDSolve[]}) the system of differential
+equations $\left( \ref{1sm1}\right) -\left( \ref{1sm4}\right) $ with initial
+values $\left( \ref{1IC}\right),$
+
+\item For $t=$ Oct 28th 1982, Jun 22nd 1986, Dec 17th 1989, Jun 6th 1993 and
+Mar 3rd 1996, corresponding to election days, evaluate the computed
+numerical solution for each subpopulation $E\left( t\right) ,$ $N\left(
+t\right) ,$ $V\left( t\right) ,$ $A\left( t\right) $.
+
+\item Compute the mean square error between the values obtained in Step 2
+and the electoral data from Oct 28th 1982 to Mar 3rd 1996, (Table 
+\ref{1Table1}).
+\end{enumerate}
+
+Function $\mathbb{F}$ takes values in $\mathbb{R}^{5}$ ($\beta _{1},$ 
+$\beta_{2},$ $k,$ $\alpha _{1}$ and $\alpha _{2})$ and returns a positive real
+number. Hence, we minimize this function using the Nelder-Mead
+algorithm \cite{Nelder, Press}, that does not need the computation of
+any derivative or gradient, which is impossible to know in this case. Thus, the values of $\beta _{1},$ $\beta _{2},$ $k,$ 
+$\alpha _{1}$ and $\alpha _{2},$ with restrictions $0\leq \alpha _{1},\alpha_{2}\leq 1$ and $k>0,$ that minimize the function $\mathbb{F}$ are
+
+\begin{equation}
+\begin{array}{l}
+\beta_{1}=0.0534,\ \beta_{2}=-0.0338,\\
+ k=0.5352,\\
+\alpha_{1}=0.8945,\ \alpha_{2}=0.9999.  
+\end{array}
+\label{1parametros}
+\end{equation}
+
+Parameters indicate that population flows from $E$ to $A$ and from $A$ to $V$ ($\beta_{1}, k > 0$), and from $A$ to $N$ ($\beta_{2} < 0$) very slowly. Furthermore, the value of $k$ indicates that the pressure of $V$ affects twice to $E$ than to $A$. Additionally, almost all emigration and immigration occurs in subpopulation $E$ ($\alpha_{1}=0.8945$, $\alpha_{2}=0.9999$). 
+
+\section{Trends over next few years}\label{1.5}
+
+Once the model parameters have been estimated, under the assumption that government anti-terrorist policies and ETA strategies do not change, we can use the model to predict the trend of each subpopulation until $2020$, i.e., the deterministic prediction. To do so, demographic data from \cite{demogPV} are used: immigration and emigration available data go from 1977 until 2008 and the 2008 datum is repeated until 2020; real population data from 1975 to 2008 are available and also predictions until 2020. 
+
+Then, we use the model parameters obtained in (\ref{1parametros}), substitute them into the model and obtain the model forecasting for next electoral years $2012$, $2016$ and $2020$. The results can be seen in Table \ref{1Table2}.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{c|cccc}
+  &  $E$ & $N$ & $V$ & $A$ \\
+ \hline    
+\begin{tabular}{l}
+ $2012$ \\  $2016$\\  $2020$
+\end{tabular}
+&  
+\begin{tabular}{c}
+  0.343714 \\ 0.359023 \\ 0.373446
+\end{tabular}
+ & 
+\begin{tabular}{c}
+  0.291674\\	0.296761	\\ 0.302587
+\end{tabular}
+ & 
+\begin{tabular}{c}
+  0.114067 \\ 0.113756 \\	0.113205
+\end{tabular}
+& 
+\begin{tabular}{c}
+  0.250546\\	0.23046\\0.210763
+\end{tabular}
+\end{tabular}
+\end{center}
+\caption{Deterministic prediction for the next electoral years $2012$, $2016$ and $2020$. } 
+\label{1Table2}
+\end{table}
+
+Looking at Tables \ref{1Table1} (data from $1979$ to $1996$) and \ref{1Table2} jointly, we can observe a slight increase in groups $E$, $N$ and $V$ at the expense of $A$. It is noteworthy to see how subpopulation $V$ has hardly varied during the 40 years studied. 
+
+However, as we mentioned in the Introduction chapter, uncertainty is a key part dealing with Social Sciences phenomena. Therefore, the supposition that parameters always remain constant or data in Table \ref{1Table1} and demographic data do not contain errors, is not appropriate. Thus, it is natural to consider that the model parameters $\beta_{1}$, $\beta_{2}$, $k$, $\alpha_{1}$ and $\alpha_{2}$ contain uncertainties. Hence, the deterministic prediction can give us an idea about future trends but, in this case, the obtained values may not be accurate.
+
+Therefore, we propose forecasting future trends using confidence intervals. In order to calculate these confidence intervals, let us use the technique called Latin Hypercube Sampling (LHS) to vary parameter values in the proposed model. LHS, a type of stratified Monte Carlo sampling, is a sophisticated and efficient method for achieving equitable sampling of all input parameters simultaneously \cite{BLOWER, OLSSON}. Each parameter for a model can be defined as having an appropriate probability density function associated with it. It is usual to use the uniform distribution centred at deterministic parameter estimators in absence of data to give information as to the distribution for a given parameter \cite{MCKAY, OLSSON}. Thus, the model can be simulated by sampling a single value from each parameter distribution. Many samples should be taken and many simulations should be run, producing variable output values that can be treated with descriptive statistic techniques to compute the means and $90\%$ confidence intervals.
+
+An important issue arises here and it is how much we should vary the parameters to quantify uncertainty. Some studies analyse the effect on populations of health campaigns \cite{SNYDER}, electoral campaigns \cite{FOURNIER} or the bombing attacks in Madrid few days before elections \cite{BALI}, and all of them over a short period. In these cases, what we call "effect" refers to a change of opinion to adopt a healthier way of life, to leave the abstention group and vote or to switch party. This change of opinion is about $5\%$ in health campaigns \cite{SNYDER}, $5\%-19\%$ in Canadian electoral campaigns depending on the time of decision \cite{FOURNIER} and around $10\%$ in the elections immediately after attacks in Madrid \cite{BALI}. Moreover, the referred changes are related to population, not to parameters and therefore, not related to rates of political ideology change. However, as we mentioned before, anti- or pro-terrorist policies and strategies are designed to change the value of the model parameters. Thus, even though we do not have any quantification of uncertainty in the parameters, let us assume that they may have a variation not greater than $20\%$ of their values, i.e., 
+
+\begin{equation}
+	\begin{array}{c}
+		\beta_{1} \in [0.0428, 0.0642],\ \beta_{2} \in [-0.0270, -0.0406], \\ 
+		\alpha_{1} \in [0.7156, 1],\ \alpha_{2} \in [0.78, 1].
+	\end{array}
+	\label{1int}
+\end{equation}
+
+Note that $20\%$ variation of $\beta_{1}$ implies $20\%$ variation of $k \beta_{1}$. Now, applying the LHS technique with $5,000$ samples using uniform distributions centred at the deterministic parameter values (\ref{1parametros}), i.e., for $5,000$ different $5-$tuples $(\beta_{1}, \beta_{2}, k, \alpha_{1}, \alpha_{2}),$ we solve the model to obtain $5,000$ outputs 
+
+$$(E(t_f), N(t_f), V(t_f), A(t_f)),$$ 
+
+for $t_f= 2012, 2016, 2020$, the coming electoral years. Hence, for each $t_f$ and for each subpopulation we can compute the $90\%$ confidence interval from the corresponding $5,000$ outputs. Results can be seen in Table \ref{1Table3}.
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{c|cccc}
+  &  $E$ & $N$ & $V$ & $A$ \\
+ \hline
+ $2012$	& $[0.261,0.37]$ & $[0.267,0.307]$ & $[0.109,0.124]$	 & $[0.217,0.345]$ \\
+ $2016$	& $[0.266,0.387]$ & $[0.268,0.315]$ & $[0.108,0.125]$	 & $[0.196,0.337]$ \\
+ $2020$	& $[0.271,0.404]$ & $[0.27,0.324]$ & $[0.107,0.126]$	 & $[0.173,0.33]$ 
+\end{tabular}
+\end{center}
+\caption{$90\%$ confidence intervals obtained with $5,000$ model outputs using LHS technique in the next electoral years $2012$, $2016$ and $2020$. } 
+\label{1Table3}
+\end{table}
+
+The results obtained in the present section are summarised in Figure \ref{1ajuste}. The parts of each graph are: 
+
+\begin{itemize}
+\item the points on the left are data from Table \ref{1Table1}; 
+\item the continuous line is the deterministic model output for parameters in (\ref{1parametros}); 
+\item the $90\%$ confidence intervals in $2012$, $2016$ and $2020$ are on the right; 
+\item the points in the middle of the confidence intervals are the mean of $5,000$ outputs for each subpopulation and each electoral year.
+\end{itemize}
+
+\begin{figure}[htb]
+\includegraphics[scale=0.8]{IMG/1AjustePrediccionCI.pdf}
+\caption{Model fitting since March 1st 1979 to March 3rd 1996 and future prediction for each subpopulation, $E,$ $N,$ $V$ and $A.$ Points on the left are data of election days, the continuous lines the solution of the model until 2020. The $90\%$ confidence intervals for electoral years with their mean are on the right.}
+\label{1ajuste}
+\end{figure}
+
+Figure \ref{1ajuste} allows us to say, on the one hand, that $E$ and $A$ are the ideological groups with more uncertainty, $10.9\%-13.3\%$ and  $12.5\%-15.6\%$ respectively (maximum and minimum length of their respective confidence intervals in Table \ref{1Table3}), where the deterministic prediction is far from the mean of the confidence intervals. This brings up some doubts as to the deterministic prediction, to consider more conservative predictions than the one obtained with LHS one and to point out the high sensitivity of groups $E$ and $A$ to model parameter perturbations (policy changes). On the other hand, subpopulations $N$ and $V$ have few uncertainty, $4\%-5.4\%$ and $1.5\%-1.9\%$ respectively, and the deterministic prediction is very close to the mean of confidence intervals. This leads us to say that there is a minor flow across groups $V$ and $N$. Even though the confidence interval variations are greater than the ones in $V$, the population in $N$ is almost three times the one in $V$ and the variation $4\%-5.4\%$ of $N$ is less than three times the one of $V$. It also suggests that subpopulations $N$ and $V$ are less sensitive to model parameter perturbations (policy changes).
+
+\section{Conclusions}\label{1.6}
+
+In this chapter, we propose a type-epidemiological model to analyse the evolution over the time of populations in the Basque Country respect their opinions about the ETA's goals, taking into account that ETA uses violence to demand Basque independence from Spain. 
+
+Using this model and applying the Latin Hypercube Sampling, we predict ideological trends over the next few years giving $90\%$ confidence intervals. The application of LHS is our first approach in dealing with model uncertainty, but in this case with an important drawback as is the quantification of the variation of the model parameters and the probability distribution they follow. We will attempt to overcome these inconveniences in the following chapters.
+
+\textbf{Remark.} As we mentioned in the Introduction chapter, a paper including some results presented in this chapter was rejected to be published. One of the main drawbacks mentioned was related to the division into subpopulations, because the division was not well done and as a consequence, the predictions given in Table \ref{1Table3} are far to be correct. For instance, we predict a result of $10.9\% - 12.4\%$ for parties in $V$ for elections in year 2012 and, as we said in Chapter \ref{ETA} the parties included in $V$ obtained around $25\%$ of votes, being the second most voted parties in the Basque Country. Moreover, an electoral prediction over the next three election dates ($12$ years) may be considered too long. 
+
+Therefore, although the model presented here was well considered by some referees and colleagues, it is only a rough approach to the problem. This is an example of the difficulty of modelling in Social Sciences.
+
+However, we contacted with an expert who addressed our work and this is reflected in the following chapters.
