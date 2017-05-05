@@ -1,118 +1,121 @@
 
 \chapter{Introduction}\label{CAPINTRO}
 
-The structure and properties of networks of sexual contacts in human populations is a topic of key interest in connection with the spread of sexually transmitted diseases (STD). However, this problem has received scarce attention and the modelling of STD epidemiology is usually based upon theoretical
-proposals in terms of the network structure usually unvalidated. The goal of this paper is to provide a method to build a reasonable network structure from statistical data from the Health and Sexual Habits Survey in Spain.
-In particular, we seek to satisfy the constraints imposed by the distribution of the number of partners for both males and females. We show that such a network can be obtained by a matching method of the bipartite graph of males and females which takes into account the preassigned degree of connectivity. 
+Sexually Transmitted Diseases (STD) have been a major public health threat for a long time in human history. Modern concerns about STD began with the pandemic of syphilis which spread over Europe in the early sixteenth century. 
 
-In order to perform the pairing we apply the principle of psychological similarity by considering that people with a given tendency to acquire a certain number of partners tend to form relationships with other people with the same habits. 
+Human Papillomavirus (HPV) is the most common STD. It is transmitted via vaginal, anal, or oral sex with someone who has the virus \cite{CDC_VPH}. Persistent HPV infections with genotypes 16 and 18 are responsible for about $70\%$ of all cervical cancer, with $40-85\%$ of other anogenital cancers and also $16-28\%$ of the head and neck cancers. Furthermore, HPV is a cause of other non malignant diseases, to mention genotypes 6 and 11 cause about $90\%$ of anogenital warts, and secondarily juvenile onset of recurrent respiratory papillomatosis \cite{castellsague2012prevalence}.
 
-This quantity is measured by a distance function \(x;y\).
-The method is applied to infer the structure of networks with up to 50; 000 people, which is larger than any other one analyzed in previous field studies.
+Most of the modeling approaches to STD in general and HPV in particular are done using classical models where the hypothesis of homogeneous mixing (everybody can transmit a disease to everybody) is implicitly assumed. However, when STDs are considered, homogeneous mixing is not a reasonable hypothesis and consequences of this assumption can be seen, for instance, in that the effects of vaccination schedules against HPV have been detected much sooner than what the models predicted \cite{fairley2009}.
 
-Sexually transmitted diseases have been a major public health threat for a long time in human history. Modern concerns about STD began with the pandemic of syphilis which spread over Europe in the early sixteenth century. Nowadays, syphilis still affects twelve million people all around the world every year, causing 113,000 deaths in 2010 [1]. Gonorrhea spreads at a rate of AIDS 88 million cases each year [2], while human papillomavirus is thought to be the direct cause of 561,200 new cervical cancer cases only in 2002 [3]. The global pandemic of caused by the lentivirus HIV is perhaps the most acute and widespread in human history since it has already caused 36 million deaths worldwide and it has a pool of 35.3 million people infected
-by HIV in 2012.
+Therefore, the structure and properties of networks of sexual contacts in human populations and the building of reliable sexual partner networks, as in \cite{NOVA_LSP}, is a public health topic of key interest in connection with the spread of STD. However, this problem has received scarce attention in the world of computational modeling and the modeling of STD epidemiology is usually based upon theoretical proposals in terms of the network structure. 
 
-This kind of diseases are more likely to produce large-scale pandemics than other transmissible diseases, respiratory or other, because the efficacy of sexual contacts for the infection is large and the infectious agent has long latency periods as in the case of HIV. Consequently, nor the carrier neither his/her partner is not aware of their exposure to it. For example, it has been estimated that around 40-50\% contacts are capable of transmitting HPV[5]. Moreover, some STDs are caused by oncoviruses such as Hepatitis B or HPV which increase the death rate of people who develop the disease.
+In the last years, we have been working on modeling the dynamics of several phenomena using large random networks \cite{acedo2011using,acedo2015firing,gonzalez2015modelling} and we know that, under this approach, it is necessary to perform a lot of simulations for model calibration. To do so, a distributed computing environment called \textit{Sisifo} \cite{wiki_sisifo} was developed \cite{villanueva2013epidemic}. Using this environment we were able to find, using exhaustive searching, model parameters that made the model output close to given data, that is, calibration. 
 
+The next step was to find out how to reduce the number of simulations studying the inclusion of optimization algorithms. In \cite{cortes2016modeling} we presented  an attempt with small networks and in an only computer. 
 
+Then, in this paper, we describe how to adapt the optimization algorithm named Particle Swarm Optimization (PSO) in the distributed computing environment \textit{Sisifo} to calibrate a large network of lifetime sexual partners (LSP) where we want to study the transmission dynamics of two types of HPV: the high and the low risk. High risk HPV gathers the types of HPV related to the apparition of precancerous lesions or cancers. Low risk HPV types are the ones that can develop genital warts.
 
+This paper is organized as follows. In Section 2 we give an overview of the LSP network building and describe the transmission dynamics of both types of HPV on LSP networks. In Section 3, we summarize the functioning of the distributed computing environment \textit{Sisifo}. Also, we describe how to incorporate and adapt the PSO algorithm to this environment. In Section 4 we present the results and, finally, in Section 5, conclusions are discussed.  
 
+\section{HPV network model building}
+Here we give a general review of the method presented in \cite{NOVA_LSP} where an algorithm to build LSP networks consistent with the distribution of the number of partners for both males and females reported in the Health and Sexual Habits Survey in Spain \cite{INE}, has been described. Then, on the LSP networks, we will define the transmission dynamics of high and low risk HPV.
 
-Fowler \cite{CF}, for instance, it does not seem so clear in Political areas of knowledge and this will lead us to propose a specific justification in Section \ref{2.2} of this dissertation.
+First, we consider the population of the Community of Valencia (Spain) \cite{CV_wiki} and its demographic structure \cite{pegv} given in Figure \ref{demog}, where we show the number of men and woman per age.
 
-The understanding of the transmission dynamics of such a type of behavior increases our knowledge of the mechanisms behind the evolution of cultural norms and values. To do this, mathematical modelling is a tool that may help to predict the evolution of the extreme groups over the time, eventually disappearing or establishing themselves.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{demog.pdf}
+	\caption{Number of men and woman in the Community of Valencia per age (year 2013).}
+	\label{demog}
+\end{figure}
 
-This area of study has been active since the September 11th attacks, not only in the study of the behavior of extreme groups, but also in how to handle bio-terrorist threaten \cite{libroF}.
+Now, we consider data about the lifetime sexual partners for both males and females reported in the Health and Sexual Habits Survey in Spain \cite{INE} as can be seen in Figure \ref{lsp}. The asymmetry in the behavior of males and females have to be taken into account in the construction of the network.
 
-The use of the type-epidemiological approach is not new but the few papers that can be found nowadays in the literature are mainly based on the Castillo-Ch\'avez \& Song's work \cite{Fanatismo} and the antecedent \cite{GoodIdea} where the authors propose a model of spreading ideas. Some of these works are \cite{stauffer1, stauffer2} where they present network versions of model introduced in \cite{Fanatismo} or \cite{Colomb} where the authors deal with the case of the insurgency in Colombia using predator-prey modelling techniques or in \cite{cherif} where a mathematical model of the dynamics of radicalization process on socio-spatial networks is studied. Also, there are some communications in congresses as \cite{Arney, Jairo, Jairo0}. Moreover, the introduction of non-linear models of electoral change have also been proposed \cite{WEISBERG}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{lsp.pdf}
+	\caption{Number of lifetime sexual partners (LSP) for men and woman per age group in Spain (year 2003). The age groups are 14-29, 30-39 and 40-65.}
+	\label{lsp}
+\end{figure}
 
-Even though some of the above papers are based in \cite{Fanatismo}, in this paper, Castillo-Ch\'avez \& Song say that "... we study the dynamics of the spread of extreme behavior as some type of epidemiology contact processes. We are aware that our approach and the associated caricature model (as most sociological models) can be easily derailed or deconstructed. We hope that our efforts are not taken that lightly, as we believe that epidemiological models still represent a reasonable starting point for the study of the spread and growth of behavior that are the engine behind most acts of terrorism".
+The estimated percentage of homosexual men is $3.88\%$ \cite{INE}. The situation for the homosexual men population is different of the one shown in Figure \ref{lsp}, because the average number of sexual partners is estimated in 39 regardless of age, but this number increases with age with a peak of 59 in the 40-49 age-group \cite{Durex2002}. 
 
-The above comment is pertinent not only because the authors know that the model they propose is a limited first approach, but also because mathematical modelling in Social Sciences, in general, and in a complex phenomenon as terrorism or fanaticism in particular, is not an easy task. The reasons of this difficulty may lie in the uncertainty and complexity of the social phenomena as well as in the novelty of using dynamical models based on differential equations in an area where Statistics is practically the only methodological tool for quantification. This explains the effort and, sometimes, incomprehension when mathematicians try to collaborate with professionals in Social Sciences trying to find a common language to understand each other.
+A difficulty arises because we have little information about the number of sexual contacts in homosexual women subpopulation. In a personal communication by Dr. Mireia Díaz from the Catalan Institute of Oncology (IDIBELL) we were informed that HPV hardly spreads among homosexual women, and almost all homosexual men, sometimes in their lives, had a woman partner. Consequently, we have simulated these connections by assigning a contact to every man in the homosexual subpopulation with woman with 5 partners or more. This is done according to the assortativity principle, that is, people use to join with people with similar habits.
 
-We should also say that all the papers referred above propose theoretical models where a dynamic analysis is performed. The dynamical analysis is a powerful tool, nevertheless, as Castillo-Ch\'avez \& Song wrote in \cite{Fanatismo} "... even though the core population is on its way of extinction, it can still experience grow and expand in finite time before it begins to decay", and this \textit{finite time} may be long. This fact leads us to use real data to build models to work with, providing an additional value to our work because we will be able to describe the groups behavior not only in the long run, but also in medium and short term, what may be more realistic if the objective is to use the models to simulate new policies related to model parameters and see the effects. Furthermore, working with real data constitutes an additional effort controlling the uncertainty in parameter estimation and also the propagation of the mentioned uncertainty in the model predictions.   
-
-In this dissertation, we focus our study in the especial situation occurring in the Basque Country \cite{PaisVasco}, a Northern Spanish region, where the Basque revolutionary organisation ETA (Basque for "Basque Homeland and Freedom") \cite{wETA} has been using different forms of terrorism to achieve its political goals during the last 50 years. The existence of an extreme left wing terrorist organization \cite{PC} in a democracy as is Spain is unique all around the world, except, maybe in Colombia, where the jungle and mountains help the FARC to establish, in some hidden areas, its own government \cite{Lmiguel}.
-
-ETA declared a cease-fire in Jan 2011, at this moment it is not attacking and, as we can see in Figure \ref{preocupa}, there is a reduction in the percentage of Basque people concerned about violence and terrorism.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[scale=0.7]{IMG/preocupacion.pdf}
-  \caption{Percentage of Basque people concerned about violence and terrorism over the time since May 2000 until May 2013 \cite{eusko}.}
-  \label{preocupa}
-\end{figure}  
-
-Despite this reduction, nowadays, around $50\%$ of Basque people do not feel free to talk about politics and around $25\%$ of Basque people have a lot or quite fear to participate actively in politics in the Basque Country (see Figure \ref{feeling}). It does not seem a typical scenario of democratic normality. In fact, there are groups related to ETA that pressure the society to achieve their goals. Moreover, we should not forget that ETA still has not abandoned violence definitively and it would not be the first time ETA declares cease-fire that breaks unilaterally and resumes the violent acts. All these facts disclose that the problem of the violence in the Basque Country, and by extension in Spain, is as up-to-date as ever and account for developing the present study.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[scale=0.7]{IMG/feeling.pdf}
-  \caption{(Up) Percentage of Basque people depending on their freedom feeling to talk about politics. (Down) Percentage of Basque people depending on their fear feeling to participate actively in politics. \cite{eusko}.}
-  \label{feeling}
-\end{figure}    
-
-\section{Uncertainty}
-The treatment of the uncertainty in the models is going to be one of the keys in this dissertation.
-
-Uncertainty quantification in dynamic continuous models is an emerging area \cite{maitre}. Because of the numerous complex factors that usually involve social behavior, it is particularly appropriate the consideration of randomness in this kind of models. In practice, the introduction of randomness in continuous models can be done using different approaches. Stochastic differential  equations of It\^{o}-type consider uncertainty through a stochastic process called white noise, i.e., the derivative of a Wiener process. As a consequence, this approach limitates the introduction of uncertainty to a gaussian process whose sample trajectories are somewhat irregular since they are nowhere differentiable. A more convenient approach in social modelling is to permit that input parameters can become random variables and/or stochastic processes and, therefore can follow other type of probability distributions apart from gaussian. This approach leads to continuous models usually referred to as random differential equations (r.d.e.'s). In dealing with r.d.e.'s, generalized Polynomial Chaos (gPC) is likely one of the most fruitful methods \cite{Spanos, Xiu}.
-
-Most of the existing methods and techniques, start with the assumption that the model parameters follow a known standard probability distribution. In general, setting the probability distribution of the model parameters, standard or empirical, is a crucial and difficult task currently under study which is required for model uncertainty approaches.
-
-Also, the computation is an important issue in dealing with uncertainty. For instance, gPC technique may not be affordable when the number of model parameters with uncertainty increases, or the interval where the mean and the standard deviation are valid may be very short \cite{Benito}. It may turn these techniques inappropriate for modelling real problems. 
-
-On the other hand, if we consider that no information is available for setting the model parameters probabilistic distribution, techniques as bootstapping \cite{almu, NOS} or bayesian \cite{bay} are other useful approaches. 
-
-\section{Overview of the dissertation}
-Popular support is an important enabler for radical violent organizations and it may be crucial for their survival. At the same time, extremist groups have also an impact in the societies where they are inserted, especially if those groups are engaged in violent activities. Social and behavioral scientists try to find clues about how that interaction may affect those people, either at the group or at the individual level, in order to foresee subsequent dynamics. 
-
-In this dissertation, our objective is to shed light on the dynamics about the attitude the Basque Country population have towards ETA, its goals and the means it uses to achieve them. To do that we use mathematical models and introduce uncertainty into these models step by step, in a natural way as an intrinsic part of modelling in Social Sciences. 
-
-In particular, we focus on the events that affect the attitude towards ETA, the effect of the Law of Political Parties (LPP), the influence of the truces, the relation between ETA's supporters and the source of ETA's activists, the prediction of the evolution of ETA's supporters, etc. All the above facts involve uncertainty in the model and through the present dissertation we will explain how we introduce the uncertainty treatment in each one of the presented models, rough first and more sophisticated at the end.  
-
-In the following, we present a content description of this PhD dissertation. Also, we report its historical developing because it explains some decisions we made during the progress of this work.
- 
-We start in Chapter \ref{ETA}, where we describe the organization ETA and its main facts in order to justify the interest of studying the ideological evolution of the most affected people, the Basques and the Spanish. Moreover, we introduce the Euskobarometro, a sociological statistical survey in the Basque Country that will provide us source data. Also, we will give some interesting references to understand the "Basque problem" (using ETA's language) and the role of ETA. 
-
-Our first modeling approach is presented in Chapter \ref{paper1}. Here we classify the population depending on the party they vote, then we grouped the political parties respect to their attitude on the "independence from Spain", one of the ETA's most important goals, using the parties' electoral manifestos. Thus, using electoral data, we are able to divide the population in the Basque Country into people that:
-
-\begin{itemize}
-\item agree with ETA in the objective of independence and the use of violence to achieve it,
-\item agree with ETA only in the objective of independence, without the use of violence,
-\item completely disagree with ETA.
-\end{itemize}
-
-Then we present a type-epidemiological model to study the dynamics of these groups over the time and introduce uncertainty in the prediction over the next few years using a technique called Latin Hypercube Sampling (LHS). 
-
-Part of the results presented in this chapter were published \cite{NOS1}. However, we should say that other paper related to Chapter \ref{paper1} was prepared introducing the uncertainty using LHS not only in prediction but also in model simulations of the effect of some policies over the next few years. It was sent to journal \textit{Terrorism and Political Violence} and a negative answer was received. In fact, the referees pointed out some important drawbacks as  
+Taking into account the above premises, for the average number of LSP of men $k$ and for each one of the $N$ individuals (nodes) in the network
 
 \begin{enumerate}
-\item "Terrorism and the ideology behind terrorism are subjects that are defined by a myriad of complex ideological, social, economic and political factors",
-\item "In fact, the methodology is extremely confusing, not only because of its quantitative nature, but also as a result of the questionable model employed which presents ideology as a socially transmitted epidemic disease",
-\item "The author builds up his/her model on a set of sources which also reveal a limited grasp of the most relevant literature on the subject. The author completely ignores the work of key writers on the Basque conflict",
-\item "There is not a single mention to other primary sources that are much more relevant than the ones used by the author. For example, the periodical sociological and political surveys produced by the Euskobarometro or the regular reports on the
-violent activity of ETA produced by the Interior Ministry are key sources for anybody who wants to analyze precisely what the author wants to analyze",
-\item "The author completely ignores the variety of identities within Basque society and the social support for each of these ideological stances. Instead the author wrongly simplifies such a complexity of political identities by summarizing them in the following categories:  E, non-nationalist people against independence and the use of the violence; N, nationalist people agree with independence but disagree with the use of the violence; V, nationalist people agree with independence and the use of the
-violence, and A, people who do not share the above mentioned ideological characteristics or people who abstain. As regular surveys have shown for many decades, the majority of the nationalist population of the Basque Country do not advocate independence",
-\item "The data on the different ideological stances among Basque population has been extracted from incomplete sources leaving out other sources which are much more up to date and relevant",
-\item "In a nutshell, the article presents a very simplistic, sketchy picture of a complex, multifaceted issue and fails to provide a clear contribution to the understanding of the subject",
+	\item Using the demographical information, we assign randomly the sex (man/woman) and age.
+	\item We label $3.88\%$ of men as homosexual men, randomly.
+	\item Depending on the age and gender, and using the data about LSP for men and women, we assign randomly the number of LSP he/she is going to have.
+	\item We assign randomly LSP to homosexual men depending on their age following the report \cite{Durex2002}.
 \end{enumerate}
 
-and so on. Nowadays, we admit most of them, except the 2nd (of course), but the most important for us was to figure out how far was our language, method, argumentation and mind from those experts in political sciences, terrorism and extreme ideologies. 
+The above algorithm determines the sex, age and number of LSP of each node. Now, we have to build the network that matches with the LSP of the nodes. 
 
-Therefore, we needed an expert partner and we were so lucky that he found us before we started searching. The expert addressed us to study a relevant problem in the area, what was a change in our way, and the results are presented in Chapter \ref{paper2}.
+\begin{enumerate}
+	\item Separate men and women nodes into two groups.
+	\item Order women in descendant order of LSP.
+	\item For each woman node:
+	\begin{enumerate}
+		\item we pair her with as much heterosexual men as the number of LSP she has. Among all the possibilities to pair we try to choose those men with similar number of LSP. 
+	\end{enumerate} 
+	\item For each homosexual men node:
+	\begin{enumerate}
+		\item we pair him with as much homosexual men as the number of LSP he has.
+		\item Assign to every homosexual men a woman with $5$ partners or more. 
+	\end{enumerate} 
+\end{enumerate}
 
-About the use of LHS technique to deal with the model uncertainty, we should say that it is satisfactory as a first attempt, however we had to assume the fact that the model parameters follow a uniform distribution (because we do not have information about them) with an unknown variation we had to establish in $20\%$.  
+The procedure to pair heterosexual partners is the same we use to pair homosexual partners. In Figure \ref{red} we can see a small LSP network. Details about how to build the heterosexual networks can be found in \cite{NOVA_LSP}. 
 
-Following the suggestions of the expert, in Chapter \ref{paper2} we study whether the "Law of Political Parties" (LPP) had an effect on attitude of the Basque population towards ETA and we tried to quantify this effect. In June 2002, the Spanish Government passed the LPP with the aim, among others, to prevent parties giving political support to terrorist organizations. This law affected the Basque nationalist party "Batasuna", due to its proved relation with ETA. Then, taking data from the Euskobarometro (Basque Country survey) related to the attitude of the Basque population towards ETA, we propose a dynamic model for the pre-LPP scenario. This model will be extrapolated into the future in order to predict what would have happened to the attitude of the Basque population if the law had not been passed. These model predictions will be compared to post-LPP data from the Euskobarometro using a bootstrapping approach in order to quantify the effect of the LPP on the attitude of Basque Country population towards ETA. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.4]{red.pdf}
+	\caption{LSP network for 1000 individuals: blue dots correspond to men, pink to women and yellow to homosexual men.}
+	\label{red}
+\end{figure}
 
-In this chapter, the uncertainty is studied applying a bootstrapping technique to the dynamic model. Bootstrapping technique was a satisfactory technique (we give an answer to the problem), but during its application we realised that, to be applied, it has to fulfill restrictive hypotheses and it does not consider the uncertainty in the initial condition.
+\subsection{HPV prevalence data}
+Data provided by \cite{castellsague2012prevalence} allow us to determine an estimation of the prevalence of the HPV. Then, we divide the data of infectious women into the age groups $18-29$, $30-39$ and $40-65$, the same age groups as those given by the Sexual Behaviour Habits Survey \cite{INE} and used to build the LSP networks. 
 
-In the current times, where there are important political parties, mass media and organizations supporting the negotiation with ETA as the best choice to finish its activities, the Chapter \ref{paper2} supports that the opposite idea may be possible, this is, the appropriate use of the laws is an useful tool to fight against these extreme organizations and change the citizen's mind against the social pressure. Moreover, even though it is not reflected in the chapter but can be seen in Figures \ref{datosS}, \ref{datosR} and \ref{datosA}, although relevant changes and events have occurred, the support attitude towards ETA of the Basque population has hardly varied (moving around $4\%$) since LPP. That is, despite of what uses to happen with other laws which effect disappears in two or three years returning to pre-law figures with independence of the time they are into force \cite{tabaco}, the Law of Political Parties seems to have produced a permanent effect on the attitude of the Basque population towards ETA. The results presented in Chapter \ref{paper2} have been published in \cite{NOS}.
+Taking into account that an infected individual with high risk HPV may develop precancerous lesions and, eventually, cancer, and that an infected individual with low risk HPV may develop genital warts, we say that an individual is HR-infected if he/she has been infected by a high risk HPV. That individual may also be infected by a low risk HPV (co-infection). Analogously, an individual is LR-infected if he/she has been infected by a low risk HPV. That individual may also be infected by a high risk HPV (co-infection). Then, the percentage of women HR- and LR-infected per the aforementioned group ages, are collected in Table \ref{datos}. 
 
-We also should say that this is one of the few works that, using dynamic models, tries to quantify the effect of a law. The only reference we know using a similar technique is \cite{tabaco} where the effect of Spanish tobacco law in 2006 is analysed.
+\begin{table}[h]
+	\small\sf\centering
+	\caption{Prevalence of HR- and LR-infected women per age groups. Mean and $95\%$ confidence intervals.}
+	\begin{tabular}{c|ccc}
+		\toprule
+		Women & HR-infected & LR-infected \\
+		\midrule
+		$18-29$ y.o. & $24.10\%$, $[21.33\%, 26.98\%]$ & $6.36\%$, $[4.71\%, 8.07\%]$ \\
+		$30-39$ y.o. & $11.01\%$, $[7.54\%, 15.09\%]$ & $1.26\%$, $[0.0\%, 3.14\%]$ \\
+		$40-64$ y.o. & $5.96\%$, $[4.29\%, 7.8\%]$ & $2.37\%$, $[1.22\%, 3.68\%]$ \\
+		\midrule
+		$18-64$ y.o. & $16.23\%$,$[14.52\%, 17.97\%]$ & $4.41\%$, $[3.42\%, 5.45\%]$ \\
+		\bottomrule
+	\end{tabular}
+	\label{datos}
+\end{table}
 
-The objective in Chapter \ref{paper3} is to analyse the evolution dynamics of the populations in Chapter \ref{paper2} using the same model from May 2005 to Nov 2012 in order to predict the future evolution of the attitude of the Basque population towards ETA, taking into account that Supporters may be considered as the main source of ETA members. To get this objective, we propose and apply a new computational technique to deal with uncertainty in dynamic continuous models without the drawbacks of LHS and bootstrapping. Considering data from surveys, the method consists of determining the probability distribution of the survey output and this allows to sample data and fit the model to the sampled data using a goodness-of-fit criterion based on the $\chi^2$-test. Taking the fitted parameters non-rejected by the $\chi^2$-test, substituting them into the model and computing their outputs, we build $95\%$ confidence intervals in each time instant capturing uncertainty of the survey data (probabilistic estimation). Using the same set of obtained model parameters, we also provide a prediction over the next few years with $95\%$ confidence intervals (probabilistic prediction).
+\subsection{HPV dynamics on a LSP network}
+Over the LSP networks, we introduce the transmission dynamics of the HPV. Thus, non-infected individuals may get infected if they have sexual intercourses with HR- or LR-infected sexual partners. Being infected, the individuals may infect other susceptible sexual partners. After a period of time depending on the type of infection (HR or LR), the individuals recover and move from the contagious state to susceptible state, clearing the infection.
 
-Finally, in Chapter \ref{conclusion} we enumerate the main goals this dissertation achieved. 
+The above description leads to consider the following model parameters that determine the model behavior. These parameters are:
+
+\begin{itemize}
+	\item Global probabilities in order to determine if a LSP produces a contagion in the current time step per age group $14-17$, $18-29$, $30-39$ and $40-65$. Taking into account that the edges that represent LSP are fixed and permanent, we need to modulate the possibility of contagion in a certain period. Then, we include the model parameters $T_0, T_1, T_2$ and $T_3$ to modulate these contagion in every month for group ages $14-17$, $18-29$, $30-39$ and $40-65$, respectively (4 parameters).
+	\item Average time an individual infected by a high (low) risk HPV clears the infection and recovers (2 parameters).
+	\item Probability that a woman (man) infected of high (low) risk HPV transmits it to his/her
+	partner in a sexual intercourse (4 parameters). 
+\end{itemize}
+
+Also, we should recall that, for LSP network building, we need to provide the average number of men LSP $k$. Then, we have a total of 11 model parameters to be determined.
+
+For the simulations we are going to show hereinafter, the networks will have $200\ 000$ nodes and the temporal step used is defined as a month.
+
+Hence, we have implemented in C++ a simulator that, given the above described model parameters, it builds a LSP network and performs a simulation of the transmission dynamics of high and low risk HPV. 
+
+Note that the transmission parameters involve certain probabilities. Then, in order to see if a contagion has been carried out by a sexual intercourse, we simulate this by generating a random number and checking if it is less than the corresponding threshold given by the model transmission parameters. Therefore, the randomness is included into the model in a natural way producing some uncertainty on the model output that has to be quantified.
+
+After all the above considerations, now, the goal is, assuming that we are in a stable situation, to calibrate the model parameters in such a way that the model output related to women HR and LR prevalence is as close as possible to the data in Table \ref{datos}.
