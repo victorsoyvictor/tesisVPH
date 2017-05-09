@@ -20,20 +20,19 @@ The purpose of this study was to assess the economic consequences of a national 
 
 \section{Objectives}
 Main objective:
-
 \begin{itemize}
 	\item To estimate the costs-effectiveness of vaccinating boys and girls at 11-12 years of age in Spain compared to vaccinate only girls.
 \end{itemize}
-
 Secondary objectives:
- 
 \begin{itemize}
 	\item To estimate the impact of female vaccination on the epidemiology of HPV infections in males.
 	\item To assess the impact of female vaccination on the epidemiology of males' anal head and neck and penis cancer.
 \end{itemize}
 
 \section{Methodology}
+
 \subsection{Structure of the sexual network}
+
 There are no published procedures to build a realistic sexual network from statistical data and to extend it to populations of medium to large size (up to one million individuals or more). This is a serious drawback to the development of simulations of sexually transmitted diseases. 
 
 We have been working for the last years on an algorithm that takes into account the distribution of the number of partners and the age distribution among the partners. The statistical structure of these networks were obtained in terms of three parameters:
@@ -45,10 +44,12 @@ We have been working for the last years on an algorithm that takes into account 
 \end{itemize}
 
 The network is very sensitive to the parameter k but not to $\alpha$. For this reason it is very convenient for the simulations to use up-to-date surveys on sexual behaviour containing information about the distribution of partners in the population and the average number of partners of men and women. Based on the Spanish survey on health and sexual behaviour published in 2003, we inferred the value k=4.5 for Spain, smaller than the value k=5.5 obtained in American surveys. Results for different parameters for networks with N=5000 up to N=1,000,000 individuals can be found at the webpage:
+\begin{center}
+	\underline{\url{http://lsp.imm.upv.es}}
+\end{center}
 
-\url{http://lsp.imm.upv.es}
-
-A typical result for N=5000 is displayed in Figure \ref{red1}
+A typical result for N=5000 is displayed in Figure \ref{red1}.
+\newline
 The model considers three age groups:
 \begin{itemize}
 	\item 18-25 years
@@ -73,7 +74,7 @@ To incorporate this subpopulation in the network we will build the subnetwork us
 \subsection{Evolution of the disease}
 To analyze the spread of the infection of different HPV genotypes and the diseases associated with VPH infection in short and long term, we will take into account different scenarios according to the evolution of the population and sexual behavior. Progression and regressions from HPV infection to cervical dysplasia and precancerous lesions in states CIN1, CIN2 and CIN3 as well as localized, regional and distant cervical cancers will be incorporated into the model.  The burden of genital warts will also be considered.
 
-The infection prevalence will be compared and fitted with real data obtained from recent studies (X. Castellsagué et al., Prevalence and genotype distribution of human papillomavirus infection of the cervix in Spain: The CLEOPATRE study, J. Med. Virol. 2012 Jun; 84(6): 947-56). 
+The infection prevalence will be compared and fitted with real data obtained from recent studies (X. Castellsagu\'e et al., Prevalence and genotype distribution of human papillomavirus infection of the cervix in Spain: The CLEOPATRE study, J. Med. Virol. 2012 Jun; 84(6): 947-56). 
 
 Costs associated with the diseases, both from the payers' perspective (Spanish Health System) and from the societal perspective will be incorporated into the model. Progression to cervical dysplasia or genital warts will also be considered in order to calculate the public health costs.
  
@@ -87,14 +88,14 @@ The final step will be to consider the modelling of vaccination strategies and t
 	\item pv: the percentage of initial protection.
 	\item pp: the percentage of protection lost every month.
 	\item tp: the time in which protection is totally lost (in months).
-	\item Different vaccine prices
+	\item Different vaccine prices.
 	\item 3-5\% annual discount rate.
 \end{itemize}
 
 We will assume that protection (represented by f(x)) is lost linearly with time in terms of the function: 
- 
- 
- 
+\begin{align*}
+f(x)=-\dfrac{pp}{tp}x+pv
+\end{align*}
 As part of the simulation we will update the protection for every individual in the network every time-step. Our time unit will be chosen as one month and individuals are to be classified in four states according to the VPH infection for each serotype:
 \begin{itemize}
 	\item Susceptible
@@ -106,9 +107,11 @@ As part of the simulation we will update the protection for every individual in 
 Later on, the progress to genital warts, precancerous lesions and cancer will also be taken into account as well as the influence of the manifested disease in the sexual behavior of these individuals. 
 
 \section{Project roadmap and resources}
-Simulations will be carried out in a computation cluster located at the Institute for Multidisciplinary Mathematics (IMM) based upon two new Intel Sandy Bridge platforms with 64 cores and 512 GB RAM each one. Further computational resources could be allocated in case they are needed for the larger networks by using distributed computational techniques (L. Acedo, Epidemic Random Network simulations in a distributed computing environment, A \& AA, 2013, ID 462801). 
+
+Simulations will be carried out in a computation cluster located at the Institute for Multidisciplinary Mathematics (IMM) based upon two new Intel Sandy Bridge platforms with 64 cores and 512 GB RAM each one. Further computational resources could be allocated in case they are needed for the larger networks by using distributed computational techniques (L. Acedo, Epidemic Random Network simulations in a distributed computing environment, A \& AA, 2013, ID 462801).
 
 Deliverables will be scheduled as follows:
+
 \begin{itemize}
 	\item Implementation of an algorithm for generating realistic sexual networks including both heterosexuals and homosexual populations and validation of the algorithm using realistic statistical data surveys (end May 2016). 
 	\item Simulation of the VPH infection for a large array of parameters and conditions, data analysis, fitting and sensitivity analysis in the absence of vaccination (June 2016).

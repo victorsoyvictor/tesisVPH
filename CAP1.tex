@@ -26,14 +26,14 @@ The corresponding histograms are shown in Figs. \ref{data1} (men), \ref{data2} (
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.7]{IMG/data1.png}
+	\includegraphics[scale=1.0]{IMG/data1.png}
 	\caption{Histogram for the population of men in Valencia (Spain). The range is 14-65 years old.}
 	\label{data1}
 \end{figure} 
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[scale=0.7]{IMG/data2.png}
+	\includegraphics[scale=1.0]{IMG/data2.png}
 	\caption{The same as Fig. \ref{data1} but for women.}
 	\label{data2}
 \end{figure} 
@@ -51,23 +51,23 @@ In our network we have also considered the homosexual population and the possibl
 
 Lifetime sexual partners for a heterosexual individual (LSP) is obtained from the Health and Sexual Habits Survey 2003, as listed in the table in terms of the age-group. Notice that we do not have more recent information on this topic.
 
-\begin{figure}[ht]
+
+\begin{figure}[h]
 	\centering
 	\includegraphics[scale=0.7]{lsp.pdf}
 	\caption{Number of lifetime sexual partners (LSP) for men and woman per age group in Spain (year 2003). The age groups are 14-29, 30-39 and 40-65.}
 	\label{lsp}
 \end{figure}
 
-We now summarize some general features of the distribution of contacts: 
+
+We now summarize some general features of the distribution of contacts:
+
 
 \begin{itemize}
 	\item The percentage of males and females with no partners is very similar in each age-group.
-
 	\item The proportion of women with only a partner is, approximately,
 the double than men with only one partner. 
-
 	\item The percentage of men with two or more partners is always larger than that of women except for women in the age-groups 14-29, and 30-39 in the case of two partners.
-
 	\item The asymmetry in the behavior of males and females should be taken into account in the construction of the network.
 \end{itemize}
 
@@ -76,3 +76,60 @@ This male-female asymmetry is the main challenge in building a realistic LSP net
 The situation for the homosexual population is different because the average number of sexual partners was estimated in 39 regardless of age, in a study by Durex but this number increased with age with a peak of 59 in the 40-49 age-group (Estudio de conducta sexual entre homosexuales, Durex, 26 de junio de 2002).  As we have not to distinguish among the sexes as in the case of the heterosexual subnetwork this case will be treated with standard random network construction.
 
 A difficulty arises because we have little information about the number of sexual contacts with women for the homosexual subpopulation. In a personal communication by M. D\'{\i}az Sanchis (Institut Catal\`{a} d'Oncologia, IDIBELL) we are informed that almost all homosexual men has, sometime in their lives, had a woman partner.  Consequently, we have simulated these connections by assigning a contact to every man in the homosexual subpopulation with a heterosexual woman with 5 partners or more. This is done according to the assortativity principle to be described in the next section.
+
+\section{Building the network}
+
+In this section we propose a method to create the LSP network. It basically
+consists of two steps. In the first one, the nodes and their associated degrees are generated. In the second one, the edges representing the partnership are added to the network.
+
+Now we describe how the heterosexual network is generated in the first place: 
+
+We consider a population of N individuals, M males and F females, N = M + F. Let LSPi be the number of lifetime sexual partners for node i. The challenge in building the sexual network is to find an efficient method to assign the edges to the graph in such a way that those incident to the male nodes match those incident with the edges attached to the female nodes.
+
+Taking into account that males and females are around 50\% of the total population, the ideal situation becomes difficult to match. Sociologists say that males tend to overestimate the number of their sexual partners and
+females tend to underestimate it. Therefore, if we want to build a network
+where the number of males and females LSP coincide, we will have to make a decision about the average number of male LSP and to assign LSP to females in such a way that the sum of LSP of males and females coincide, and vice versa. Thus, we decide to consider the average LSP male value, $<k>m$ , and build the network from it.
+
+After some tests, in order to have results consistent with data of Table 1, that is, men and women with 10 or more LSP have, in fact, 10 or more LSP, the average number of male LSP with age between 14-65 in the  Community of Valencia should be 4.5, at least.
+
+Building the network now proceeds in two stages:
+\begin{enumerate}
+	\item \underline{\textbf{Assignment of the connectivity degree for each node}}
+\end{enumerate}
+	Now, we randomly generate a number r between 0 and 1 and assign the number of contacts, to every male node in the age group 14-29, in the network as follows:
+
+\begin{itemize}
+	\item r  <= 0:107,  we will say that the corresponding male does not have LSP,
+	\item 0.107 < r  <= 0.314, we will say that the corresponding male has one LSP,
+	\item 0.314 < r <=0.455, we will say that the corresponding male has two LSP
+	\item 0.455 < r <=0.67, we will say that the corresponding male has three or four LSP, uniformly distributed.
+	\item 0.67 < r <= 0.838, we will say that the corresponding male has five to nine four LSP, uniformly distributed.
+	\item 0.838 < r, we will say that the corresponding male has 10 or more LSP.
+\end{itemize}
+
+Every node in the network is labelled by its sex and age randomly assigned
+according to the population histogram. The assignment of the number of bonds, as another label of the node, is not so straightforward because we must guarantee that the total number of bonds for men must coincide with the total number for women. In order to fulfill this condition we take advantage of the uncertainty of statistics reports concerning individuals with 10 or more lifetime sexual partners. We have included both men and women with 10 or more LSP to complete the necessary number of bonds for each sex.
+
+\begin{enumerate}
+	\item \underline{\textbf{Assigning the bonds to each node}}
+\end{enumerate}
+The procedure in the previous section determines the network as a bipartite graph of females and males, where each node has its predetermined degree (LSP). Now, we have to assign women-men edges in such a way that the total number of edges is as close as possible to the total number of male and female LSP. In other words, preserving as much as possible the predetermined degree.
+
+Our heuristic assignment process is partially based on the Greedy Randomized Adaptive Search Procedure, or simply called GRASP methodology (T. A. Feo, M. G. C. Resende, Greedy Randomized Adaptive Search Procedures, Journal of Global Optimization 6(2) (1995) 109-133). Notice that we cannot assign women-men randomly if we want to obtain a likely network.
+
+Therefore, we are going to make some decisions taking into account that more complex conditions imply more computational time. This is important because our objective is to build very large networks. Our assumptions are:
+
+\begin{itemize}
+	\item People use to join with people with similar habits (principle of psychological similarity or assortativity). Therefore, we are going to define a weight function assuming that: women with few LSP usually match men with few LSP; people with 5 or more LSP use to join with people with 5 or more LSP; and couples where one of them has a lot of LSP and the other few LSP will be uncommon.
+
+	\item We are not going to consider the age difference in couples. Even though we have data about how Spanish couples join (average difference of 1.5 years with a standard deviation of 5 years). The published information in this respect  (see study by P. Miret,  La similitud entre los componentes de las parejas j\'ovenes en Espa\~{n}a en la primera d\'ecada del siglo XXI  ?`Cada vez m\'as iguales? Revista de Estudios de Juventud, No. 90, 2010 (Ejemplar dedicado a: Juventud y familia desde una perspectiva comparada europea), p. 225-255, \url{www.injuve.es/sites/default/files/RJ90-16.pdf}) refers to stable unions more than sporadic relationships. So, it seems not to be useful for building sexual networks.
+\end{itemize}
+A typical network for 1000 individuals obtained with the method discussed in this report is plotted in Fig. \ref{LSPNET}:
+\begin{figure}[ht]
+	\centering
+	\includegraphics{IMG/LSP.png}
+	\caption{LSP network for 1000 individuals: blue dots correspond to men, pink to women and yellow ones to homosexuals}
+	\label{LSPNET}
+\end{figure}
+
+From a structural point of view we notice the appearance of a large core of connections through individuals with many partners and also a radial distribution of individuals with a single partner or two partners which can also be affected by the disease through the network of connections.
