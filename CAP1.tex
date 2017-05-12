@@ -8,7 +8,7 @@ As it is well-known, network modelling is the current approach in mathematical e
 
 In order to understand the evolution of the HPV disease we need a reliable model of the underlying social network in which the pandemic builds up. Individuals who change partners or have several partners simultaneously, are the hubs favoring the spread of sexually transmitted diseases (STI). The distribution of degrees of the nodes in the network and the average path from an infected individual to a susceptible one, are important parameters controlling the final extension of a new STI in a population and the speed of its spread. However, most models are based on some assumptions, which could not be valid for certain populations. Some studies claimed that the web of human sexual contacts is a scale-free network characterized by a power-law distribution for the number of individuals with a certain degree of connectivity, k: $P(k)\propto1/k^\alpha$  with a value of k in the range $2 \textless k \textless 3$, and slightly smaller for males than for females.
 
-Although P(k) provides some valuable information about the network, it is not a sufficient prescription on how to build it for a given population size.
+Although $P(k)$ provides some valuable information about the network, it is not a sufficient prescription on how to build it for a given population size.
 Moreover, a power-law distribution of contacts could not be representative of some populations, or could vary from country to country.
 
 To avoid the shortcomings of these theoretical approaches we have started with real statistical data for Spain and, by applying concepts of network theory to be described below, we have been able to develop network models for populations of 1,000,000 individuals with a distribution of sexual partners among them characterized by the data from surveys of the National Institute of Statistics in Spain (Encuesta de salud y h\'abitos sexuales 2003. \url{http://www.ine.es}).
@@ -20,23 +20,9 @@ The Community of Valencia is an autonomous region of Spain. It is located in the
 
 From the statistical data for Valencia (Valentian Institute of Statistics, \url{http://ww.ive.es}) we obtain that 50.71\% of Valencian people with ages between 14-65 years old are male. 
 
-According to the age-groups relevant for VPH modelling we have found that: 25.22 \% of males are aged 14-29, 25.23 \% are aged 30-39 and 49.55 \% are aged 40-65. In a similar way, 24.87 \% of females are aged 14-29, 23.99 \% are aged 30-39, and 51.14 \% are aged 40-65. Following this procedure, we can obtain the percentage of males and females per age inside their corresponding groups. This will be useful to distribute the nodes of a network demographically. In the following, we will use this data to assign ages to the nodes in the network according to the population histogram in Valencia.
+According to the age-groups relevant for VPH modelling we have found that: 25.22\% of males are aged 14-29, 25.23\% are aged 30-39 and 49.55\% are aged 40-65. In a similar way, 24.87\% of females are aged 14-29, 23.99 \% are aged 30-39, and 51.14\% are aged 40-65. Following this procedure, we can obtain the percentage of males and females per age inside their corresponding groups. This will be useful to distribute the nodes of a network demographically. In the following, we will use this data to assign ages to the nodes in the network according to the population histogram in Valencia.
 
-The corresponding histograms are shown in Figs. \ref{data1} (men), \ref{data2} (women) and \ref{demog} (both):
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=1.0]{IMG/data1.png}
-	\caption{Histogram for the population of men in Valencia (Spain). The range is 14-65 years old.}
-	\label{data1}
-\end{figure} 
-
-\begin{figure}[ht]
-	\centering
-	\includegraphics[scale=1.0]{IMG/data2.png}
-	\caption{The same as Fig. \ref{data1} but for women.}
-	\label{data2}
-\end{figure} 
+The corresponding histogram is shown in Figure \ref{demog} for men and women.
 
 \begin{figure}[ht]
 	\centering
@@ -49,19 +35,15 @@ Concerning the sexual behavior the only relevant data for the linking of the net
 
 In our network we have also considered the homosexual population and the possible contacts of homosexual men with women is some moment in their lives. This is a key issue in the network because it determines the propagation of the VPH infection from the homosexual subpopulation to the whole heterosexual one and vice versa. We have not considered lesbians because the impact of VPH transmission in this subgroup is far smaller.
 
-Lifetime sexual partners for a heterosexual individual (LSP) is obtained from the Health and Sexual Habits Survey 2003, as listed in the table in terms of the age-group. Notice that we do not have more recent information on this topic.
+Lifetime sexual partners for a heterosexual individual (LSP) is obtained from the Health and Sexual Habits Survey 2003, as listed in the Figure \ref{lsp} in terms of the age-group. Notice that we do not have more recent information on this topic.
 
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{lsp.pdf}
+\begin{figure}[ht]
+	\includegraphics[scale=0.6]{lsp.pdf}
 	\caption{Number of lifetime sexual partners (LSP) for men and woman per age group in Spain (year 2003). The age groups are 14-29, 30-39 and 40-65.}
 	\label{lsp}
 \end{figure}
 
-
 We now summarize some general features of the distribution of contacts:
-
 
 \begin{itemize}
 	\item The percentage of males and females with no partners is very similar in each age-group.
@@ -88,9 +70,9 @@ We consider a population of N individuals, M males and F females, N = M + F. Let
 
 Taking into account that males and females are around 50\% of the total population, the ideal situation becomes difficult to match. Sociologists say that males tend to overestimate the number of their sexual partners and
 females tend to underestimate it. Therefore, if we want to build a network
-where the number of males and females LSP coincide, we will have to make a decision about the average number of male LSP and to assign LSP to females in such a way that the sum of LSP of males and females coincide, and vice versa. Thus, we decide to consider the average LSP male value, $<k>m$ , and build the network from it.
+where the number of males and females LSP coincide, we will have to make a decision about the average number of male LSP and to assign LSP to females in such a way that the sum of LSP of males and females coincide, and vice versa. Thus, we decide to consider the average LSP male value, $<k>_{m}$ , and build the network from it.
 
-After some tests, in order to have results consistent with data of Table 1, that is, men and women with 10 or more LSP have, in fact, 10 or more LSP, the average number of male LSP with age between 14-65 in the  Community of Valencia should be 4.5, at least.
+After some tests, in order to have results consistent with data of Figure \ref{lsp}, that is, men and women with 10 or more LSP have, in fact, 10 or more LSP, the average number of male LSP with age between 14-65 in the  Community of Valencia should be 4.5, at least.
 
 Building the network now proceeds in two stages:
 \begin{enumerate}
@@ -99,18 +81,18 @@ Building the network now proceeds in two stages:
 	Now, we randomly generate a number r between 0 and 1 and assign the number of contacts, to every male node in the age group 14-29, in the network as follows:
 
 \begin{itemize}
-	\item r  <= 0:107,  we will say that the corresponding male does not have LSP,
-	\item 0.107 < r  <= 0.314, we will say that the corresponding male has one LSP,
-	\item 0.314 < r <=0.455, we will say that the corresponding male has two LSP
-	\item 0.455 < r <=0.67, we will say that the corresponding male has three or four LSP, uniformly distributed.
-	\item 0.67 < r <= 0.838, we will say that the corresponding male has five to nine four LSP, uniformly distributed.
-	\item 0.838 < r, we will say that the corresponding male has 10 or more LSP.
+	\item r $<$ 0.107,  we will say that the corresponding male does not have LSP,
+	\item 0.107 $<$ r $<=$ 0.314, we will say that the corresponding male has one LSP,
+	\item 0.314 $<$ r $<=$ 0.455, we will say that the corresponding male has two LSP
+	\item 0.455 $<$ r $<=$ 0.67, we will say that the corresponding male has three or four LSP, uniformly distributed.
+	\item 0.67 $<$ r $<=$ 0.838, we will say that the corresponding male has five to nine four LSP, uniformly distributed.
+	\item 0.838 $<$ r, we will say that the corresponding male has 10 or more LSP.
 \end{itemize}
 
 Every node in the network is labelled by its sex and age randomly assigned
 according to the population histogram. The assignment of the number of bonds, as another label of the node, is not so straightforward because we must guarantee that the total number of bonds for men must coincide with the total number for women. In order to fulfill this condition we take advantage of the uncertainty of statistics reports concerning individuals with 10 or more lifetime sexual partners. We have included both men and women with 10 or more LSP to complete the necessary number of bonds for each sex.
 
-\begin{enumerate}
+\begin{enumerate}[resume]
 	\item \underline{\textbf{Assigning the bonds to each node}}
 \end{enumerate}
 The procedure in the previous section determines the network as a bipartite graph of females and males, where each node has its predetermined degree (LSP). Now, we have to assign women-men edges in such a way that the total number of edges is as close as possible to the total number of male and female LSP. In other words, preserving as much as possible the predetermined degree.
