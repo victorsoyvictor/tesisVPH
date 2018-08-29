@@ -2,7 +2,6 @@
 \documentclass[12pt,a4paper]{report}
 \usepackage[export]{adjustbox}
 \usepackage{booktabs}
-\usepackage[latin1]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{color,eurosym}
@@ -12,6 +11,7 @@
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage[table,xcdraw]{xcolor}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -19,6 +19,7 @@
     linkcolor=blue,
     urlcolor=blue
 }
+\newtheorem{remark}{\textbf{Remark}}[section]
 %Cambiar los colores de blue a black para la impresion final
 
 %\topmargin -1cm
@@ -45,19 +46,22 @@
 \listoffigures
 \listoftables
 
+%El capítulo 1 debe ser la introducción al VPH que ya redactaste. 
+%El capítulo 2 debe describir la construcción de la red y la dinámica de transmisión como está en el artículo de viruses. 
+%El capítulo 3 debe ser el 2 del git de arriba donde se describe el calibrado. 
+%El capítulo 4 el 3 del report donde se describe la red dinámica y la vacunación. 
+%El capítulo 5 de la tesis debería ser el caso australiano tal cual del artículo de viruses.
+
+%Capítulo 1 - ya redactado
 \input{Intro.tex}
-
-
-%\input{CAP1.tex}
-\input{CAP1_AUS.tex}
-%el tercer capítulo será la descripción de la situación en España para HPV LR 
-%\input{CAP3.tex}
-%y el cuarto la situación en España para el HPV HR 
-%\input{CAP4.tex}
-
-        
-
-%\input{Conclusion.tex}
+%Capítulo 2 - de revista Viruses
+\input{ConstruccionYDinamica.tex}
+%Capítulo 3 - calibrado del articulo Report HPV RJVM August 25, 2018
+\input{Calibration.tex}
+%Capítulo 4 - dinamica y vacunacion del articulo Report HPV RJVM August 25, 2018
+\input{DinamicaYVacunacion.tex}
+%Capítulo 5 - caso AUS de revista Viruses
+\input{CasoAustraliano.tex}
 
 \begin{thebibliography}{99}
 
