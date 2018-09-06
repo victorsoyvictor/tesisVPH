@@ -46,11 +46,10 @@ of network research for the readers not familiar with these techniques and their
 %ANSWER: Parenthesis has been added.
 There are several types of networks of interest for the applied sciences. If we classify them according to the degree of a node, i.e., to the number of links for a given node (or, more properly, to the distribution of these number of links), we have two main categories in the literature: (i) random networks, in which the links or edges occur with a fixed probability and the statistical distribution of this number of links follows a Poisson's law; and (ii) scale-free networks whose distribution of degrees follows a power-law with an
 algebraic tail of the form $P(k) \simeq 1/k^\gamma$ with $2 < \gamma < 3$. This means that the nodes with very large degrees are more likely to appear in scale-free networks than those in random networks. Random networks have been used in epidemiology
-\cite{RSV} and also as an elemetary model of the brain \cite{Acedo2013}. On the other hand, scale-free networks have been successfully applied to the Internet and biological networks in which some nodes with a very large number of links are determinant in the control of the dynamics (see \cite{Dorogovtsev}). Small-world networks are also an important paradigm in the 
-science of networks. This concept refers to the average length of a path connecting two typical nodes in the network. It was found that some sparse networks may, on the other hand, present the small-world phenomenon, i.e., we have short paths connecting every pair of nodes through the links with other nodes. A mechanism to generate these networks was discovered by
-Watts and Strogatz \cite{Watts}. Many networks in sociology exhibit this small-world property \cite{Obesity,Web,Bearman}.
+\cite{acedo2011using} and also as an elemetary model of the brain \cite{acedo2013brain}. On the other hand, scale-free networks have been successfully applied to the Internet and biological networks in which some nodes with a very large number of links are determinant in the control of the dynamics (see \cite{dorogovtsev2013evolution}). Small-world networks are also an important paradigm in the science of networks. This concept refers to the average length of a path connecting two typical nodes in the network. It was found that some sparse networks may, on the other hand, present the small-world phenomenon, i.e., we have short paths connecting every pair of nodes through the links with other nodes. A mechanism to generate these networks was discovered by
+Watts and Strogatz \cite{watts1998collective}. Many networks in sociology exhibit this small-world property \cite{christakis2007spread,liljeros2001web,bearman2004chains}.
 
-In this paper, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Table \ref{table1}. A basic property of the network we are going to discuss is that the total number of lifetime sexual partners (LSP) for the male population (M) must
+In this dissertation, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Table \ref{table1}. A basic property of the network we are going to discuss is that the total number of lifetime sexual partners (LSP) for the male population (M) must
 coincide with the total number of LSP for the female population (F). This is so because (in a purely heterosexual network) every link starting on a male must end in a female and viceversa. In mathematical terms:
 
 \begin{equation}
@@ -58,7 +57,7 @@ coincide with the total number of LSP for the female population (F). This is so 
 \displaystyle\sum_{i=1}^M\, LSP_i=\displaystyle\sum_{j=1}^F\, LSP_j\; .
 \end{equation}
 
-The estimation of sexual partners: there are some approaches to the number of LSP in males and females \cite{USA,USA2} that are difficult to match. Generally speaking, males tend to overestimate the number of their sexual partners and females tend to underestimate it. Therefore, we considered the average LSP male value, $\left\langle k \right\rangle_m$, and calibrated the network so that results were consistent with data of Table \ref{table1}, and estimated that the number of LSP in males in Spain was at least $4.5$. Networks with 250,000, 500,000 and 750,000 have been necessary to perform the present study. It required a substantial computational power.
+The estimation of sexual partners: there are some approaches to the number of LSP in males and females \cite{chandra2013sexual,mosher2005sexual} that are difficult to match. Generally speaking, males tend to overestimate the number of their sexual partners and females tend to underestimate it. Therefore, we considered the average LSP male value, $\left\langle k \right\rangle_m$, and calibrated the network so that results were consistent with data of Table \ref{table1}, and estimated that the number of LSP in males in Spain was at least $4.5$. Networks with 250,000, 500,000 and 750,000 have been necessary to perform the present study. It required a substantial computational power.
 %ANSWER: These last two sentences have been rewritten.
 
 \subsection{Semi-Random Construction}
@@ -118,7 +117,7 @@ to every male and female in the network.\label{flux1}}
 These lists will be used to perform the connections of males and females and build the network.
 Note that, in Table \ref{table1}, there are more females than males with few LSPs (comparing male and female percentages). It implies that there will be few women with a very large number of LSPs. This fact suggests us to start the assignment procedure with women with the largest LSPs. Otherwise, it would be possible that, when we have to assign LSPs of men to a female with a large number of LSPs, there~will not be enough men with free sexual partners to be assigned and, for this female, it would be impossible to satisfy the condition that the degree of each node was the number of its LSP. 
 
-The assignment of partners was carried out by considering a principle of psychological similarity~\cite{PPS} or assortativity.
+The assignment of partners was carried out by considering a principle of psychological similarity~\cite{gentner1997structure} or assortativity.
 Hence, we are going to define a weight function assuming that: women with few LSPs usually match men with few LSPs; people with four or more LSPs use to join with people with four or more LSPs; and couples where one of them has a large number of LSPs and the other few LSPs will be uncommon. Then, for the woman $i$ and the man $j$, we define the following weight~function:
 
 \begin{equation}
@@ -135,13 +134,13 @@ Hence, we are going to define a weight function assuming that: women with few LS
 \label{peso}
 \end{equation}
 
-The combined weight function, which takes into account the age difference of the partners, $\vert AgeFemale[i] - AgeMale[j] - 1.8 \vert$ is defined in this way because some studies show that the average age difference among the members of a couple in Spain is $1.8$ years \cite{Miret}. 
+The combined weight function, which takes into account the age difference of the partners, $\vert AgeFemale[i] - AgeMale[j] - 1.8 \vert$ is defined in this way because some studies show that the average age difference among the members of a couple in Spain is $1.8$ years \cite{miret2010similitud}. 
 
 The MSM population (around a $3.88$ \% of the total male population in Spain) can also be incorporated into the model, but, in this subpopulation, the connectivity would be larger than the heterosexual network.
-The MSM population would also be connected with the heterosexual one by links with women in such a way that every MSM individual has a link with a woman with five or more contacts \cite{Calibrate}. The assignment of links is then performed by the a Greedy Randomized Adaptive Search Procedure (GRASP) algorithm 
+The MSM population would also be connected with the heterosexual one by links with women in such a way that every MSM individual has a link with a woman with five or more contacts \cite{acedo2017calibrating}. The assignment of links is then performed by the a Greedy Randomized Adaptive Search Procedure (GRASP) algorithm 
 %Pls define. 
 %ANSWER: Done.
-\cite{greedy,FeoResende}. Details~about the construction of the whole network have been provided in previous studies \cite{Calibrate,Network}. 
+\cite{cormen2009introduction,feo1995greedy}. Details~about the construction of the whole network have been provided in previous studies \cite{acedo2017calibrating,BuildingLSPNova}. 
 
 \subsection{The Dynamics of HPV Transmission in the Sexual Network}
 
@@ -160,17 +159,17 @@ as proposed in Equation (\ref{peso}). The values of these probabilities are dete
 \item If a partner produces the contagion of his/her partner, we need another four parameters to determine if the high or low risk HPV infection is transmitted from man to woman and vice versa. 
 \end{itemize}
 
-Another additional parameter is necessary to generate the network. This is the average number of LSPs for men (parameter $k$). Simulations are run by generating a network and carrying out a large number of epidemic evolution time-steps starting with a number of individuals infected by both HPV types as given by the CLEOPATRE study \cite{CLEOPATRE}.
+Another additional parameter is necessary to generate the network. This is the average number of LSPs for men (parameter $k$). Simulations are run by generating a network and carrying out a large number of epidemic evolution time-steps starting with a number of individuals infected by both HPV types as given by the CLEOPATRE study \cite{castellsague2012prevalence}.
 After the warm-up period, we obtain a stable situation and we can proceed with the calibration by comparing the model predictions with real data and deducing the most probable values of the set of parameters.
 
-We have used a calibration procedure using the Particle Swarm Optimization (PSO) algorithm. The prevalence data for each age group is listed in Table \ref{datos}:
+We have used a calibration procedure using the Particle Swarm Optimization (PSO) algorithm. The prevalence data for each age group is listed in Table \ref{datosConstruccion}:
 
 \begin{table}[H]
 	\centering
 	\caption{Prevalence of HR- and LR-infected women per age groups from the 
 %Pls define
 %ANSWER:It has been defined in the 1st paragraph of the Introduction. Also, it appears in the list of the abbreviations.	
-CLEOPATRE study \protect\cite{CLEOPATRE}. Co-infections are included in both HR- and LR-infected, mean and $95\%$ confidence intervals.}
+CLEOPATRE study \protect\cite{castellsague2012prevalence}. Co-infections are included in both HR- and LR-infected, mean and $95\%$ confidence intervals.}
 	\begin{tabular}{cccc}
 		\toprule
 		\textbf{Women} & \textbf{HR-Infected} & \textbf{LR-Infected} \\
@@ -182,12 +181,12 @@ CLEOPATRE study \protect\cite{CLEOPATRE}. Co-infections are included in both HR-
 		18--64 y.o. & $16.23\%,$$[14.52\%, 17.97\%]$ & $4.41\%,$ $[3.42\%, 5.45\%]$ \\
 		\bottomrule
 	\end{tabular}
-	\label{datos}
+	\label{datosConstruccion}
 \end{table}
 
 Note that the network building and the transmission parameters involve randomness and uncertainty due to the random processes used in the network building and the transmission dynamics of the HPV. This fact is going to be taken into account in the  calibration and simulation.
 
-To check the reliability of the model and the calibration, we simulated the HPV vaccination campaign carried out in Australia \cite{Ali}, and compared them with the actual impact published \cite{Ali}. In 2007, Australian health authorities started a vaccination program for 12--13 year-old girls with a~coverage of $73\%$ ($83\%$ in the first dose, $80\%$ in the second dose and $73\%$ in the third dose). In addition, from 2007 to 2009, there was a catch-up vaccination program for women aged 13--26 with a decreasing coverage with age until $52\%$ in women aged 20--26. Their results can be summarized:
+To check the reliability of the model and the calibration, we simulated the HPV vaccination campaign carried out in Australia \cite{ali2013genital}, and compared them with the actual impact published \cite{ali2013genital}. In 2007, Australian health authorities started a vaccination program for 12--13 year-old girls with a~coverage of $73\%$ ($83\%$ in the first dose, $80\%$ in the second dose and $73\%$ in the third dose). In addition, from 2007 to 2009, there was a catch-up vaccination program for women aged 13--26 with a decreasing coverage with age until $52\%$ in women aged 20--26. Their results can be summarized:
 
 \begin{itemize}[leftmargin=*,labelsep=5mm]
 \item Two years after the vaccine was introduced, the proportion of GW diagnosed declined by a $59\%$ in vaccine eligible young women aged 12--26 years in $2007$, and by $39\%$ in heterosexual men of the same age.
@@ -219,6 +218,6 @@ We call $I$ the number of infected women of LR HPV 6 and/or 11 just before the s
 \end{equation}
 is a measure of the percentage of decline of number of infected women of LR HPV 6 and/or 11 after the beginning of the vaccination campaign. This will also be applied to men and MSM.
 
-In order to compare GW data given in \cite{Ali} with our model, results referred to infected women of LR HPV 6 and/or 11, we should take into account that, whether a fixed proportion of HPV 6 and/or 11 infected individuals develops warts, the percentage of decline in warts and in infected women of LR HPV 6 and/or 11 will be comparable. 
+In order to compare GW data given in \cite{ali2013genital} with our model, results referred to infected women of LR HPV 6 and/or 11, we should take into account that, whether a fixed proportion of HPV 6 and/or 11 infected individuals develops warts, the percentage of decline in warts and in infected women of LR HPV 6 and/or 11 will be comparable. 
 
-Another important issue for the natural history of the disease is the persistence of the infection~\cite{AJE2014}. Our model does not consider the persistence ``a priori'', but we derive the cases of genital warts from the number of cases of infected individuals by taking this data into account.
+Another important issue for the natural history of the disease is the persistence of the infection \cite{campos2014updated}. Our model does not consider the persistence ``a priori'', but we derive the cases of genital warts from the number of cases of infected individuals by taking this data into account.
