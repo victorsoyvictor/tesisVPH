@@ -30,15 +30,15 @@
 \begin{document}
 
 %PRIMERA PAGINA: La portada
-\input{Portada.tex}
+\input{Portada}
 \newpage
 
 %SEGUNDA PAGINA: El certificado
-\input{Legal.tex}
+\input{Legal}
 \newpage
 
 %TERCERA PAGINA: Los resumenes
-\input{Resumenes.tex}
+\input{Resumenes}
 \newpage
 
 %INDICES
@@ -46,24 +46,18 @@
 \listoffigures
 \listoftables
 
-%El capítulo 1 debe ser la introducción al VPH que ya redactaste. 
-%El capítulo 2 debe describir la construcción de la red y la dinámica de transmisión como está en el artículo de viruses. 
-%El capítulo 3 debe ser el 2 del git de arriba donde se describe el calibrado. 
-%El capítulo 4 el 3 del report donde se describe la red dinámica y la vacunación. 
-%El capítulo 5 de la tesis debería ser el caso australiano tal cual del artículo de viruses.
-
-%Capítulo 1 - ya redactado
-\input{Intro.tex}
-%Capítulo 2 - de revista Viruses
-\input{ConstruccionYDinamica.tex}
-%Capítulo 3 - Validacion caso AUS de revista Viruses
-\input{CasoAustraliano.tex}
-%Capítulo 3 - calibrado del articulo Report HPV RJVM August 25, 2018
-\input{Calibration.tex}
-%Capítulo 4 - dinamica y vacunacion del articulo Report HPV RJVM August 25, 2018
-\input{DinamicaYVacunacion.tex}
+%Capítulo 1
+\input{Intro}
+%Capítulo 2
+\input{ConstruccionYDinamica}
+%Capítulo 3
+\input{CasoAustraliano}
+%Capítulo 4 
+\input{Calibration}
+%Capítulo 5
+\input{DinamicaYVacunacion}
+%Capítulo 6
 \input{Conclusion}
-
 
 \bibliographystyle{ieeetr}
 \bibliography{bibtextbiblio}
