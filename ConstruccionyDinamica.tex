@@ -1,13 +1,9 @@
 \chapter{Building and Dynamics of the Sexual Contacts Network}\label{ConstruccionYDinamica}
 
-\section{Materials and Methods}
-\vspace{-6pt}
-
-\subsection{Origin of the Data}
+\section{Origin of the Data}
 
 Demographic data from the region of Valencia (Spain) was collected from the Valencian Institute of Statistics (2013)  \cite{IVE}.
-Lifetime sexual partners for an individual (LSP) was obtained from the Health and Sexual Habits Survey of 2003 \cite{INE}, and 
-summarized in Table \ref{table1}. 
+Lifetime sexual partners for an individual (LSP) was obtained from the Health and Sexual Habits Survey of 2003 \cite{INE}, and summarized in Table \ref{table1}. 
 
 \begin{table}[H]
 \centering
@@ -22,7 +18,6 @@ summarized in Table \ref{table1}.
  \midrule 
  
 \multicolumn{7}{c}{FEMALES} \\ \midrule
-%Should this section also be bolded?
   Age & $0$ LSP & $1$ LSP & $2$ LSP & 3--4 LSP & 5--9 LSP & $10$ or more LSP \\
  \midrule
 14--29 & 0.138 & 0.43 & 0.186 & 0.158 & 0.056 & 0.032 \\
@@ -31,26 +26,28 @@ summarized in Table \ref{table1}.
 \bottomrule
 \end{tabular} 
 \caption{Proportion of males and females per number of life sexual partners {LSP} per age group.}
-%Pls define
-%ANSWER: LSP has been defined in the above paragraph. Also, it appears in the list of the abbreviations.
 \label{table1} 
 \end{table}
 
 Some features of the distribution of contacts were: (i) the percentage of males and females with no partners is
 very similar in each age-group; (ii) the proportion of women  with a single partner is, approximately, two times larger than men with only one partner; and (iii) the percentage of men with two or more partners is always larger than that of women except for women in the age-groups 14--29, and~30--39 in the case of two partners. The asymmetry in the behaviour of males and females should be taken into account in the construction of the network.
 
-\subsection{Network Model}
+\section{Network Model}
 
-Before proceeding with the definition of our model, it is convenient to give a brief and general perspective on the emergent field
-of network research for the readers not familiar with these techniques and their application in epidemiology. A network is, basically, a model which derives from the abstract mathematical concept of a graph composed by a set of points (the so-called nodes) connected among them by some lines or edges (known as ``links'' in the case of networks).
-%ANSWER: Parenthesis has been added.
+Before proceeding with the definition of our model, it is convenient to give a brief and general perspective on the emergent field of network research for the readers not familiar with these techniques and their application in epidemiology. A network is, basically, a model which derives from the abstract mathematical concept of a graph composed by a set of points (the so-called nodes) connected among them by some lines or edges (known as ``links'' in the case of networks).
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[scale=0.7]{IMG/LSP}
+	\caption{Example Network of 1,000 nodes, MSM in yellow, women in red and men in blue.}
+	\label{LSPnetwork}
+\end{figure}
+
+
 There are several types of networks of interest for the applied sciences. If we classify them according to the degree of a node, i.e., to the number of links for a given node (or, more properly, to the distribution of these number of links), we have two main categories in the literature: (i) random networks, in which the links or edges occur with a fixed probability and the statistical distribution of this number of links follows a Poisson's law; and (ii) scale-free networks whose distribution of degrees follows a power-law with an
-algebraic tail of the form $P(k) \simeq 1/k^\gamma$ with $2 < \gamma < 3$. This means that the nodes with very large degrees are more likely to appear in scale-free networks than those in random networks. Random networks have been used in epidemiology
-\cite{acedo2011using} and also as an elemetary model of the brain \cite{acedo2013brain}. On the other hand, scale-free networks have been successfully applied to the Internet and biological networks in which some nodes with a very large number of links are determinant in the control of the dynamics (see \cite{dorogovtsev2013evolution}). Small-world networks are also an important paradigm in the science of networks. This concept refers to the average length of a path connecting two typical nodes in the network. It was found that some sparse networks may, on the other hand, present the small-world phenomenon, i.e., we have short paths connecting every pair of nodes through the links with other nodes. A mechanism to generate these networks was discovered by
-Watts and Strogatz \cite{watts1998collective}. Many networks in sociology exhibit this small-world property \cite{christakis2007spread,liljeros2001web,bearman2004chains}.
+algebraic tail of the form $P(k) \simeq 1/k^\gamma$ with $2 < \gamma < 3$. This means that the nodes with very large degrees are more likely to appear in scale-free networks than those in random networks. Random networks have been used in epidemiology \cite{acedo2011using} and also as an elemetary model of the brain \cite{acedo2013brain}. On the other hand, scale-free networks have been successfully applied to the Internet and biological networks in which some nodes with a very large number of links are determinant in the control of the dynamics (see \cite{dorogovtsev2013evolution}). Small-world networks are also an important paradigm in the science of networks. This concept refers to the average length of a path connecting two typical nodes in the network. It was found that some sparse networks may, on the other hand, present the small-world phenomenon, i.e., we have short paths connecting every pair of nodes through the links with other nodes. A mechanism to generate these networks was discovered by Watts and Strogatz \cite{watts1998collective}. Many networks in sociology exhibit this small-world property \cite{christakis2007spread,liljeros2001web,bearman2004chains}.
 
-In this dissertation, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Table \ref{table1}. A basic property of the network we are going to discuss is that the total number of lifetime sexual partners (LSP) for the male population (M) must
-coincide with the total number of LSP for the female population (F). This is so because (in a purely heterosexual network) every link starting on a male must end in a female and viceversa. In mathematical terms:
+In this dissertation, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Table \ref{table1}. A basic property of the network we are going to discuss is that the total number of lifetime sexual partners (LSP) for the male population (M) must coincide with the total number of LSP for the female population (F). This is so because (in a purely heterosexual network) every link starting on a male must end in a female and viceversa. In mathematical terms:
 
 \begin{equation}
 \label{nodeseq}
@@ -58,9 +55,8 @@ coincide with the total number of LSP for the female population (F). This is so 
 \end{equation}
 
 The estimation of sexual partners: there are some approaches to the number of LSP in males and females \cite{chandra2013sexual,mosher2005sexual} that are difficult to match. Generally speaking, males tend to overestimate the number of their sexual partners and females tend to underestimate it. Therefore, we considered the average LSP male value, $\left\langle k \right\rangle_m$, and calibrated the network so that results were consistent with data of Table \ref{table1}, and estimated that the number of LSP in males in Spain was at least $4.5$. Networks with 250,000, 500,000 and 750,000 have been necessary to perform the present study. It required a substantial computational power.
-%ANSWER: These last two sentences have been rewritten.
 
-\subsection{Semi-Random Construction}
+\section{Semi-Random Construction}
 \label{subsec22}
 
 From Table \ref{table1} (proportion of male LSP aged 14--29), we have the following list:
@@ -88,15 +84,11 @@ proceed as follows: (i) assign the number of bonds to the females with nine or l
 data in Table \ref{table1}; and (ii) the sum of all female LSPs in this group of $j_{\mbox{max}}$ members will be denoted by $s_f$. 
 Then, $n_f=F-j_{\mbox{max}}$ is the number of females with $10$ or more LSPs; and (iii) the number of bonds starting in the males and still unassigned to a female is $p_m-s_f= q_f n_f + r_f$, where $0 \le r_f < n_f$ and $n_f \ge 10$. (iv) We assign $q_f+1$ bonds to $r_f$ females still unassigned and $q_f$ bonds to the rest of $n_f-r_f$ females. The steps of this algorithm are also enumerated in the flow diagram in Figure  \ref{flux1}.
 
-Notice that, for men and women with more than 10 LSPs, we assign their LSP in the most equitable way, assuming that all of them
-have, more or less, the same number of LSPs. Thus, we have a lot of hubs with a low number of contacts instead of a few hubs with
-a lot of contacts.
+Notice that, for men and women with more than 10 LSPs, we assign their LSP in the most equitable way, assuming that all of them have, more or less, the same number of LSPs. Thus, we have a lot of hubs with a low number of contacts instead of a few hubs with a lot of contacts.
 
-From the point of view of STI transmission, the latter situation leads to a faster transmission if the hub is infected, and, 
-also, if the hub is vaccinated, the transmission is cut faster. Therefore, due to the lack of data about people with $10$ or more LSPs, we make the decision of being conservative in the transmission of the disease and in the effect of the vaccination campaigns.
+From the point of view of STI transmission, the latter situation leads to a faster transmission if the hub is infected, and, also, if the hub is vaccinated, the transmission is cut faster. Therefore, due to the lack of data about people with $10$ or more LSPs, we make the decision of being conservative in the transmission of the disease and in the effect of the vaccination campaigns.
 
-Notice that this procedure implies that the condition in Equation\ (\ref{nodeseq}) is verified. After this procedure, we have
-obtained the following lists:
+Notice that this procedure implies that the condition in Equation\ (\ref{nodeseq}) is verified. After this procedure, we have obtained the following lists:
 \begin{itemize}[leftmargin=*,labelsep=5mm]
 \item $AgeMale\left[ i \right]$ is the age of the i-th male, $i=1,\ldots,M$,
 \item $AgeFemale\left[ i\right]$ is the age of the i-th female, $i=1,\ldots,F$,
@@ -110,8 +102,7 @@ obtained the following lists:
 \begin{tabular}{c}
 \includegraphics[width=\textwidth]{FluxDiagramI.pdf}
 \end{tabular}
-\caption{Flow diagram for the algorithm corresponding to the assignment of a number of LSPs 
-to every male and female in the network.\label{flux1}}
+\caption{Flow diagram for the algorithm corresponding to the assignment of a number of LSPs to every male and female in the network.\label{flux1}}
 \end{figure}
 
 These lists will be used to perform the connections of males and females and build the network.
@@ -142,7 +133,7 @@ The MSM population would also be connected with the heterosexual one by links wi
 %ANSWER: Done.
 \cite{cormen2009introduction,feo1995greedy}. Details~about the construction of the whole network have been provided in previous studies \cite{acedo2017calibrating,BuildingLSPNova}. 
 
-\subsection{The Dynamics of HPV Transmission in the Sexual Network}
+\section{The Dynamics of HPV Transmission in the Sexual Network}
 
 To implement the simulation of the transmission of HPV among the individuals in the network, a~standard epidemiological model with susceptible and infected states and three types of infections (HR, LR and co-infection) was carried out.
 %please define
@@ -186,30 +177,10 @@ CLEOPATRE study \protect\cite{castellsague2012prevalence}. Co-infections are inc
 
 Note that the network building and the transmission parameters involve randomness and uncertainty due to the random processes used in the network building and the transmission dynamics of the HPV. This fact is going to be taken into account in the  calibration and simulation.
 
-To check the reliability of the model and the calibration, we simulated the HPV vaccination campaign carried out in Australia \cite{ali2013genital}, and compared them with the actual impact published \cite{ali2013genital}. In 2007, Australian health authorities started a vaccination program for 12--13 year-old girls with a~coverage of $73\%$ ($83\%$ in the first dose, $80\%$ in the second dose and $73\%$ in the third dose). In addition, from 2007 to 2009, there was a catch-up vaccination program for women aged 13--26 with a decreasing coverage with age until $52\%$ in women aged 20--26. Their results can be summarized:
+Due to the randomness of the simulations, we will show the average and confidence intervals among the $30$ simulations per every scenario that we have considered above. This number was chosen as a compromise among efficiency of the method and computational feasibility. We have found that, with these runs, we obtain reasonable parameters in many of the simulations. Of course, it would be useful to increase this number, but this cannot be achieved, in a sensible computing time, with the computational resources that we devoted to the task. For example, a single run takes $162$ hours per run for a network of $500,000$ nodes and $256$ hours in the case of $750,000$ nodes (in a single processor of a Sandy Bridge platform). Simulations were run on a multi core platform with $64$ processors and $500$ GB RAM and every processor was assigned with the computation of a simulation for a given set of parameters.
 
-\begin{itemize}[leftmargin=*,labelsep=5mm]
-\item Two years after the vaccine was introduced, the proportion of GW diagnosed declined by a $59\%$ in vaccine eligible young women aged 12--26 years in $2007$, and by $39\%$ in heterosexual men of the same age.
-\item No significant decline was observed in women or men older than $26$ years old, non-resident young women, or men who have sex with men.
-\end{itemize}
-
-Two different scenarios were considered to be simulated:
-
-\begin{itemize}[leftmargin=*,labelsep=5mm]
-\item Scenario 1: vaccination of $83\%$ of the $14$ year-old girls (or younger girls) plus a catch-up with coverage $73\%$ for 14--26 year-old women.
-\item Scenario 2: vaccination of $73\%$ of $14$ year-old girls (or younger girls) plus a catch-up with a~vaccination coverage of $52\%$ for 14--26 year-old women.
-\end{itemize}
-
-These simulations represented the upper and lower bounds of the scenario implemented in Australia. The assumed effectiveness of the vaccine was $96.5\%$.
-
-Due to the randomness of the simulations, we will show the average and confidence intervals among the $30$ simulations per every scenario that we have considered above. This number was chosen as a compromise among efficiency of the method and computational feasibility. We have found that, with these runs, we obtain reasonable parameters in many of the simulations. Of course, it would be useful to increase this number, but this cannot be achieved, in a sensible computing time, with the computational resources that we
-devoted to the task. For example, a single run takes $162$ hours per run for a network of $500,000$ nodes 
-%ANSWER: Change in the number of nodes to correct figures
-and $256$ hours in the case of $750,000$ nodes
-%ANSWER: Change in the number of nodes to correct figures
-(in a single processor of a Sandy Bridge platform). Simulations were run on a multi core platform with $64$ processors and $500$ GB RAM and every processor was assigned with the computation of a simulation for a given set of parameters.
-
-\subsection{Calculation of the Number of Infections}
+%\section{Calculation of the Number of Infections} Comentario en rojo de Rafa%
+\section{Decline of infections}
 
 We call $I$ the number of infected women of LR HPV 6 and/or 11 just before the starting of the vaccination campaign; we call $V = ( v_1, \ldots, v_N)$ to the number of infected women of LR HPV 6 and/or 11 every month from the starting of the vaccination program until the end of the simulation. Then,~the~vector 
 
