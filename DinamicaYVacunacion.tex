@@ -1,6 +1,7 @@
-\chapter{Making Dynamic Sexual Contacts Network and adding Vaccination Campaigns}\label{DinamicaYVacunacion}
-\section{Including new features into the model}
-\subsection{Introducing age and LSP dynamics into the LSP model}
+%\chapter{Making Dynamic Sexual Contacts Network and adding Vaccination Campaigns}\label{DinamicaYVacunacion}
+\chapter{Including new features into the model: Dynamic LSP network and vaccination campaigns}\label{DinamicaYVacunacion}
+%\section{Including new features into the model: Dynamic LSP network and vaccination campaigns}
+\section{Introducing age and LSP dynamics into the LSP model}
 The computational model presented so far is static, that is, once we have assigned the LSPs, they do not change over the time and the nodes do not increase their age. We modulate the possibility of a contagion introducing global probabilities that determine if the existence of a LSP implies sexual intercourses in a given time step per age group $14-17$, $18-29$, $30-39$ and $40-65$. Also, note that the available data about LSPs come from $2003$ and the data of prevalence appears in a study (CLEOPATRA \cite{castellsague2012prevalence}) conducted in $2007-2008$. The sexual behavior has changed in the last $10-15$ years and we would like to include it in our model in some way. Nevertheless, newer data about LSPs and prevalence in Spain are not available.
 
 Thus, in order to introduce age and LSP assignation dynamics in a simple way, we are going to \textit{move} the available data over the time. Figure \ref{fig:dinam1} shows the constant age distribution that do not varies over the time.
@@ -44,7 +45,7 @@ Taking into account that the global number of LSP in the age groups $40-65$ is l
 
 %, but we take advantage of the static model building and the calibrated model parameters. Furthermore, as we mentioned before, we do not have recent data about sexual behavior in Spain.
 
-\subsection{When should we start the vaccination schedule?} 
+\section{When should we start the vaccination schedule?} 
 When a realization runs, we use $500$ months to stabilize the static network, then, we change to a dynamic network. Thus, a key point arises and it is to decide in which time instant starts the vaccination schedule. We have performed a simulation with the selected $30$ sets of parameters with $2300$ months (around $191.6$ years) where the network turns dynamic from the month $500$. In the Figure \ref{fig:Estudio_ciclos} we can see the levels of prevalence predicted by the model for 18-64 years old men and women for HR and LR, over the next years.
 
 \begin{figure}[h!]
@@ -71,7 +72,7 @@ Recall that our goal is to determine the appropriate month where start the vacci
 
 The oscillations in all the cases, men, women, HR and LR, are very similar, as we can see in the Figure \ref{fig:Estudio_ciclos}, except, maybe in some upper percentiles. Also, there are similarities from the first peak in valleys and peaks. Therefore, in order to take the maximum advantage of the decreasing trends and to save computation, we are going to select the earliest peak, the month $980$, as the starting point for the vaccination.
 
-\subsection{Introducing vaccination} 
+\section{Introducing vaccination} 
 For our simulations, we are going to consider the vaccine GARDASIL9 \cite{gardasil9}, that protects against the HPV types 6/11/16/18/31/33/45/52/58. The two first (6/11) are LR and the remainder are HR. Thus, GARDASIL9 protects against $90\%$ of genital wart cases and $90\%$ of the cancer cases \cite{Hartwig2015}. Although GARDASIL9 may protect partially against other HPV types, for modelling purposes we assume that it does not happen. Therefore, it would be interesting to introduce changes in order to monitor if a node is infected by HPV types included in GARDASIL9 or not, and then, to simulate accurately the protection effect of the vaccine.
 
 Following the study conducted in \cite{castellsague2012prevalence}, if a woman is infected by HPV LR, the probability to be only infected by 6/11 is $34.23\%$, $63.06\%$ only infected by others than 6/11 and $2.70\%$ to be infected by both. Also, if a woman is infected by HPV HR, the probability to be infected only by 16/18/31/33/45/52/58 is $30.44\%$, $23.66\%$ only infected by others than 16/18/31/33/45/52/58 and $45.90\%$ by both. Due to the lack of information about men, we will also use the above percentages for men.
@@ -82,10 +83,10 @@ Once these assignments are done, we continue with the HPV transmission dynamics 
 
 The assumed effectiveness of the vaccine is $96.5\%$.
 
-\subsection{Introducing vaccination loss protection}
+\section{Introducing vaccination loss protection}
 In the previous section we assume that the protection of GARDASIL9 is forever. In fact, until now, people vaccinated by GARDASIL (previous version of GADASIL9) do not have experienced any loss in the protection. But this does not mean that it could happen in the future. 
 
 In fact, we want to simulate the worst possible scenario, that is, the sudden drop to zero of the protection. To simulate this possibility, we will introduce a new parameter that represents the time after the vaccination where the protection is complete. Therefore, after this time, the vaccinated individual will behave as a non-vaccinated individual.
 
-\subsection{Introducing variations in the vaccination coverage}
+\section{Introducing variations in the vaccination coverage}
 One of our goals is to simulate scenarios where variations in the vaccination coverage have been occurred and we want to study the effect in the global protection against HPV due to these variation of the coverage. To simulate these scenarios, we will include into the model vectors of coverage, indicating the vaccine coverage every month, and vaccinating the people following these variable coverages. 

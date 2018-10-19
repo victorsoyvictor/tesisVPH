@@ -1,0 +1,53 @@
+%\section{Calculation of the Number of Infections} Comentario en rojo de Rafa%
+\section{Decline of infections}
+
+We call $I$ the number of infected women of LR HPV 6 and/or 11 just before the starting of the vaccination campaign; we call $V = ( v_1, \ldots, v_N)$ to the number of infected women of LR HPV 6 and/or 11 every month from the starting of the vaccination program until the end of the simulation. Then,~the~vector 
+
+\begin{equation}
+100 \times \left( 1-\displaystyle\frac{v_1}{I}, \ldots, 1-\displaystyle\frac{v_N}{I} \right) \; 
+\end{equation}
+is a measure of the percentage of decline of number of infected women of LR HPV 6 and/or 11 after the beginning of the vaccination campaign. This will also be applied to men and MSM.
+
+In order to compare GW data given in \cite{ali2013genital} with our model, results referred to infected women of LR HPV 6 and/or 11, we should take into account that, whether a fixed proportion of HPV 6 and/or 11 infected individuals develops warts, the percentage of decline in warts and in infected women of LR HPV 6 and/or 11 will be comparable. 
+
+Another important issue for the natural history of the disease is the persistence of the infection \cite{campos2014updated}. Our model does not consider the persistence ``a priori'', but we derive the cases of genital warts from the number of cases of infected individuals by taking this data into account.
+
+
+%Fragmento huerfano
+Due to the randomness of the simulations, we will show the average and confidence intervals among the $30$ simulations per every scenario that we have considered above. This number was chosen as a compromise among efficiency of the method and computational feasibility. We have found that, with these runs, we obtain reasonable parameters in many of the simulations. Of course, it would be useful to increase this number, but this cannot be achieved, in a sensible computing time, with the computational resources that we devoted to the task. For example, a single run takes $162$ hours per run for a network of $500,000$ nodes and $256$ hours in the case of $750,000$ nodes (in a single processor of a Sandy Bridge platform). Simulations were run on a multi core platform with $64$ processors and $500$ GB RAM and every processor was assigned with the computation of a simulation for a given set of parameters.
+
+%huerfano de Calibration
+We already have performed a calibration published in \cite{Acedo2017}. This calibration allowed to reproduce the Australian scenario \cite{DezDomingo2017} where 12-13 years old girls were vaccinated and a catch-up vaccination on women aged 14-26 years old during two years was done. Two years after the vaccine was introduced, the proportion of genital warts diagnosed declined by a 59\% in vaccine eligible young women aged 12-26 years in 2007, and by 39\% in men of the same age.
+
+%huerfano - sacado de "description of the model" y Rafa recomienda meterlo en la intro
+There are a lot of possible combinations to create networks fulfilling the above requirements. This fact makes that the built networks contain uncertainty in the sense of the randomness of the building process and the different shapes these networks may have. 
+
+%Ya contado en otro cap (estaba en la pag 37 del Parte_1.pdf de correcciones)
+Now, we are able to define the dynamics of HPV. Setting the time step in a month, for every month:
+
+\begin{itemize}
+	\item  For each node $i$
+	\begin{itemize}
+		\item Add a month to the age of $i$.
+		\item If $i$ is already infected by any HPV, we have to see if this infection clears, depending on the type of infection and the current infection time.
+		\item We have to see if $i$ can be infected by a type of HPV he/she is not infected (HPV LR, HPV HR or both).
+	\end{itemize}
+\end{itemize}
+
+Hence, we have implemented in C++ a simulator that, given the above described model parameters, it builds a LSP network and performs a realization of the transmission dynamics of HR and LR HPV.
+
+Note that the transmission parameters involve certain probabilities. Then, in order to see if a contagion has been carried out by a sexual intercourse, we simulate this by generating a random number and checking if it is less than the corresponding threshold given by the model transmission parameters. Therefore, the randomness is included into the model in a natural way producing uncertainties on the model output that has to be quantified. Then, there are two sources of uncertainty: the LSP network building and the simulation of HPV dynamics.
+
+Thus, our goal is to find the model parameters in such a way the computational model output is close, in a way we will describe later, to the data in Table \ref{datos}. In this table, we recall the data presented in \cite{castellsague2012prevalence}\footnote{In \cite{castellsague2012prevalence}, data related to age groups $30-39$ and $40-65$ are available. However, these data has been discarded because there are very few and non-significant reported cases.} related to the percentage of women HR- and LR-infected per group ages $18-29$ and $18-64$. \\
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|ccc}
+		Women & HR-infected & LR-infected \\
+		\hline
+		$18-29$ y.o. & $24.10\%$, $[21.33\%, 26.98\%]$ & $6.36\%$, $[4.71\%, 8.07\%]$ \\
+		$18-64$ y.o. & $16.23\%$,$[14.52\%, 17.97\%]$ & $4.41\%$, $[3.42\%, 5.45\%]$ \\
+	\end{tabular}
+	\caption{Prevalence of HR- and LR-infected women per age groups \cite{castellsague2012prevalence}. Mean and $95\%$ confidence intervals. Co-infection is considered in both, HR and LR.}
+	\label{datos}
+\end{table}
