@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 %Aqui hay que mezclar sabiamente y en orden el paper de Viruses y los resultados del informe
 \chapter{Australian case}\label{Australiano}
 
@@ -127,6 +128,51 @@ The herd immunity effect starts very quickly for men. For MSM, there is not a cl
 
 Notice that the herd immunity effect is very clear within the CI$95\%$ both for women and men, but it does not appear in the MSM population. In the best case scenario, the MSM subpopulation achieves a constant protection level of $10\%-15\%$. This could be attributed to the way in which the MSM individuals are connected: with a very large number of LSPs among them and some casual links with women with large LSPs.
 
+\section{Effect of the reduction of the vaccine effectiveness in the catch-up vaccination}
+In the reference \cite{Skufca}, the authors performs a literature review where they show that the effectiveness of the HPV vaccine on cervical abnormalities is between $20\%-54\%$ instead of the assumed $96.5\%$. This means that the vaccine effectiveness experiments a reduction in those women who had previous contact with the virus.
+
+To study the effect of this catch-up loss of the effectiveness, we propose the simulation of the following two scenarios: 
+
+\begin{itemize}
+	\item Scenario 1: vaccination of $83\%$ of the $14$ year-old girls (or younger girls) plus a catch-up with coverage $73\%$ for 14--26 year-old women and $54\%$ of effectiveness.
+	\item Scenario 2: vaccination of $73\%$ of $14$ year-old girls (or younger girls) plus a catch-up with a~vaccination coverage of $52\%$ for 14--26 year-old women and $20\%$ of effectiveness.
+\end{itemize}
+
+The above scenarios consists of a variation of the scenarios already proposed  for Australia at the beginning of this chapter, but now, considering the reduction of the effectiveness in the catch-up vaccination. The simulations consider upper and lower scenarios. 
+
+In the following, we present the compared results with the scenarios without loss of effectiveness in the catch-up vaccination. Then, after 2 years, the model declines are
+
+\begin{itemize}
+	\item Ali et al. \cite{ali2013genital}: $59\%$ for women and $39\%$ for men.
+	\item Catch-up without loss of effectiveness:
+	\begin{itemize}
+	\item Scenario 1: $72.0\%$ with CI $95\%$ $[67.7\%, 76.5\%]$ for women and $38.9\%$ with CI $95\%$ $[32.0\%, 45.5\%]$ for men. 
+	\item Scenario 2: $54.8\%$ with CI $95\%$ $[48.5\%, 59.0\%]$ for women and $27.7\%$ with CI $95\%$ $[21.3\%, 34.5\%]$ for men.
+	\end{itemize} 
+   	\item Catch-up with loss of effectiveness:
+    \begin{itemize}
+    	\item Scenario 1: $45.68\%$ with IC $95\%$ $[40\%, 51.9\%]$ for women and $23.2\%$ IC $95\%$ $[18\%, 32.5\%]$ for men.
+    	\item Scenario 2: $17.5\%$ IC $95\%$ $[11\%, 25.4\%]$ for women and $9\%$ IC $95\%$ $[4.7\%, 13\% ]$ for men.
+    \end{itemize} 
+\end{itemize}
+
+The levels of decline reported in \cite{ali2013genital}, that is $59\%$ in women and $39\%$ in men aged 14-26, will be reached after
+
+\begin{itemize}
+	\item Ali et al. \cite{ali2013genital}: 2 years
+	\item Catch-up without loss of effectiveness:
+	\begin{itemize}
+	\item Scenario 1: $1.66$ years with CI $95\%$ $[1.5, 1.75]$ for women and $2.0$ years with CI $95\%$ $[1.75, 2.16]$ for men,
+	\item Scenario 2: $2.1$ years with CI $95\%$ $[2.0, 2.33]$ for women and $2.42$ years with CI $95\%$ $[2.08, 2.83]$ for men.
+	\end{itemize} 
+	\begin{itemize}
+	\item Scenario 1: $2.75$ years with CI $95\%$ $[2.25, 4]$ for women and $2.9$ years with CI $95\%$ $[2.4, 4.6]$ for men,
+	\item Scenario 2: $8.41$ years with CI $95\%$ $[6.7, 9.3]$ for women and $10$ years with CI $95\%$ $[6, 11.2]$ for men.
+	\end{itemize} 
+\end{itemize}
+
+The obtained results seem to point out that the catch-up effectiveness for genital warts may be higher than the figures collected in \cite{Skufca} for cervical abnormalities.  
+
 \section{Discussion}
 The random network of sexually transmitted HPV including up to $100,000$ nodes, was developed to fit the data of surveys concerning the number of sexual partners throughout life. Standard continuous models are insufficient to accurately predict transmission because they do not account for the individual to individual transmission of the infection, the role of hubs in disseminating the virus through the rest of the population and neither the vaccination campaigns targeting specific groups of individuals.
 
@@ -137,6 +183,8 @@ Models based upon continuous differential equations predict a slower decrease in
 To validate the model, we used the Australian experience, with two different vaccination coverages: routinely vaccination campaign for $12-13$ year-old girls with a coverage of $73\%$ and $83\%$ and a catch-up program in the $14-26$ age group with an average coverage of $52\%$ and $73\%$. This program revealed an important herd effect \cite{ali2013genital}, so that vaccination decreased the incidence of genital warts (GW) even in the non-vaccinated men because of the protection of infection conferred by the vaccine, and the decreased transmission of the virus.
 
 The model predicted a fast decline in the number of infections parallel to the decline in the number of GW in Australia with very similar values. However, this model was built with Spanish data on sexual behavior \cite{INE} and prevalence of HPV infection \cite{castellsague2012prevalence}, that might differ to the Australian one, and may explain the minor differences found between the model and the actual data published. Herd immunity in this model of STD is predicted much sooner than in other highly transmitted aerial transported infectious diseases as influenza or RSV, due to the structure of the network. This supports the need to build appropriate LSP networks. 
+
+Also, we performed simulations taking into account the loss of effectiveness in the catch-up vaccination following the figures collected in \cite{Skufca}. The results of decline were compared with the previous simulations for Australia and those presented in \cite{ali2013genital}. It seems that the catch-up effectiveness for genital warts may be higher than the figures collected in \cite{Skufca} for cervical abnormalities.  
 
 Other models have also predicted the protection of males by vaccinating girls and women, but only for men, as the model used by Bogaards et al. \cite{bogaards2015direct}. This model uses Bayesian techniques to study the herd immunity effect. However, in contrast with our model, it does not take into account the dynamics of the HPV transmission, the importance of age-groups and the different roles they play in the propagation of these viruses or the links among the MSM subpopulation and the heterosexual network. In this sense, a network model is required to study the impact of the vaccination strategies in short, medium and long time scales.
 
