@@ -31,43 +31,54 @@
 \begin{document}
 
 %PRIMERA PAGINA: La portada
-\input{Portada}
+\input{I.Portada}
 \newpage
 
 %SEGUNDA PAGINA: El certificado
-\input{Legal}
+\input{II.Legal}
 \newpage
 
 %TERCERA PAGINA: Los resumenes
-\input{Resumenes}
+\input{III.Resumenes}
 \newpage
 
 %INDICES
 \tableofcontents
-\listoffigures
-\listoftables
+%\listoffigures
+%\listoftables
 
 %Capítulo 1
-\input{Intro}
+\input{1.Intro}
 %Capítulo 2
-\input{ConstruccionYDinamica}
+\input{2.ConstruccionYDinamica}
 %Capítulo 3 
-\input{Calibration}
-%Capítulo 4 ??? segun revision, asi que lo quito
-\input{DinamicaYVacunacion}
+\input{3.Calibration}
+%Capítulo 4
+\input{4.DinamicaYVacunacion}
 %Capítulo 5
-\input{CasoAustraliano}
+\input{5.CasoAustraliano}
 %Capítulo 6
-\input{HPVSpain}
+\input{6.0.Simulations}
+  % Simulación caso español: decline de verrugas
+  \input{6.1.Decline_verrugas}
+  % Simulación caso español: decline de oncogénicos
+  \input{6.2.Decline_onco}
+  % Simulación caso español: caida total de la protección tras 20 años
+  \input{6.3.Caida_20}
+  % Simulación caso español: turismo
+  \input{6.4.Turismo}
+  % Simulación caso español: vacunación de niños y niñas para erradicar el cáncer por VPH
+  \input{6.5.Erradicacion}
+  % Simulación caso español: Coste efectividad de vacunar solo a niñas, solo a niños o a ambos
+  \input{6.6.Coste_efectividad}
+  % Simulación caso español: estudio de resilencia
+  \input{6.7.Resilencia}
+  % Simulación caso español: cómo afecta el aumento de LSPs?
+  \input{6.8.Aumento_LSPs}
+  % Simulación caso español: cómo afecta el aumento de MSMs?
+  \input{6.9.Aumento_MSMs}
 %Capítulo 7
-\input{vaccinationStrategies}
-%Capítulo 8
-\input{coverageDropDenmark}
-%Capítulo 9
-%\input{catchUpMSM}
-
-%Capítulo 6 de momento no la pongo... 20180927
-%\input{Conclusion}
+\input{7.Conclusion}
 
 \bibliographystyle{ieeetr}
 \bibliography{bibtextbiblio}
