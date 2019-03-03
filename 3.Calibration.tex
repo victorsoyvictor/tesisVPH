@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \chapter{Calibrating the Sexual Contacts Network }\label{Calibrado}
 
 The calibration of this kind of random computational models is an open problem and several issues about fitting computational models to data with uncertainty have to be addressed. For instance, 
@@ -18,8 +19,8 @@ As we explained in Chapter \ref{ConstruccionYDinamica}, we described how to buil
 Then, over the LSP network, we describe the dynamics of the HPV \cite{Acedo2017,DezDomingo2017}. We divide the nodes into the age groups $14-17$, $18-29$, $30-39$, $40-65$. In order to describe properly the transmission dynamics of HPV on the LSP networks, it is necessary to include $11$ model parameters that will govern the aforementioned HPV dynamics:
 
 \begin{enumerate}
-	\item Average number of men LSP, 
-	\item Global probabilities in order to determine if the existence of a LSP implies sexual intercourses in the current time step per age group $14-17$, $18-29$, $30-39$ and $40-65$ (4 parameters),
+	\item Average number of men LSP, needed for network LSP building, 
+	\item Global probabilities in order to determine if the existence of a LSP implies sexual intercourses in the current time step per age group $14-17$, $18-29$, $30-39$ and $40-65$ (4 parameters). These parameters measure the global frequency of the sexual intercourses per age group, \label{las_T}
 	\item Average time an individual infected by a high (low) risk HPV clears the infection and recovers (2 parameters)
 	\item Probability that a woman (man) infected of high (low) risk HPV transmits it to his/her partner in a sexual intercourse (4 parameters). 
 \end{enumerate}
@@ -54,7 +55,7 @@ The epidemiological model is defined by the following parameters:
 Another additional parameter is necessary to generate the network. This is the average number of LSPs for men (parameter $k$). Simulations are run by generating a network and carrying out a large number of epidemic evolution time-steps starting with a number of individuals infected by both HPV types as given by the CLEOPATRE study \cite{castellsague2012prevalence}.
 After the warm-up period, we obtain a stable situation and we can proceed with the calibration by comparing the model predictions with real data and deducing the most probable values of the set of parameters.
 
-We have used a calibration procedure using the Particle Swarm Optimization (PSO) algorithm. The prevalence data for each age group is listed in Table \ref{datosConstruccion}:
+We have used a calibration procedure using the Particle Swarm Optimization (PSO) algorithm \cite{khemka2008exploratory}. The prevalence data for each age group is listed in Table \ref{datosConstruccion}.
 
 \begin{table}[H]
 	\centering
@@ -69,7 +70,7 @@ We have used a calibration procedure using the Particle Swarm Optimization (PSO)
 		18--64 y.o. & $16.23\%,$$[14.52\%, 17.97\%]$ & $4.41\%,$ $[3.42\%, 5.45\%]$ \\
 		\bottomrule
 	\end{tabular}
-	\caption{Prevalence of HR- and LR-infected women per age groups from the 	
+	\caption{Prevalence of HR- and LR-infected women per age groups from the 
 		CLEOPATRE study \protect\cite{castellsague2012prevalence}. Co-infections are included in both HR- and LR-infected, mean and $95\%$ confidence intervals.}
 	\label{datosConstruccion}
 \end{table}
@@ -88,7 +89,7 @@ The Sisifo Server keeps listening for request of the clients. The Server has sto
 
 The Sisifo Client is a program stored in one or several PCs that connects to the server, and asks for a \textit{work packet}. This work packet is composed of two elements: a text file containing the model parameter values and the simulator executable file. The Client, once the work packet is received, executes a realization using the model parameters stored in the text file. When the realization finishes, a solution file is generated, returned to the server and dropped in the \textit{Results files} folder. More details about how Sisifo works can be found in \cite{villanueva2013epidemic}.
 
-In our case, the Sisifo clients are going to be located in each one of the 64 cores of the Sandy Bridge computer. The Sisifo server is located in a regular PC with Windows 7.
+In our case, the Sisifo clients are going to be located in each one of the 64 cores of the Sandy Bridge computers. The Sisifo server is located in a regular PC with MS-Windows 7.
 
 \subsection{Random Particle Swarm Optimization (rPSO)}
 Using Python3 \cite{python3} and \textit{Mathematica} \cite{Mathematica}, we have implemented an asynchronous version of rPSO adapted to the  \textit{Sisifo} computing environment. To do that, first, we recall the random PSO (rPSO) algorithm appearing in \cite{khemka2008exploratory} applied to the optimization of a function $F$.
@@ -102,11 +103,11 @@ Using Python3 \cite{python3} and \textit{Mathematica} \cite{Mathematica}, we hav
 		\item Define the individual best fitness as $p_i^{best} = p_i$, $i=1,\ldots,N$ and the global best fitness $p_{global}^{best}$ as the $p_i^{best}$ which fitness is optimum.
 	\end{itemize}
 	\item[Step 2.] Modify the particle velocities based on the previous individual best and global best positions: 
-	\[v_i^{new} = \omega v_i + \psi_1 ( p_i^{best} - p_i ) + \psi_2 ( p_{global}^{best} - p_i ), \ i=1,\ldots N, \]
+	\[v_i = \omega v_i + \psi_1 ( p_i^{best} - p_i ) + \psi_2 ( p_{global}^{best} - p_i ), \ i=1,\ldots N, \]
 	where $\omega$ is a random value in $[\frac{1}{4}, \frac{3}{4}],$ $\psi_1$ is the exploitation rate and $\psi_2$ is the exploration rate, both randomly generated in each iteration as a number in the interval $[0,1.5]$.
-	\item[Step 3.] Update the particle locations: $p_i = p_i + v_i^{new},$  $i=1,\ldots N$. 
+	\item[Step 3.] Update the particle locations: $p_i = p_i + v_i,$  $i=1,\ldots N$. 
 	\item[Step 4.] Evaluate the fitness of all the particles $F(p_1), \ldots, F(p_N)$. 
-	\item[Step 5.] Update the individual best fitness $p_i^{best} = p_i$, $i=1,\ldots,N$ and  the global best fitness $p_{global}^{best}$. Go to Step 2. 
+	\item[Step 5.] Update the individual best fitness $p_i^{best}$, $i=1,\ldots,N$ and  the global best fitness $p_{global}^{best}$. Go to Step 2. 
 \end{description}
 
 The above algorithm can be adapted to \textit{Sisifo} computing environment if, using the \textit{Sisifo Server}, the computation of the fitness of the particles is distributed among the \textit{Sisifo Clients}.
@@ -153,26 +154,141 @@ Also, in order to compare properly the model output row with the data, we build 
 \end{remark}
 
 \section{Selecting an optimal number of particles to calibrate the HPV large network computational model with rPSO}
-As we have mentioned above, on previous implementations of the parallel rPSO, we realized that we can not affirm that \textit{the higher the number of particles, the better the quality of the solution}. Moreover, we also detected that, due to our asynchronous parallel implementation, sometimes the use of more processors does not mean lower execution times. We would need more experiments to detect the correct cause of the delays. However, in this case is more practical to investigate what the optimal combination of particles is to achieve the best quality with the lowest number of processors.
+As we have mentioned above, on previous implementations of the parallel rPSO, we realized that we can not affirm that \textit{the higher the number of particles, the better the quality of the solution}. Moreover, we also detected that, due to our asynchronous parallel implementation, sometimes the use of more processors does not mean lower execution times. We would need more experiments to detect the correct cause of the delays. However, in this case is more practical to investigate what is the optimal combination of particles to achieve the best quality with the lowest number of processors.
 
 To perform this test, we are going to build HPV network models with $50,000$ nodes. We run 5 repetitions of the same problem with different number of particles. Times are shown in seconds. Thus, the question is, what is the quality of the solutions for different number of particles? Table \ref{tab.color} shows relevant information regarding the quality of the solutions for different number of particles and 5 runs of each configuration. Each run carried out 1200 particle evaluations. We measure the quality of the solutions on Table \ref{tab.color} by counting the number of fitness values equal to zero in the 5 runs (\textit{Total \# 0s}) and on average (\textit{Avg \#0s}). In addition, we also recorded the iteration at which the first zero appear on average (\textit{Avg  First}), from the last population of particles Fitness of the best, worst and average, averaged over five runs (\textit{Best at end}, \textit{Worst at end} and \textit{Avg at end}). And regarding executions time we show on Table  \ref{tab.color} information about the average total execution time for 1200 evaluations (\textit{Total Time}), the  worst execution time for one particle (\textit{Worst $t$}) and the best execution time for one particle (\textit{Best $t$}). Red color indicates the worst configuration, bold letters indicate the best and blue color the second best configuration.
 
 \begin{table}[h]
 	\centering
 	\tiny \begin{tabular}{cccccccccc}
+		
 		\hline
-		\cellcolor[HTML]{C0C0C0}\#       & Total   & Avg   & Avg     & Best    & Worst   & Avg  & Total   &       &                            \\
-		\cellcolor[HTML]{C0C0C0} Part. &     \#0s & \#0s   &First  &  at end  & at end &at end & Time & Worst t  &          Best t                     \\ 
+		\cellcolor[HTML]{C0C0C0} 
+		\#       & 
+		Total  & 
+		Avg    & 
+		Avg    & 
+		Best   & 
+		Worst & 
+		Avg    & 
+		Total  &
+		          &
+		           \\
+		
+		\cellcolor[HTML]{C0C0C0} 
+		particles &
+		\#0s       &
+		\#0s       &
+		First       &
+		at end    &
+		at end    &
+		at end    &
+		Time      &
+		Worst $t$ &
+		Best $t$    \\ 
+		
 		\hline
-		\cellcolor[HTML]{C0C0C0}25          & 18            & {\color[HTML]{3166FF} 3.60} & \textbf{531.00}                & \textbf{0.015486}               & \textbf{0.429090}               & \textbf{0.122573}               & 8422.00                         & \textbf{148.60}                & \textbf{107.00}               \\
-		\cellcolor[HTML]{C0C0C0}30          & \textbf{28}           & \textbf{5.60}               & {\color[HTML]{3166FF} 594.00}  & {\color[HTML]{3166FF} 0.003785} & {\color[HTML]{3166FF} 0.445587} & {\color[HTML]{3166FF} 0.131193} & \textbf{6908.00}                & {\color[HTML]{3166FF} 186.60}  & {\color[HTML]{3166FF} 112.00} \\
-		\cellcolor[HTML]{C0C0C0}35          & 8             & 1.60                        & 834.80                         & 0.010211                        & 0.576688                        & 0.149215                        & {\color[HTML]{3166FF} 7105.00}  & 250.60                         & 119.60                        \\
-		\cellcolor[HTML]{C0C0C0}40          & 16            & 3.20                        & 692.80                         & 0.003332                        & 0.524417                        & 0.132628                        & 8808.60                         & 389.40                         & 144.60                        \\
-		\cellcolor[HTML]{C0C0C0}45          & 14            & 2.80                        & 790.40                         & 0.006458                        & 0.639775                        & {\color[HTML]{FE0000} 0.149670} & 10004.00                        & 502.00                         & 177.20                        \\
-		\cellcolor[HTML]{C0C0C0}50          & 11            & 2.20                        & 796.00                         & {\color[HTML]{FE0000} 0.005168} & {\color[HTML]{FE0000} 0.658020} & 0.139089                        & 11124.40                        & 648.40                         & 220.00                        \\
-		\cellcolor[HTML]{C0C0C0}55          & 2             & {\color[HTML]{FE0000} 0.40} & {\color[HTML]{FE0000} 1171.20} & 0.004330                        & 0.518894                        & 0.137088                        & 11905.80                        & 775.00                         & 207.40                        \\
-		\cellcolor[HTML]{C0C0C0}60          & 12            & 2.40                        & 765.00                         & 0.002153                        & 0.546259                        & 0.132464                        & 13787.80                        & 857.00                         & 245.40                        \\
-		\cellcolor[HTML]{C0C0C0}64          & 5             & 1.00                        & 985.40                         & 0.002763                        & 0.551228                        & 0.140977                        & {\color[HTML]{FE0000} 18770.00} & {\color[HTML]{FE0000} 1041.20} & {\color[HTML]{FE0000} 379.20} \\ \hline
+		\cellcolor[HTML]{C0C0C0}
+		25      & 
+		18       &
+		{\color[HTML]{3166FF} 3.60} & 
+		\textbf{531.00}                & 
+		\textbf{0.015486}            & 
+		\textbf{0.429090}           & 
+		\textbf{0.122573}            & 
+		8422.00                         & 
+		\textbf{148.60}              & 
+		\textbf{107.00}               \\
+		
+		\cellcolor[HTML]{C0C0C0}30          & 
+		\textbf{28}           & 
+		\textbf{5.60}        & 
+		{\color[HTML]{3166FF} 594.00}  & 
+		0.003785 & 
+		{\color[HTML]{3166FF} 0.445587} & 
+		{\color[HTML]{3166FF} 0.131193} & 
+		\textbf{6908.00}                & 
+		{\color[HTML]{3166FF} 186.60}  & 
+		{\color[HTML]{3166FF} 112.00} \\
+		
+		\cellcolor[HTML]{C0C0C0}35          & 
+		8             & 
+		1.60                        & 
+		834.80                         & 
+		{\color[HTML]{3166FF} 0.010211 }    & 
+		0.576688                        & 
+		0.149215                        & 
+		{\color[HTML]{3166FF} 7105.00}  & 
+		250.60                         & 
+		119.60                        \\
+		
+		\cellcolor[HTML]{C0C0C0}40          & 
+		16            & 
+		3.20                        & 
+		692.80                         & 
+		0.003332                        & 
+		0.524417                        & 
+		0.132628                        & 
+		8808.60                         & 
+		389.40                         & 
+		144.60                        \\
+		
+		\cellcolor[HTML]{C0C0C0}45          & 
+		14            & 
+		2.80                        & 
+		790.40                         & 
+		0.006458                        & 
+		0.639775                        & 
+		{\color[HTML]{FE0000} 0.149670} & 
+		10004.00                        & 
+		502.00                         & 
+		177.20                        \\
+		
+		\cellcolor[HTML]{C0C0C0}50          & 
+		11            & 
+		2.20                        & 
+		796.00                         & 
+		0.005168 & 
+		{\color[HTML]{FE0000} 0.658020} & 
+		0.139089                        & 
+		11124.40                        & 
+		648.40                         & 
+		220.00                        \\
+		
+		\cellcolor[HTML]{C0C0C0}55          & 
+		2             & 
+		{\color[HTML]{FE0000} 0.40} & 
+		{\color[HTML]{FE0000} 1171.20} & 
+		0.004330                        & 
+		0.518894                        & 
+		0.137088                        & 
+		11905.80                        & 
+		775.00                         & 
+		207.40                        \\
+		
+		\cellcolor[HTML]{C0C0C0}60          & 
+		12            & 
+		2.40                        & 
+		765.00                         & 
+		{\color[HTML]{FE0000} 0.002153}                        & 
+		0.546259                        & 
+		0.132464                        & 
+		13787.80                        & 
+		857.00                         & 
+		245.40                        \\
+		
+		\cellcolor[HTML]{C0C0C0}64          & 
+		5             & 
+		1.00                        & 
+		985.40                         & 
+		0.002763                        & 
+		0.551228                        & 
+		0.140977                        & 
+		{\color[HTML]{FE0000} 18770.00} & 
+		{\color[HTML]{FE0000} 1041.20} & 
+		{\color[HTML]{FE0000} 379.20} \\ 
+		
+		\hline
 	\end{tabular}
 	\caption{Analysis of the quality and execution times of different rPSO configurations. Results of 1200 evaluations for different number of particles on the rPSO process (\# Part.).}
 	\label{tab.color}
@@ -183,7 +299,7 @@ As we can see, 25 and 30 particles are the preferred configurations, since we ob
 \section{Improving the exploration of the rPSO}
 As we explained on Section \ref{sec:rPSO}, we established a procedure respect to the intervals for the parameter values proposed by physicians. Some algorithms such as differential evolution \cite{storn1997differential} allows to overpass these limits in the search of a good combination of parameters. However, this is not a good idea when implementing our parallel rPSO. First, remember that our parallel version is asynchronous and the updating of the particles is made once every particle is evaluated. Allowing particles with parameters close to the limits trespass them, could lead to a chaotic search. Second, parameters out the defined bounds have not a medical meaning. Therefore, when a model parameter is less than $1\%$ closer to an extreme of the interval provided by the  estimations, we discard this value and it is substituted by a random value inside the interval. This allows also to made a deeper and more efficient exploration of the search space.
 
-Figures in Table \ref{Ctg} show the exploration performed in some of the parameters of the model (duration and contagion parameters). Figures represent the values of the parameters during the 20 executions of rPSO algorithm with 500 realizations each one. X axis represents the realization number and Y axis the value of each parameter. We can see that we find points on most of the search space.
+Figure \ref{Ctg} show the exploration performed in some of the parameters of the model (duration and contagion parameters). Figures represent the values of the parameters during the 20 executions of rPSO algorithm with 500 realizations each one. X axis represents the realization number and Y axis the value of each parameter. We can see that we find points on most of the search space.
 
 \begin{figure}[!h]
 \begin{center}	
@@ -202,22 +318,22 @@ Figures in Table \ref{Ctg} show the exploration performed in some of the paramet
 \end{figure}
 
 \section{Calibrating the model}
-Now, we are going to perform the calibration. We use the Sisifo environment with the modified rPSO and 30 particles. The HPV network models will have $100,000$ nodes. In order to guarantee the reproducibility of the realizations, we are going to include in the problem files and store seeds for the generation of the random numbers during the calibration process.
+Now, we are going to perform the calibration. We use the Sisifo environment with the modified rPSO and 30 particles. The HPV network models will have $100,000$ nodes. In order to guarantee the reproducibility of the realizations, we are going to include in the problem files the seeds for the generation of the random numbers during the calibration process.
 
 We assume that, initially, data of prevalence from Table \ref{datosConstruccion} are not only for women but also for men. Then, we label women and men as infected randomly following these prevalence data. Also, we start running the realization and the first $400$ months are used as a warm-up period to stabilize the distribution of infected men and women. Thus, the goal is to calibrate the model parameters in such a way that the model output related to women HR and LR prevalence minimize the fitting function defined in Section \ref{sec:rPSO}.
 
 We have performed 20 different calibrations using rPSO, each one with around $500$ realizations and $30$ particles. A total of $10,100$ realizations of the model were performed with an equivalent sequential total computation time of $161$ days.
 
-\begin{figure}[h!]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{IMGs/1.-Calibrado/Hist_CPU_time.pdf}
 	\caption{Histogram of the computation time of each one of the $10,100$ realizations of the model using networks of $100,000$ nodes. The average time is $1374.5$ seconds, around $23$ minutes.}
 \end{figure}
 
 \section{Selecting the 30 realizations that best capture the data uncertainty}
-Our goal, now, is to find a procedure to select $30$ among the $10,100$ realizations of the model in such a way that the means and the 95\% confidence intervals of these $30$ realizations be as much close as possible of the corresponding means and the 95\% confidence intervals of the data in Table \ref{datosConstruccion}. We decided to select $30$ because as we saw in Table \ref{tab.color}, the total computation time is the best for $30$ particles running in parallel in the Sandy Bridge computer.
+Our goal, now, is to find a procedure to select $30$ among the $10,100$ realizations of the model in such a way that the means and the 95\% confidence intervals of these $30$ realizations be as much close as possible of the corresponding means and the 95\% confidence intervals of the data in Table \ref{datosConstruccion}. We decided to select $30$ because as we saw in Table \ref{tab.color}, the total computation time is the best for $30$ particles running in parallel in the Sandy Bridge computers.
 
-Nevertheless, it would be interesting to reduce the number of eligible realizations to much less than $10,100$. In Figure \ref{Error_0} we can see the $100$ realizations with error less than $0.01$, that is, the realizations that almost lie inside the 95\% confidence intervals of the data, represented by the blue horizontal dashed lines. If we select $30$ among these $100$, it is clear that some percentiles of the model will be far from the corresponding percentiles of the data, for instance, the lower parts of the left figures. Therefore, we need to consider realizations with errors greater than $0.01$ without forgetting the objective to reduce the number of eligible realizations.  
+Nevertheless, it would be interesting to reduce the number of eligible realizations to much less than $10,100$. In Figure \ref{Error_0} we can see the $100$ realizations with error less than $0.01$, that is, the realizations that almost lie inside the 95\% confidence intervals of the data, represented by the blue horizontal dashed lines. 
 
 \begin{figure}[h!]
 	\centering
@@ -225,6 +341,8 @@ Nevertheless, it would be interesting to reduce the number of eligible realizati
 	\caption{Drawing of the $100$ model realizations with error less than $0.01$ from month 400 to 499. }
 	\label{Error_0}
 \end{figure}
+
+If we select $30$ among these $100$, it is clear that some percentiles of the model will be far from the corresponding percentiles of the data, for instance, the lower parts of the left figures. Therefore, we need to consider realizations with errors greater than $0.01$ without forgetting the objective to reduce the number of eligible realizations.  
 
 Thus, we check the number of possible realizations depending on their error. Then, there are $2$ realizations with error $0$,  $100$ realizations with error less than $0.01$, $392$ with error less than $0.025$, $1282$ with error less than $0.05$ and $2607$ with error less than $0.075$. 
 In Figure \ref{Error_003}, we draw the $1282$ model realizations of with error less than $0.05$. Note that the realizations cover completely the 95\% confidence intervals of the data. 
@@ -256,7 +374,7 @@ Now, the adapted version of rPSO to select the best $30$ realizations is
 	\end{itemize}
 	\item[Step 2.] For $i=1,\ldots,N$, build the new set $P_i=S_i \cup S_i^{best} \cup S_{global}$, that is, joining the current particle, its individual best and the global best. After removing index repetitions, the new particle $S_i$ consists of a random selection without repetition of $30$ indexes of $P_i$.
 	\item[Step 3.] Evaluate the fitness of all the new particles $F(S_1), \ldots, F(S_N)$.	
-	\item[Step 4.] Update the individual best fitnesses $S_i^{best} = p_i$, $i=1,\ldots,N$ and  the global best fitness $S_{global}^{best}$. Go to Step 2. 
+	\item[Step 4.] Update the individual best fitnesses $S_i^{best}$, $i=1,\ldots,N$ and  the global best fitness $S_{global}^{best}$. Go to Step 2. 
 \end{description}
 
 Here, we also consider $10\%$ of randomness and $10\%$ of mutation when updating new particles. In this case, mutation consists of changing some of the indexes in the current particle by other randomly chosen indexes, avoiding repetitions.
@@ -290,6 +408,8 @@ among the $1282$ of the set of realizations with error less than $0.05$. In Figu
 	\label{fig:ajuste95IC}
 \end{figure}
 
+\section{Parameters returned by the calibration}
+
 The mean and the 95\% confidence interval of the model parameters corresponding to the $30$ selected realizations from \eqref{laselegidas} are given in the Table \ref{table:laselegidas}. Note that the obtained model parameters are in accordance to the medical parameters appearing in the literature and collected in Section \ref{sec:modelo}. 
 
 \begin{table}[!h]
@@ -305,18 +425,31 @@ The mean and the 95\% confidence interval of the model parameters corresponding 
 			Probability a man transmits LR &  $0.28$ &  $[ 0.22 ,  0.37 ]$\\ 
 			Probability a woman transmits HR &  $0.81$ & $[ 0.68 ,  0.95 ]$\\ 
 			Probability a man transmits HR &  $0.91$ & $[ 0.74 ,  0.97 ]$ \\
+			Frequency, 14-17 years old & $0.1098$ & $ [0.0485, 0.1542]$ \\
+			Frequency, 18-29 years old & $0.0776$ & $[0.0568, 0.0981]$ \\
+			Frequency, 30-39 years old & $0.0620$ & $[0.0024, 0.0935]$ \\
+			Frequency, 40-65 years old & $0.0190$ & $[0.0046, 0.0553]$ \\
 			\hline
 		\end{tabular}
 	\end{center} 	
-	\caption{Mean and the 95\% confidence interval of the model parameters corresponding to the $30$ selected realizations from \eqref{laselegidas}.}
+	\caption{Mean and the 95\% confidence interval of the model parameters corresponding to the $30$ selected realizations from \eqref{laselegidas}. The last four parameters measures the global frequency of the sexual intercourses per age group. }
 	\label{table:laselegidas}
 \end{table}
-%GM_hom 7.890084666666667 , [ 7.055565249999999 ,  9.175369750000002 ]
-%Dura_HR_H 1.0815233666666668 , [ 0.984595275 ,  1.1799214999999998 ]
-%Dura_LR_M 0.6020232666666666 , [ 0.520799475 ,  0.7130141 ]
-%Ctg_M_LR 0.24630120000000003 , [ 0.20750732500000002 ,  0.29335349999999993 ]
-%Ctg_H_LR 0.2989984000000001 , [ 0.227862775 ,  0.38451014999999994 ]
-%Ctg_M_HR 0.7533814333333333 , [ 0.5907493 ,  0.8939666999999999 ]
-%Ctg_H_HR 0.8972156666666666 , [ 0.77310225 ,  0.9853232749999998 ]
 
-In the following, we are going to use the sets of parameters corresponding to the realizations \eqref{laselegidas} (and their corresponding seeds) to perform the simulations below. 
+The last four parameters in Table \ref{table:laselegidas}, as we defined in page \pageref{las_T}, are the global probabilities that determine if the existence of a LSP implies sexual intercourses in the current time step per age group $14-17$, $18-29$, $30-39$ and $40-65$. As we mentioned, these parameters measure the global frequency of the sexual intercourses per age group. We can see that, in average, the frequency in the older group is much less than the younger ones. In general, there is high uncertainty in these parameters.
+
+%GM_hom 8.632401 , [ 7.155940749999999 ,  9.863097 ]
+%T0 0.10987674333333333 , [ 0.04854902749999999 ,  0.15426519999999996 ]
+%T1 0.07760148333333333 , [ 0.0568457325 ,  0.098102825 ]
+%T2 0.06204759366666668 , [ 0.00249285925 ,  0.0935827675 ]
+%T3 0.01900011266666667 , [ 0.00459073525 ,  0.055310677499999995 ]
+%Dura_HR_H 1.0867896666666665 , [ 0.876574475 ,  1.1933470000000002 ]
+%Dura_HR_M 1.0867896666666665 , [ 0.876574475 ,  1.1933470000000002 ]
+%Dura_LR_H 0.6064539999999999 , [ 0.5235909000000001 ,  0.8265954999999999 ]
+%Dura_LR_M 0.6064539999999999 , [ 0.5235909000000001 ,  0.8265954999999999 ]
+%Ctg_M_LR 0.23338683333333335 , [ 0.20541835 ,  0.28724167500000003 ]
+%Ctg_H_LR 0.28331856666666666 , [ 0.21561380000000002 ,  0.36796745 ]
+%Ctg_M_HR 0.8150573666666665 , [ 0.67933955 ,  0.9515546500000001 ]
+%Ctg_H_HR 0.9114978333333335 , [ 0.736503075 ,  0.968648425 ]
+
+In the following, we are going to use the sets of parameters corresponding to the realizations \eqref{laselegidas} (and their corresponding seeds) to perform simulations. 

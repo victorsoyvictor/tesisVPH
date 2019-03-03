@@ -2,15 +2,15 @@
 %Aqui hay que mezclar sabiamente y en orden el paper de Viruses y los resultados del informe
 \chapter{Model validation: The Australian case}\label{Australiano}
 
-In this chapter we are going to check if we can obtain similar results to those in \cite{ali2013genital,fairley2009rapid} using the parameters of the new calibration.
+In this chapter we are going to check if we can obtain similar results to those in \cite{ali2013genital,fairley2009rapid} using the calibration parameters.
 
-As we introduced in Chapter \ref{intro} there is a decrease on the number of infected persons and the number of persons with GW is already reported for Australia after two years of administering vaccinations to young girls. These results were more impressive than predicted by continuous models.
+As we introduced in Chapter \ref{intro} \cite{ali2013genital} there is a decrease on the number of infected persons and the number of persons with GW is already reported for Australia after two years of administering vaccinations to young girls. These results were more impressive than predicted by continuous models.
 
-To check the reliability of the model, we simulated the HPV vaccination campaign carried out in Australia \cite{ali2013genital}, and compared them with the actual impact published \cite{ali2013genital}. In 2007, Australian health authorities started a vaccination program for 12--13 year-old girls with a~coverage of $73\%$ ($83\%$ in the first dose, $80\%$ in the second dose and $73\%$ in the third dose). In addition, from 2007 to 2009, there was a catch-up vaccination program for women aged 13--26 with a decreasing coverage with age until $52\%$ in women aged 20--26. Their results can be summarized as follows \cite{ali2013genital}:
+To check the reliability of the model, we simulated the HPV vaccination campaign carried out in Australia \cite{ali2013genital}, and compared them with the actual impact published \cite{ali2013genital}. In 2007, Australian health authorities started a vaccination program for 12--13 year-old girls with a~coverage of $73\%$ ($83\%$ in the first dose, $80\%$ in the second dose and $73\%$ in the third dose). In addition, from 2007 to 2009, there was a catch-up vaccination program for women aged 13--26 with a decreasing coverage with age until $52\%$ in women aged 20--26. The results can be summarized as follows \cite{ali2013genital}:
 
 \begin{itemize}
 	\item Two years after the vaccine was introduced, the proportion of genital warts diagnosed declined by a $59\%$ in vaccine eligible young women aged 12--26 years in $2007$, and by $39\%$ in men of the same age.
-	\item No significant decline was observed in women or men older than $26$ years old, non-resident young women, or men who have sex with men.
+	\item No significant decline was observed in women or men older than $26$ years old, non-resident young women, or men who have sex with men (MSM).
 \end{itemize}
 
 Two different scenarios were considered to be simulated:
@@ -29,17 +29,18 @@ We call $I$ the number of infected women of LR HPV 6 and/or 11 just before the s
 \begin{equation}
 100 \times \left( 1-\displaystyle\frac{v_1}{I}, \ldots, 1-\displaystyle\frac{v_N}{I} \right) \; 
 \end{equation}
-is a measure of the percentage of decline of number of infected women of LR HPV 6 and/or 11 after the beginning of the vaccination campaign. This will also be applied to men and MSM.
+
+is a measure of the percentage of decline of the number of infected women of LR HPV 6 and/or 11 after the beginning of the vaccination campaign. This will also be applied to men and MSM.
 
 In order to compare GW data given in \cite{ali2013genital} with our model, results referred to infected women of LR HPV 6 and/or 11, we should take into account that, whether a fixed proportion of HPV 6 and/or 11 infected individuals develops warts, the percentage of decline in warts and in infected women of LR HPV 6 and/or 11 will be comparable. 
 
 Another important issue for the natural history of the disease is the persistence of the infection \cite{campos2014updated}. Our model does not consider the persistence ``a priori'', but we derive the cases of genital warts from the number of cases of infected individuals by taking this data into account.
 
-
 \section{Does our model return similar values to those in \cite{ali2013genital}?}
+
 In this section, we are going to show figures about prevalence or decline of the percentage of women, men and MSM infected of LR 6/11, the HPV type responsible of $90\%$ of genital warts. Taking into account that genital warts, in average, use to appear 6 months after the infection, the figures about prevalence or decline will be a good estimation of the prevalence and the  decline of genital warts.  
 
-Figure \ref{fig:prev_AUS_6_11} shows the percentage of women, men and MSM aged 14-26 infected of LR 6/11 after starting the vaccination program in both simulated scenarios. We can see the fast decrease for women and men in both scenarios from the very beginning. MSM, remain constant. 
+Figure \ref{fig:prev_AUS_6_11} shows the percentage of women, men and MSM aged 14-26 infected of LR 6/11 after starting the vaccination program in both simulated scenarios. We can see the fast decrease for women and men in both scenarios from the very beginning. MSM remain constant. 
 
 \begin{figure}[!]
 	\centering
@@ -79,23 +80,25 @@ Australian reported levels of decline ($59\%$ in women and $39\%$ in men aged 14
 	\label{fig:decline_AUS_6_11}
 \end{figure}
 
-No significant impact on the rate of infection was observed in men aged 27-64 and women 2 years after the implementation of the vaccination program (Figure \ref{fig:decline_AUS_6_11_27_64}) and the same in women agreeing the observations reported in \cite{ali2013genital}. It can be explained by the fact that, usually, individuals have sexual intercourses with people more or less the same age.
+No significant impact on the rate of infection was observed in men aged 27-64, 2 years after the implementation of the vaccination program (Figure \ref{fig:decline_AUS_6_11_27_64}) and the same in women and MSM agreeing the observations reported in \cite{ali2013genital}. It can be explained by the fact that, usually, individuals have sexual intercourses with people more or less the same age. 
 
 Then, our model predict figures close to the ones given in \cite{ali2013genital}.
 
 \begin{figure}[!]
 	\centering
 	\begin{tabular}{cc}
-		\includegraphics[width=0.45\linewidth]{IMGs/3.-Australia/decline_27_64_verr_muj.pdf}	& 
-		\includegraphics[width=0.45\linewidth]{IMGs/3.-Australia/decline_27_64_verr_hom.pdf}  \\ 
-		(a)	& (b) 
+		\includegraphics[width=0.5\linewidth]{IMGs/3.-Australia/decline_27_64_verr_muj.pdf}	& 
+		\includegraphics[width=0.5\linewidth]{IMGs/3.-Australia/decline_27_64_verr_hom.pdf}  \\ 
+		(a)	& (b) \\ 
+		\multicolumn{2}{c}{ \includegraphics[width=0.5\linewidth]{IMGs/3.-Australia/decline_27_64_verr_MSM.pdf} } \\ 
+		\multicolumn{2}{c}{(c)} \\ 
 	\end{tabular} 
-	\caption{Percentage of decline of women (a) and men (b) aged 27-64 infected of LR HPV 6 and/or 11 (and consequently of genital warts) after the implementation of the vaccination program in both scenarios. The cyan lines correspond to the average and $95\%$ confidence interval for Scenario 1 and the yellow lines to Scenario 2. Notice that, in average, no significant decline appears in the 5 years after the implementation of the vaccination program.}
-	\label{fig:decline_AUS_6_11_27_64}
+	\caption{Percentage of decline of women (a), men (b) and (c) MSM aged 27-64 infected of LR HPV 6 and/or 11 (and consequently of genital warts) after the implementation of the vaccination program in both scenarios. The cyan lines correspond to the average and $95\%$ confidence interval for Scenario 1 and the yellow lines to Scenario 2. Notice that, in average, no significant decline appears in the 5 years after the implementation of the vaccination program.}
+\label{fig:decline_AUS_6_11_27_64}
 \end{figure}
 
 \section{Study of the herd immunity effect over HPV LR infection}
-The herd immunity effect in both scenarios is shown in Figure \ref{fig:decline_AUS_6_11_14_64} for women, men and MSM. Notice that, in men and MSM, any decline is due to herd immunity. The decline in the whole female population appears when the lines representing their decline are over the vaccination lines (green for Scenario 1 and orange for Scenario2) also shown in this figure. We see that the herd immunity effect starts after 
+The herd immunity effect in both scenarios is shown in Figure \ref{fig:decline_AUS_6_11_14_64} for women, men and MSM. Notice that, in men and MSM, any decline is due to herd immunity. The decline in the whole female population appears when the lines representing their decline are over the vaccination lines (blue for Scenario 1 and green for Scenario 2) also shown in this figure. The herd immunity effect starts after 
 
 \begin{itemize}
 	\item for women
@@ -116,12 +119,12 @@ The herd immunity effect starts very quickly for men. For MSM, there is not a cl
 	\centering
 	\begin{tabular}{cc}
 		\includegraphics[width=0.45\linewidth]{IMGs/3.-Australia/decline_14_64_verr_muj.pdf}	& 
-		\includegraphics[width=0.45\linewidth]{IMGs/3.-Australia/decline_14_64_verr_MSM.pdf}  \\ 
+		\includegraphics[width=0.45\linewidth]{IMGs/3.-Australia/decline_14_64_verr_hom.pdf}  \\ 
 		(a)	& (b) \\ 
-		\multicolumn{2}{c}{ \includegraphics[width=0.5\linewidth]{IMGs/3.-Australia/decline_14_64_verr_hom.pdf} } \\ 
+		\multicolumn{2}{c}{ \includegraphics[width=0.5\linewidth]{IMGs/3.-Australia/decline_14_64_verr_MSM.pdf} } \\ 
 		\multicolumn{2}{c}{(c)} \\ 
 	\end{tabular} 
-	\caption{Percentage of decline of women (a), men (b) and MSM (c) aged 14-64 for the vaccination program in Australia. The cyan lines correspond to the average and $95\%$ confidence interval for Scenario 1 and the yellow lines to Scenario 2. In the figure (a), green and orange lines correspond to women vaccination percentage for Scenario 1 and 2, respectively. Notice that the herd immunity effect contributes to the decline in the number of infections in men and the decline in the number of infections for unvaccinated women. This latter can be seen when the decline lines are over the vaccination line. However, any herd immunity effect can be seen in MSM.}
+	\caption{Percentage of decline of women (a), men (b) and MSM (c) aged 14-64 for the vaccination program in Australia. The cyan lines correspond to the average and $95\%$ confidence interval for Scenario 1 and the yellow lines to Scenario 2. In the figure (a), blue and green lines correspond to women vaccination percentage for Scenario 1 and 2, respectively. Notice that the herd immunity effect contributes to the decline in the number of infections in men and the decline in the number of infections for unvaccinated women. This latter can be seen when the decline lines are over the vaccination line. However, any herd immunity effect can be seen in MSM.}
 	\label{fig:decline_AUS_6_11_14_64}
 \end{figure}
 
@@ -133,8 +136,8 @@ In the reference \cite{Skufca}, the authors performs a literature review where t
 To study the effect of this catch-up loss of the effectiveness, we propose the simulation of the following two scenarios: 
 
 \begin{itemize}
-	\item Scenario 1: vaccination of $83\%$ of the $14$ year-old girls (or younger girls) plus a catch-up with coverage $73\%$ for 14--26 year-old women and $54\%$ of effectiveness.
-	\item Scenario 2: vaccination of $73\%$ of $14$ year-old girls (or younger girls) plus a catch-up with a~vaccination coverage of $52\%$ for 14--26 year-old women and $20\%$ of effectiveness.
+	\item Scenario 1: vaccination of $83\%$ of the $14$ year-old girls (or younger girls) plus a catch-up with coverage $73\%$ for 14--26 year-old women with $54\%$ of catch-up effectiveness.
+	\item Scenario 2: vaccination of $73\%$ of $14$ year-old girls (or younger girls) plus a catch-up with a~vaccination coverage of $52\%$ for 14--26 year-old women with $20\%$ of catch-up effectiveness.
 \end{itemize}
 
 The above scenarios consists of a variation of the scenarios already proposed  for Australia at the beginning of this chapter, but now, considering the reduction of the effectiveness in the catch-up vaccination. The simulations consider upper and lower scenarios. 
@@ -145,8 +148,8 @@ In the following, we present the compared results with the scenarios without los
 	\item Ali et al. \cite{ali2013genital}: $59\%$ for women and $39\%$ for men.
 	\item Catch-up without loss of effectiveness:
 	\begin{itemize}
-	\item Scenario 1: $72.0\%$ with CI $95\%$ $[67.7\%, 76.5\%]$ for women and $38.9\%$ with CI $95\%$ $[32.0\%, 45.5\%]$ for men. 
-	\item Scenario 2: $54.8\%$ with CI $95\%$ $[48.5\%, 59.0\%]$ for women and $27.7\%$ with CI $95\%$ $[21.3\%, 34.5\%]$ for men.
+	\item Scenario 1: $72.0\%$ with IC $95\%$ $[67.7\%, 76.5\%]$ for women and $38.9\%$ with IC $95\%$ $[32.0\%, 45.5\%]$ for men. 
+	\item Scenario 2: $54.8\%$ with IC $95\%$ $[48.5\%, 59.0\%]$ for women and $27.7\%$ with IC $95\%$ $[21.3\%, 34.5\%]$ for men.
 	\end{itemize} 
    	\item Catch-up with loss of effectiveness:
     \begin{itemize}
@@ -170,7 +173,7 @@ The levels of decline reported in \cite{ali2013genital}, that is $59\%$ in women
 	\end{itemize} 
 \end{itemize}
 
-The obtained results seem to point out that the catch-up effectiveness for genital warts may be higher than the figures collected in \cite{Skufca} for cervical abnormalities.  
+The differences among the obtained results seem to point out that the catch-up effectiveness for genital warts may be higher than the figures collected in \cite{Skufca} for cervical abnormalities.  
 
 \section{Discussion}
 The random network of sexually transmitted HPV including up to $100,000$ nodes, was developed to fit the data of surveys concerning the number of sexual partners throughout life. Standard continuous models are insufficient to accurately predict transmission because they do not account for the individual to individual transmission of the infection, the role of hubs in disseminating the virus through the rest of the population and neither the vaccination campaigns targeting specific groups of individuals.
@@ -179,7 +182,7 @@ This network has successfully been applied to the stable state of infections by 
 
 Models based upon continuous differential equations predict a slower decrease in the number of infected individuals after implementing similar vaccination campaigns \cite{elbasha2007model}. Hence, the case of the HPV vaccination in Australia provides one of the best real scenarios for testing new network models in mathematical epidemiology. There is an on-going debate on the pertinence of an approach based upon networks on epidemiology \cite{Eubank} and this work contributes to show the necessity of such an approach in many cases, in particular, in those corresponding to STD.
 
-To validate the model, we used the Australian experience, with two different vaccination coverages: routinely vaccination campaign for $12-13$ year-old girls with a coverage of $73\%$ and $83\%$ and a catch-up program in the $14-26$ age group with an average coverage of $52\%$ and $73\%$. This program revealed an important herd effect \cite{ali2013genital}, so that vaccination decreased the incidence of genital warts (GW) even in the non-vaccinated men because of the protection of infection conferred by the vaccine, and the decreased transmission of the virus.
+To validate the model, we used the Australian experience, with two different vaccination coverages: routinely vaccination campaign for $12-13$ year-old girls with a coverage of $73\%$ and $83\%$ and a catch-up program in the $14-26$ age group with an average coverage of $52\%$ and $73\%$. This program revealed an important herd immunity effect \cite{ali2013genital}, so that vaccination decreased the incidence of genital warts (GW) even in the non-vaccinated men because of the protection of infection conferred by the vaccine, and the decreased transmission of the virus.
 
 The model predicted a fast decline in the number of infections parallel to the decline in the number of GW in Australia with very similar values. However, this model was built with Spanish data on sexual behavior \cite{INE} and prevalence of HPV infection \cite{castellsague2012prevalence}, that might differ to the Australian one, and may explain the minor differences found between the model and the actual data published. Herd immunity in this model of STD is predicted much sooner than in other highly transmitted aerial transported infectious diseases as influenza or RSV, due to the structure of the network. This supports the need to build appropriate LSP networks. 
 

@@ -1,3 +1,4 @@
+% !TeX spellcheck = en_US
 \chapter{Building LSP networks and describing the transmission dynamics of HPV on these networks}\label{ConstruccionYDinamica}
 
 \section{Origin of the data}
@@ -31,7 +32,7 @@ Building a social network requires demographic data, for this model we have used
 		30--39 & 0.029 & 0.501 & 0.168 & 0.177 & 0.077 & 0.048 \\
 		40--65 & 0.017 & 0.652 & 0.138 & 0.118 & 0.039 & 0.036 \\
 	\end{tabular} 
-	\caption{Proportion of wome per number of lifetime sexual partners (LSP) per age group. Note that the sum of the rows are 1.}
+	\caption{Proportion of women per number of lifetime sexual partners (LSP) per age group. Note that the sum of the rows are 1.}
 	\label{tableLSPValues_women} 
 \end{table}
 
@@ -40,7 +41,7 @@ very similar in each age-group; (ii) the proportion of women  with a single part
 
 \section{Network model}
 
-In this dissertation, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Tables \ref{tableLSPValues_men} and \ref{tableLSPValues_women}. A basic property of the network we are going to discuss is that the total number of LSP for the male population (M) must coincide with the total number of LSP for the female population (F). This is so because (in a purely heterosexual network) every link starting on a male must end in a female and viceversa. In mathematical terms:
+In this dissertation, we use the random network model as a basis to simulate the network of sexual contacts among individuals, but, in this model, the average number of connections depend upon the age-group as deduced from Tables \ref{tableLSPValues_men} and \ref{tableLSPValues_women}. A basic property of the network we are going to discuss is that the total number of LSP for the male population (M) must coincide with the total number of LSP for the female population (F). This is so because (in a purely heterosexual network) every link starting on a male must end in a female and vice versa. In mathematical terms:
 
 \begin{equation}
 \label{nodeseq}
@@ -66,9 +67,9 @@ age group, in the network as follows:
 \item $0.838 < r \le 1$ say that the corresponding male has 10 or more LSPs.
 \end{itemize}
 
-Every node in the network is labelled by its gender and age randomly assigned according to the population histogram. The assignment of the number of bonds, as another label of the node, is not so straightforward since we must guarantee that the condition in Equation\ (\ref{nodeseq}) is verified. In~order to fulfill this condition, we take advantage of the uncertainty of statistics reports concerning individuals with $10$ or more LSPs.
+Every node in the network is labeled by its gender and age randomly assigned according to the population histogram. The assignment of the number of bonds, as another label of the node, is not so straightforward since we must guarantee that the condition in Equation\ (\ref{nodeseq}) is verified. In~order to fulfill this condition, we take advantage of the uncertainty of statistics reports concerning individuals with $10$ or more LSPs.
 
-Starting with the males, we assign the number of LSPs up to nine partners and, for $10$ or more partners proceed as follows: let $i_{\mbox{max}}$ be the number of males with nine or less partners. The unassigned males should be $M-i_{\mbox{max}}$ and the number of bonds that should be distributed among them is $M \left\langle k \right\rangle_m-\sum_{i=1}^{i_{\mbox{max}}}\, LSP_i$. By Euclidian division, this quantity can be expressed as $(M-i_{\mbox{max}}) n_m+r_m$, where $n_m \ge 10$. In our procedure, we assign a random number of bonds, uniformly distributed, in the interval $\left[10,2 n_m-10\right]$ to every male with $10$ or more LSPs, i.e.,
+Starting with the males, we assign the number of LSPs up to nine partners and, for $10$ or more partners proceed as follows: let $i_{\mbox{max}}$ be the number of males with nine or less partners. The unassigned males should be $M-i_{\mbox{max}}$ and the number of bonds that should be distributed among them is $M \left\langle k \right\rangle_m-\sum_{i=1}^{i_{\mbox{max}}}\, LSP_i$. By Euclidean division, this quantity can be expressed as $(M-i_{\mbox{max}}) n_m+r_m$, where $n_m \ge 10$. In our procedure, we assign a random number of bonds, uniformly distributed, in the interval $\left[10,2 n_m-10\right]$ to every male with $10$ or more LSPs, i.e.,
 to~the $M-i_{\mbox{max}}$ unassigned males.
 
 Now, we denote as $p_m$ the total number of bonds of the male population. We must take into account, as expressed in Equation\
