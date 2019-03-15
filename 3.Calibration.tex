@@ -14,14 +14,15 @@ The calibration of this kind of random computational models is an open problem a
 In the remainder of this section, we are going to describe thoroughly the procedure we propose to approach the above issues.
 
 \section{Description of the model}\label{sec:modelo}
-As we explained in Chapter \ref{ConstruccionYDinamica}, we described how to build lifetime sexual partners (LSP) networks. These networks are built with the main aim to reproduce the demography in Spain \cite{IVE}, and data about the LSP, for men and women, and for age groups $18-29$, $30-39$ and $40-65$, presented in a survey about sexual habits in Spain \cite{INE} and collected in Table \ref{tableLSPValues}. 
+As we explained in Chapter \ref{ConstruccionYDinamica}, we described how to build lifetime sexual partners (LSP) networks. These networks are built with the main aim to reproduce the demography in Spain \cite{IVE}, and data about the LSP, for men and women, and for age groups $18-29$, $30-39$ and $40-65$, presented in a survey about sexual habits in Spain \cite{INE} and collected in Tables \ref{tableLSPValues_men} and \ref{tableLSPValues_women}. 
 
-Then, over the LSP network, we describe the dynamics of the HPV \cite{Acedo2017,DezDomingo2017}. We divide the nodes into the age groups $14-17$, $18-29$, $30-39$, $40-65$. In order to describe properly the transmission dynamics of HPV on the LSP networks, it is necessary to include $11$ model parameters that will govern the aforementioned HPV dynamics:
+Then, over the LSP network, we describe the dynamics of the HPV \cite{Acedo2017,DezDomingo2017}. We divide the nodes into the age groups $14-17$, $18-29$, $30-39$, $40-65$. For the implementation of the simulation of the transmission of HPV among the individuals in the network, a standard epidemiological model with susceptible and infected states and three types of infections (HR, LR and co-infection) was carried out. The epidemiological model is defined by a set of parameters, hence, it is necessary to include $11$ model parameters that will address the transmission dynamics of HPV on the LSP networks:
 
 \begin{enumerate}
-	\item Average number of men LSP, needed for network LSP building, 
-	\item Global probabilities in order to determine if the existence of a LSP implies sexual intercourses in the current time step per age group $14-17$, $18-29$, $30-39$ and $40-65$ (4 parameters). These parameters measure the global frequency of the sexual intercourses per age group, \label{las_T}
-	\item Average time an individual infected by a high (low) risk HPV clears the infection and recovers (2 parameters)
+	\item Average number of men LSP, needed for network LSP building.
+	\item We need some probabilities to determine if a sexual partner is going to produce a contagion to another partner in a given time stage. These parameters are different for each age group:	
+	14--17, 18--29, 30--39 and 40--65. Notice that this means that the probability of contagion depends upon the age group of the members of the relationship. Moreover, the probability of connection of these members in the network is also age-dependent as proposed in Equation (\ref{peso}). The values of these probabilities are determined in the process of the model calibration.\label{las_T}
+	\item Average time an individual infected by a high (low) risk HPV clears the infection and recovers (2 parameters).
 	\item Probability that a woman (man) infected of high (low) risk HPV transmits it to his/her partner in a sexual intercourse (4 parameters). 
 \end{enumerate}
 
@@ -36,23 +37,7 @@ Most of the above parameters have been studied in the literature and there are s
 	\item In \cite{elbasha2007model}, the authors estimated the probability of HPV infection transmission per partnership and by type and, as in \cite{castellsague2012prevalence}, this probability is higher for transmission from males to females $(0.8)$ than that for transmission from females to males $(0.7)$. Given that these data come from estimations (not surveys) and after some runs of our model, we are going to be more flexible and consider the probability interval $[0.2,0.6]$ for LR transmission and $[0.5,1.0]$ for HR transmission, given that, women transmit less than men.
 \end{itemize}
 
-
-%\section{The parameter of the LSP network} movido desde 2.4 a 3.1
-
-To implement the simulation of the transmission of HPV among the individuals in the network, a~standard epidemiological model with susceptible and infected states and three types of infections (HR, LR and co-infection) was carried out.
-
-The epidemiological model is defined by the following parameters:
-
-\begin{itemize}[leftmargin=*,labelsep=5mm]
-	\item We need some probabilities to determine if a sexual partner is going to produce a contagion to another partner in a given time stage. These parameters are different for each age group:	
-	14--17, 18--29, 30--39 and 40--65. Notice that this means that the probability of contagion depends upon the age group of the members of the relationship. Moreover, the probability of connection of these members in the network is also age-dependent as proposed in Equation (\ref{peso}). The values of these probabilities are determined in the process of the model calibration.
-	
-	\item Average time an individual infected by a HR HPV clears the infection and recovers.
-	\item A similar parameter for clearing the LR HPV infection.
-	\item If a partner produces the contagion of his/her partner, we need another four parameters to determine if the high or low risk HPV infection is transmitted from man to woman and vice versa. 
-\end{itemize}
-
-Another additional parameter is necessary to generate the network. This is the average number of LSPs for men (parameter $k$). Simulations are run by generating a network and carrying out a large number of epidemic evolution time-steps starting with a number of individuals infected by both HPV types as given by the CLEOPATRE study \cite{castellsague2012prevalence}.
+Simulations are executed by generating a network and carrying out a large number of epidemic evolution time-steps starting with a number of individuals infected by both HPV types as given by the CLEOPATRE study \cite{castellsague2012prevalence}.
 After the warm-up period, we obtain a stable situation and we can proceed with the calibration by comparing the model predictions with real data and deducing the most probable values of the set of parameters.
 
 We have used a calibration procedure using the Particle Swarm Optimization (PSO) algorithm \cite{khemka2008exploratory}. The prevalence data for each age group is listed in Table \ref{datosConstruccion}.
@@ -80,7 +65,7 @@ Note that the network building and the transmission parameters involve randomnes
 \section{Description of our resources}
 
 \subsection{Computers}
-All the realizations are going to be run on two computers with 64 cores on 8 Xeon Sandy Bridge E5-4620 running at 2,2 Ghz, with 16 MB of cache memory and 512 GB RAM memory\footnote{Both computers are not exactly the same. There are some minor hardware differences.}. The operating system is Ubuntu Server 16.04 LTS. 
+All the realizations are going to be executed on two computers with 64 cores on 8 Xeon Sandy Bridge E5-4620 running at 2,2 Ghz, with 16 MB of cache memory and 512 GB RAM memory\footnote{Both computers are not exactly the same. There are some minor hardware differences.}. The operating system is Ubuntu Server 16.04 LTS. 
 
 \subsection{Distributed computing environment}
 We also have deployed a distributed computing environment called Sisifo. Sisifo is a client-server based system designed to allow a problem to be solved using distributed computation. Sisifo is able to assign tasks to a set of personal computers (PCs), wait for the tasks to be completed and collect the results for further analysis. Sisifo is made with simplicity as main aim, giving as a result a system that requires almost no maintenance, needs very little configuration time, and can be deployed in just a couple of hours.
@@ -112,7 +97,7 @@ Using Python3 \cite{python3} and \textit{Mathematica} \cite{Mathematica}, we hav
 
 The above algorithm can be adapted to \textit{Sisifo} computing environment if, using the \textit{Sisifo Server}, the computation of the fitness of the particles is distributed among the \textit{Sisifo Clients}.
 
-However, in a typical PSO procedure, including rPSO, the set of particles is updated once the fitnesses of all the particles have been calculated. This means that, until all the fitnesses have not been evaluated and Step 4 is not completely finished, the particles cannot be updated and new evaluations cannot be performed. Then, in every iteration of rPSO, scenarios where some \textit{Sisifo} clients have finished their evaluations and are idle while other \textit{Sisifo} clients are still performing their evaluations are usual. In these scenarios, we have an under-use of the \textit{Sisifo} system.
+However, in a typical PSO procedure, including rPSO, the set of particles is updated once the fitnesses of all the particles have been calculated. This means that, until all the fitnesses have not been evaluated and Step 4 is not completely finished, the particles cannot be updated and new evaluations cannot be performed. Then, in every iteration of rPSO, scenarios where some \textit{Sisifo} clients have finished their evaluations and are idle while other \textit{Sisifo} clients are still performing their evaluations will be common. In these scenarios, we have an under-use of the \textit{Sisifo} system.
 
 In order to avoid the under-use system drawback, we propose the implementation of an asynchronous version of rPSO in such a way that when the fitness of a particle has been evaluated (Step 4), this particle is updated (Steps 5, 2 and 3) without waiting for the evaluation of the remainder particles, considering the current existing global best and its individual best particles. This way, we modify rPSO algorithm parallelizing Steps 2, 3, 4, 5 and sharing the updates of the global best particle.
 
@@ -125,7 +110,7 @@ We show in Figure \ref{rPSO.python} how we set the asynchronous rPSO in the \tex
 	\label{rPSO.python}
 \end{figure}
 
-When the procedure starts running, with the initialization of the particles (Step 1) we create their corresponding problem files in the \textit{Problem files} folder. The \textit{Sisifo Server} detects new problem files and distribute them among idle \textit{Sisifo Clients}. These clients carry out the realizations. When a Sisifo client ends its task, a results file is generated and sent to the \textit{Sisifo Server} that drops it on the \textit{Result files} folder. Every time a new results file appears in the \textit{Results files} folder, the asynchronous rPSO, in Step 4, reads the data from the results file and calculates the fitness. Then, updates the velocity taking into account the current existing global best and its individual best particles (Step 2), updates the particle (Step 3) and with the new model parameters creates a new problem file in the \textit{Problem files} folder. And so on. 
+When the procedure starts, with the initialization of the particles (Step 1) we create their corresponding problem files in the \textit{Problem files} folder. The \textit{Sisifo Server} detects new problem files and distribute them among idle \textit{Sisifo Clients}. These clients carry out the realizations. When a Sisifo client ends its task, a results file is generated and sent to the \textit{Sisifo Server} that drops it on the \textit{Result files} folder. Every time a new results file appears in the \textit{Results files} folder, the asynchronous rPSO, in Step 4, reads the data from the results file and calculates the fitness. Then, updates the velocity taking into account the current existing global best and its individual best particles (Step 2), updates the particle (Step 3) and with the new model parameters creates a new problem file in the \textit{Problem files} folder. And so on. 
 
 \subsection{Fitness function and some features included in the rPSO}\label{sec:rPSO}
 There are some features included in our version of the asynchronous rPSO algorithm that we have to describe. 
@@ -156,7 +141,7 @@ Also, in order to compare properly the model output row with the data, we build 
 \section{Selecting an optimal number of particles to calibrate the HPV large network computational model with rPSO}
 As we have mentioned above, on previous implementations of the parallel rPSO, we realized that we can not affirm that \textit{the higher the number of particles, the better the quality of the solution}. Moreover, we also detected that, due to our asynchronous parallel implementation, sometimes the use of more processors does not mean lower execution times. We would need more experiments to detect the correct cause of the delays. However, in this case is more practical to investigate what is the optimal combination of particles to achieve the best quality with the lowest number of processors.
 
-To perform this test, we are going to build HPV network models with $50,000$ nodes. We run 5 repetitions of the same problem with different number of particles. Times are shown in seconds. Thus, the question is, what is the quality of the solutions for different number of particles? Table \ref{tab.color} shows relevant information regarding the quality of the solutions for different number of particles and 5 runs of each configuration. Each run carried out 1200 particle evaluations. We measure the quality of the solutions on Table \ref{tab.color} by counting the number of fitness values equal to zero in the 5 runs (\textit{Total \# 0s}) and on average (\textit{Avg \#0s}). In addition, we also recorded the iteration at which the first zero appear on average (\textit{Avg  First}), from the last population of particles Fitness of the best, worst and average, averaged over five runs (\textit{Best at end}, \textit{Worst at end} and \textit{Avg at end}). And regarding executions time we show on Table  \ref{tab.color} information about the average total execution time for 1200 evaluations (\textit{Total Time}), the  worst execution time for one particle (\textit{Worst $t$}) and the best execution time for one particle (\textit{Best $t$}). Red color indicates the worst configuration, bold letters indicate the best and blue color the second best configuration.
+To perform this test, we are going to build HPV network models with $50,000$ nodes. We execute 5 repetitions of the same problem with different number of particles. Times are shown in seconds. Thus, the question is, what is the quality of the solutions for different number of particles? Table \ref{tab.color} shows relevant information regarding the quality of the solutions for different number of particles and 5 executions of each configuration. Each execution carried out 1200 particle evaluations. We measure the quality of the solutions on Table \ref{tab.color} by counting the number of fitness values equal to zero in the 5 executions (\textit{Total \# 0s}) and on average (\textit{Avg \#0s}). In addition, we also recorded the iteration at which the first zero appear on average (\textit{Avg  First}), from the last population of particles Fitness of the best, worst and average, averaged over 5 executions (\textit{Best at end}, \textit{Worst at end} and \textit{Avg at end}). And regarding executions time we show on Table  \ref{tab.color} information about the average total execution time for 1200 evaluations (\textit{Total Time}), the  worst execution time for one particle (\textit{Worst $t$}) and the best execution time for one particle (\textit{Best $t$}). Red color indicates the worst configuration, bold letters indicate the best and blue color the second best configuration.
 
 \begin{table}[h]
 	\centering
@@ -294,12 +279,12 @@ To perform this test, we are going to build HPV network models with $50,000$ nod
 	\label{tab.color}
 \end{table}
 
-As we can see, 25 and 30 particles are the preferred configurations, since we obtained the higher number of zeros in total and on average and the lower executions times. Since the results of 25 particles shows a very good run with 7 zeros and also a very good execution time, we can conclude that the configuration with 30 particles should be selected bearing in mind both quality and execution time. Results on total number of 0s and total time were statically significant with $p$ value of $0.1$ after an ANOVA analysis.
+As we can see, 25 and 30 particles are the preferred configurations, since we obtained the higher number of zeros in total and on average and the lower executions times. Since the results of 25 particles shows a very good execution with 7 zeros and also a very good execution time, we can conclude that the configuration with 30 particles should be selected bearing in mind both quality and execution time. Results on total number of 0s and total time were statically significant with $p$ value of $0.1$ after an ANOVA analysis.
 
 \section{Improving the exploration of the rPSO}
 As we explained on Section \ref{sec:rPSO}, we established a procedure respect to the intervals for the parameter values proposed by physicians. Some algorithms such as differential evolution \cite{storn1997differential} allows to overpass these limits in the search of a good combination of parameters. However, this is not a good idea when implementing our parallel rPSO. First, remember that our parallel version is asynchronous and the updating of the particles is made once every particle is evaluated. Allowing particles with parameters close to the limits trespass them, could lead to a chaotic search. Second, parameters out the defined bounds have not a medical meaning. Therefore, when a model parameter is less than $1\%$ closer to an extreme of the interval provided by the  estimations, we discard this value and it is substituted by a random value inside the interval. This allows also to made a deeper and more efficient exploration of the search space.
 
-Figure \ref{Ctg} show the exploration performed in some of the parameters of the model (duration and contagion parameters). Figures represent the values of the parameters during the 20 executions of rPSO algorithm with 500 realizations each one. X axis represents the realization number and Y axis the value of each parameter. We can see that we find points on most of the search space.
+Figure \ref{Ctg} shows the exploration performed in some of the parameters of the model (duration and contagion parameters). Figures represent the values of the parameters during the 20 executions of rPSO algorithm with 500 realizations each one. X axis represents the realization number and Y axis the value of each parameter. We can see that we find points on most of the search space.
 
 \begin{figure}[!h]
 \begin{center}	
@@ -320,18 +305,19 @@ Figure \ref{Ctg} show the exploration performed in some of the parameters of the
 \section{Calibrating the model}
 Now, we are going to perform the calibration. We use the Sisifo environment with the modified rPSO and 30 particles. The HPV network models will have $100,000$ nodes. In order to guarantee the reproducibility of the realizations, we are going to include in the problem files the seeds for the generation of the random numbers during the calibration process.
 
-We assume that, initially, data of prevalence from Table \ref{datosConstruccion} are not only for women but also for men. Then, we label women and men as infected randomly following these prevalence data. Also, we start running the realization and the first $400$ months are used as a warm-up period to stabilize the distribution of infected men and women. Thus, the goal is to calibrate the model parameters in such a way that the model output related to women HR and LR prevalence minimize the fitting function defined in Section \ref{sec:rPSO}.
+We assume that, initially, data of prevalence from Table \ref{datosConstruccion} are not only for women but also for men. Then, we label women and men as infected randomly following these prevalence data. Also, we start executing the realization and the first $400$ months are used as a warm-up period to stabilize the distribution of infected men and women. Thus, the goal is to calibrate the model parameters in such a way that the model output related to women HR and LR prevalence minimize the fitting function defined in Section \ref{sec:rPSO}.
 
-We have performed 20 different calibrations using rPSO, each one with around $500$ realizations and $30$ particles. A total of $10,100$ realizations of the model were performed with an equivalent sequential total computation time of $161$ days.
+We have performed 20 different calibrations using rPSO, each one with around $500$ realizations and $30$ particles. A total of $10,100$ realizations of the model were performed with an equivalent sequential total computation time of $161$ days. Computer time, however, is highly reduced as we can see in Figure \ref{histogram} due to the benefits provided by Sisifo distributed architecture.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{IMGs/1.-Calibrado/Hist_CPU_time.pdf}
 	\caption{Histogram of the computation time of each one of the $10,100$ realizations of the model using networks of $100,000$ nodes. The average time is $1374.5$ seconds, around $23$ minutes.}
+	\label{histogram}
 \end{figure}
 
 \section{Selecting the 30 realizations that best capture the data uncertainty}
-Our goal, now, is to find a procedure to select $30$ among the $10,100$ realizations of the model in such a way that the means and the 95\% confidence intervals of these $30$ realizations be as much close as possible of the corresponding means and the 95\% confidence intervals of the data in Table \ref{datosConstruccion}. We decided to select $30$ because as we saw in Table \ref{tab.color}, the total computation time is the best for $30$ particles running in parallel in the Sandy Bridge computers.
+Our goal, now, is to find a procedure to select $30$ among the $10,100$ realizations of the model in such a way that the means and the 95\% confidence intervals of these $30$ realizations be as much close as possible of the corresponding means and the 95\% confidence intervals of the data in Table \ref{datosConstruccion}. We decided to select $30$ because as we saw in Table \ref{tab.color}, the total computation time is the best for $30$ particles executing in parallel in the Sandy Bridge computers.
 
 Nevertheless, it would be interesting to reduce the number of eligible realizations to much less than $10,100$. In Figure \ref{Error_0} we can see the $100$ realizations with error less than $0.01$, that is, the realizations that almost lie inside the 95\% confidence intervals of the data, represented by the blue horizontal dashed lines. 
 
@@ -357,9 +343,9 @@ In Figure \ref{Error_003}, we draw the $1282$ model realizations of with error l
 In order to determine the \textit{best} $30$ realizations that capture the mean and the $95\%$ confidence intervals of the data in Table \ref{datosConstruccion}, we are going to introduce an adapted version of the rPSO algorithm before. Let $E$ be the realizations considered with $card(E)=M$ its number. For instance, for $E$ the set of realizations with error less than $0.01$, $M=100$. Also, for $E$ the set of realizations with error less that $0.05$, $M=1282$. Then $E(i)$ is the $i-th$ realization of the set $E$. We define the following fitness function $F$:
 
 \begin{description}
-	\item[INPUT:] Set of $30$ indexes $I=\{i_1,\ldots,i_{30} \}$, $1\leq i_j \leq M$, $j=1,\ldots, 30$..
+	\item[INPUT:] Set of $30$ indexes $I=\{i_1,\ldots,i_{30} \}$, $1\leq i_j \leq M$, $j=1,\ldots, 30$.
 	\item[Step 1.] Select the realizations $E(i_1),\ldots,E(i_{30})$ and calculate the mean, percentile $2.5$ and percentile $97.5$ of them.
-	\item[Step 2.] Calculate the norm of the difference between the mean, percentile $2.5$ and percentile $97.5$  of the $30$ realizations and the data (see Remark \ref{mo}), and sum them up. 
+	\item[Step 2.] Calculate the Root Mean Square Error (RMSE) of the difference between the mean, percentile $2.5$ and percentile $97.5$  of the $30$ realizations and the data (see Remark \ref{mo}), and sum them up. 
 \end{description}
 
 Now, the adapted version of rPSO to select the best $30$ realizations is
@@ -379,9 +365,9 @@ Now, the adapted version of rPSO to select the best $30$ realizations is
 
 Here, we also consider $10\%$ of randomness and $10\%$ of mutation when updating new particles. In this case, mutation consists of changing some of the indexes in the current particle by other randomly chosen indexes, avoiding repetitions.
 
-The above algorithm, in the tests we have run, lasts around $20$ minutes for $1$ million of evaluations of the fitness function in the Sandy Bridge computer, returning accurate solutions.
+The above algorithm, in the tests we have executed, last around $20$ minutes for $1$ million of evaluations of the fitness function in the Sandy Bridge computer, returning accurate solutions.
 
-We have performed runs for $30$, $40$, $50$ and $60$ particles, being $E$ the realization sets with errors less than $0.025$, $0.05$ and $0.075$. The lowest error has been $0.1166$ for the following realizations  
+We have performed executions for $30$, $40$, $50$ and $60$ particles, being $E$ the realization sets with errors less than $0.025$, $0.05$ and $0.075$. The lowest error has been $0.1166$ for the following realizations  
 
 \begin{equation}
 \begin{array}{c}
