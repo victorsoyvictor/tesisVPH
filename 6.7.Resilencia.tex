@@ -9,7 +9,7 @@ In Denmark, the vaccination program started in $2009$ with a coverage of $80\%$.
 	\label{fig:cobertura_danesa}
 \end{figure}
 
-Drops in the coverage have happened in some countries and it is a concerning issue because the natural consequence is the delay in achieving high rates of protection (resilence) in order to reduce the pathologies associated to HPV.
+Drops in the coverage have happened in some countries and it is a concerning issue because the natural consequence is the delay in achieving high rates of protection (resilience) in order to reduce the pathologies associated to HPV.
 
 Thus, here, we are going to perform simulations to study the delay produced due to a drop in the coverage under different circumstances. A first approach has published in \cite{Elfstrm2015}, where the authors consider an age-structured model of differential equations \cite{Baussano2013} to simulate the following vaccination programs
 
@@ -37,7 +37,7 @@ Here, we assume an effectiveness of $96.5\%$ and the use of GARDASIL9. We do not
 
 %Recall that we performed a simulation with the data appearing in \cite{Skufca} in Section \ref{sec:australia_sfuka} in page \pageref{sec:australia_sfuka} and we concluded that the catch-up effectiveness for genital warts may be higher than the figures collected in \cite{Skufca} but far from $92\%$. Thus, it seems to be clear that the vaccine effectiveness experiments a reduction in those women who had previous contact with the virus.
 
-In order to study the resilence, we are going to compare the delay produced in the decline of infections between, on the one hand, the Base Case and the Case 3 (only girls vaccination), and on the other hand, the Case 1 and the Case 4 (vaccination of boys and girls). 
+In order to study the resilience, we are going to compare the delay produced in the decline of infections between, on the one hand, the Base Case and the Case 3 (only girls vaccination), and on the other hand, the Case 1 and the Case 4 (vaccination of boys and girls). 
 
 We show the obtained results in Figures \ref{fig:baseCase_Case3} and \ref{fig:Case2_Case4}. Figure \ref{fig:baseCase_Case3} depicts the comparison between the Base Case and the Case 3 and Figure \ref{fig:Case2_Case4} the comparison between the Case 2 and the Case 4. In both figures, on the left column we can see the evolution over the time of the decline of the oncogenic HPV in men, women and MSM (only in Figure \ref{fig:Case2_Case4}), from year $2025$ (when the drop starts). On the right column, we visualize the average number of years the simulation with the drop in the coverage needs to achieve the same level of decline as the simulation without drop, from year $2025$ until $2055$. The difference of years to achieve the same decline is calculated as follows: for each time instant, we find the average decline level in the case where there is not drop. Then, we seek in which time instant the same average decline level is reached in the case there is drop and we calculate the difference between both time instants and divided by $12$.
 
@@ -79,12 +79,12 @@ If we look at the left columns, the CI$95\%$ begin to converge from $2060$ for m
 Furthermore, when the decline starts to saturate, a short increase in the decline takes much longer time. Now, looking at the right columns:
 
 \begin{itemize}
-\item Men: in men, we can see that when boys and girls are vaccinated, the resilence is much less. We can see more clearly the differences in Figure \ref{fig:compara_resilencia}(a). In the maxima values, the difference is from $5\%$ to $12\%$.
+\item Men: in men, we can see that when boys and girls are vaccinated, the resilience is much less. We can see more clearly the differences in Figure \ref{fig:compara_resilencia}(a). In the maxima values, the difference is from $5\%$ to $12\%$.
 \item MSM: it is interesting to notice that in \ref{fig:Case2_Case4}(d), the delay is practically constant over the time and equal to $4$ years. It may be because the small herd immunity effect on MSM.
 \item Women: here, the difference is lower because in all the cases women are vaccinated. Nevertheless, there is an extra herd immunity effect when boys and girls are vaccinated that reduces in some years the delay.
 \end{itemize}
 
-In Figure \ref{fig:compara_resilencia} we plot in the same graphic, on the one hand,  \ref{fig:baseCase_Case3}(b) and \ref{fig:Case2_Case4}(b) to compare the resilence in men, and on the other hand, \ref{fig:baseCase_Case3}(f) and \ref{fig:Case2_Case4}(f) to compare the resilence in women. Here, the differences can be visualised more clearly.
+In Figure \ref{fig:compara_resilencia} we plot in the same graphic, on the one hand,  \ref{fig:baseCase_Case3}(b) and \ref{fig:Case2_Case4}(b) to compare the resilience in men, and on the other hand, \ref{fig:baseCase_Case3}(f) and \ref{fig:Case2_Case4}(f) to compare the resilience in women. Here, the differences can be visualised more clearly.
 
 \begin{figure}[!]
 	\centering
@@ -93,7 +93,7 @@ In Figure \ref{fig:compara_resilencia} we plot in the same graphic, on the one h
 		\includegraphics[width=0.5\linewidth]{IMGs/11.-Resilencia/compara_resilencia_onco_muj.pdf}  \\ 
 		(a)	& (b) \\ 
 	\end{tabular} 
-	\caption{Comparative of the average time in years of the delay in the case where only girls are vaccinated and boys and girls are vaccinated. On the left (a), the average resilence of oncogenic HPV in men. On the right (b), the same as (a) but for women. The vaccination programs are more resilent when only girls are vaccinated.}
+	\caption{Comparative of the average time in years of the delay in the case where only girls are vaccinated and boys and girls are vaccinated. On the left (a), the average resilience of oncogenic HPV in men. On the right (b), the same as (a) but for women. The vaccination programs are more resilent when only girls are vaccinated.}
 	\label{fig:compara_resilencia}
 \end{figure}
 
