@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\chapter{Conclusions and Limitations}\label{conclusion}
+\chapter{Conclusions and limitations}\label{conclusion}
 In this dissertation, we present a computational model to describe the transmission dynamics of HPV. The model is based on networks of lifetime sexual partners (LSP) determining the paths where HPV spreads. We also encountered a set of limitations inherent to this kind of models.
 
 Here, we intend to help in the current discussion about two main points: why the vaccination campaigns are more effective than expected and whether the boys should be also vaccinated.
@@ -18,14 +18,14 @@ Under the Public Health point of view:
 
 Therefore, if we vaccinate women, they are protected and heterosexual men are also protected by herd immunity. MSM are not protected at all.
 
-If we want to eradicate the diseases associated to oncogenic HPV, we should vaccinate boys and girls with high coverage, making sure that MSM are vaccinated with the highest coverage possible to avoid the HPV keeps circulating among unprotected MSM subnetworks.
+If we want to eradicate the diseases associated to oncogenic HPV, we should vaccinate boys and girls with high coverage, making sure that MSM are vaccinated with the highest coverage possible to avoid the HPV keeps circulating among unprotected MSM subnetwork.
 
 We expect to give tools to those responsible for public health to be able to design appropriate HPV NIPs, or expand to new cohorts combining effectiveness and economy.
 
 Under the technical point of view:
 \begin{enumerate}
 	\item We have designed an epidemiological model to study the transmission dynamics of HPV using LSP networks.
-	\item We use known real data to build big LSP networks (in networks, size may matters, see Figure 5 in \cite{villanueva2013epidemic}.
+	\item We use known real data to build big LSP networks (in networks, size may matters, see Figure 5 in \cite{villanueva2013epidemic}).
 	\item We have designed a complex and innovative system to calibrate big network models.
 	\item We have designed algorithms for model calibration taking into account the uncertainty in the network model building and in the data. 
 	\item We have provided some advances in the computational treatment of the uncertainty quantification in computation demanding models.
@@ -33,10 +33,9 @@ Under the technical point of view:
 
 Below we also remark the limitations of the model:
 \begin{enumerate}
-	\item Data collected from CLEOPATRA is only for women so biased information must be considered.
-	\item Sexual habits data are collected from 2003, biased information is also found here.
-	\item Random networks building implies structure uncertainty.
-	\item Sexual behavior has changed in last years so we mitigate this issue by performing a sensitivity analysis.
-	\item Males have lower (or no) immune protection against HPV compared to females.
-	\item The underlying demographic model assumes constant population using real Spanish demographic data. However, even though the population is constant, its dynamics makes that the age groups do not have constant population. This irregularity may be the cause of small cyclicity of the model output every complete generation of 50 years and the lower levels of decline under the coverage in the period $20-–40$ years.
+	\item Data collected from CLEOPATRA used in calibration, is only for women, so biased information must be considered.
+	\item Sexual habits data are collected from 2003, biased information may also found here, although a sensitivity analysis has been performed.
+	\item The lack of specific data about sexual behavior of the population do not allow us to check the reliability of the network structure. However, the computational network model built reproduces accurately real situations.
+	\item In the model we have not considered that males have lower (or no) immune protection against HPV compared to females \cite{Beachler2018}. In fact, we have not considered any immune protection against HPV after infection.
+	\item The underlying demographic model assumes constant population using real Spanish demographic data. However, even though the population is constant, its dynamics makes that the age groups do not have constant population. This irregularity may be the cause of small cyclicity of the model output every complete generation of $5$0 years and the lower levels of decline under the coverage in the period $20–40$ years.
 \end{enumerate}
