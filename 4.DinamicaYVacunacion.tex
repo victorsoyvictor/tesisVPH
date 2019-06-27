@@ -5,7 +5,7 @@
 \section{Introducing age and LSP dynamics into the LSP model}
 The computational model presented so far is static, that is, once we have assigned the LSPs, they do not change over the time and the nodes do not increase their age. We modulate the possibility of a contagion introducing global probabilities that determine if the existence of a LSP implies sexual intercourses in a given time step per age group $14-17$, $18-29$, $30-39$ and $40-65$. Also, note that the available data about LSPs come from $2003$ and the data of prevalence appears in a study (CLEOPATRA \cite{castellsague2012prevalence}) conducted in $2007-2008$. The sexual behavior has changed in the last $10-15$ years and we would like to include it in our model in some way. Nevertheless, newer data about LSPs and prevalence in Spain are not available.
 
-Thus, in order to introduce age and LSP assignation dynamics in a simple way, we are going to \textit{move} the available data over the time. Figure \ref{fig:dinam1} shows the constant age distribution that do not varies over the time.
+Thus, in order to introduce age and LSP assignation dynamics in a simple way, we are going to \textit{move} the available data over the time. Figure \ref{fig:dinam1} shows the constant age distribution that does not vary over the time.
 
 \begin{figure}[h!]
 	\centering
@@ -14,7 +14,7 @@ Thus, in order to introduce age and LSP assignation dynamics in a simple way, we
 	\label{fig:dinam1}
 \end{figure}
 
-Then, we evolve the ages of the nodes over the time. As long as the nodes do not change the age group, there is nothing to do. However, how do we \textit{recycle} the nodes that turn 64? And how do we transform the nodes in the first age group $14-29$ when they turn 30?  
+Then, we evolve the ages of the nodes over the time. As long as the nodes do not change the age group, there is nothing to do. However, how do we \textit{recycle} the nodes that turn 64 years old? And how do we transform the nodes in the first age group $14-29$ when they turn 30?  
 
 To answer the first question, we propose to
 
@@ -67,7 +67,7 @@ The vertical lines correspond to:
 
 In some test executions with vaccination, we have observed that, if we start the vaccination schedule when the prevalence is in the decreasing part (towards a valley) of the oscillation, the herd immunity appears very much sooner than when we start the vaccination schedule in the increasing part (towards a peak).
 
-If we take into account that in the paper \cite{ali2013genital}, the authors reports extraordinary results in Australia, where two years after the vaccine was introduced, the proportion of genital warts diagnosed declined by a $59\%$ in vaccine eligible young women aged 12--26 years in $2007$, and by $39\%$ in men of the same age, we conjecture that, if there are oscillations in the prevalence of HPV over the time, they have taken advantage of a decreasing part of an oscillation.
+If we take into account that in the paper \cite{ali2013genital}, the authors report extraordinary results in Australia, where two years after the vaccine was introduced, the proportion of genital warts diagnosed declined by a $59\%$ in vaccine eligible young women aged 12--26 years in $2007$, and by $39\%$ in men of the same age, we conjecture that, if there are oscillations in the prevalence of HPV over the time, they have taken advantage of a decreasing part of an oscillation.
 
 Recall that our goal is to determine the appropriate month where the vaccination schedule starts, trying to save computations and favoring the apparition of the herd immunity effect as soon as possible, in order to minimize the opposite effect when the oscillation is in the increasing trend if we have vaccinated a large enough number of individuals.
 
@@ -92,4 +92,4 @@ In the previous section we assume that the protection of GARDASIL9 is forever. I
 In fact, we want to simulate the worst possible scenario, that is, the sudden drop to zero of the protection. To simulate this possibility, we will introduce a new parameter that represents the time after the vaccination where the protection is complete. Therefore, after this time, the vaccinated individual will behave as a non-vaccinated individual.
 
 \section{Introducing variations in the vaccination coverage}
-One of our goals is to simulate scenarios where variations in the vaccination coverage have been occurred and we want to study the effect in the global protection against HPV due to these variation of the coverage. To simulate these scenarios, we will include into the model vectors of coverage, indicating the vaccine coverage every month, and vaccinating the people following these variable coverages. 
+One of our goals is to simulate scenarios where variations in the vaccination coverage have occurred and we want to study the effect in the global protection against HPV due to these variation of the coverage. To simulate these scenarios, we will include into the model vectors of coverage, indicating the vaccine coverage every month, and vaccinating the people following these variable coverages. 
